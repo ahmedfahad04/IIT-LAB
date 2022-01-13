@@ -6,7 +6,7 @@
 using namespace std;
 
 bool compsec(const pair<int, int> &a, const pair<int, int> &b){
-	return(a.s>b.s);
+	return(a.s<b.s);
 }
 
 int main(){
