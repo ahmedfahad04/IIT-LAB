@@ -1,14 +1,16 @@
 #include <bits/stdc++.h>
 #define start first
 #define finish second
-#define ll long long int
 #define mk make_pair
 using namespace std;
 
+// comparison function to sort the pair of (s,f) according to FINISHING time.
 bool compsec(const pair<int, int> &a, const pair<int, int> &b){
 	return(a.finish<b.finish);
 }
 
+
+// function to generate optimal activity selection
 vector<pair<int,int>> activity_selector (vector<pair<int,int>> data, int initial_point){
 
 	vector<pair<int,int>> result;
@@ -31,19 +33,23 @@ vector<pair<int,int>> activity_selector (vector<pair<int,int>> data, int initial
 
 int main(){
 
-	#ifndef ONLINE_JUDGE
+
+	#ifndef 
 	freopen("input.txt","r",stdin); 	//file input.txt is opened in reading mode i.e "r"
 	freopen("output.txt","w",stdout);   //file output.txt is opened in writing mode i.e "w"
 	#endif
 
+	// vector of pairs 
 	vector<pair<int, int>> p, ans, temp;
-
 	vector<vector<pair<int, int>>> optimal_solutions;
-
 	int n;
 
+
+	// total number of pairs of (s,f)
 	cin >> n;
 
+
+	// taking input
 	for(int i=0; i<n; i++){
 
 		int a, b;
@@ -52,12 +58,20 @@ int main(){
 		p.push_back(mk(a,b));
 	}
 
+
+	// sort the pair of (s,f) using comparator 'compsec'
 	sort(p.begin(), p.end(), compsec);
 
+
+	// it'll store the size of optimal (s,f) pair
 	int opt_value = 0;
 
+
+	// this loop will search through every possible pair to find the optimal solutions
 	for(int i=0; i<n; i++){
 
+		
+		// vector of an optimal solution is returned to 'ans'
 		ans = activity_selector(p, i);
 
 		for(int i=0; i<ans.size(); i++){
@@ -65,26 +79,34 @@ int main(){
 			//cout << "Start: " << ans[i].start << ", End: " << ans[i].finish << endl;
 		}
 
+
+		// we store the  vector of optimal solution to another vector so that 
+		// we can display all possible optimal solutions we can get from the input 
 		optimal_solutions.push_back(temp);
 		temp.clear();
 
+
+		// determining the size of the vector of optimal solution
 		if(opt_value<=ans.size()) opt_value = ans.size();
 
-		// cout << "Total Work Done: " << ans.size() << "\n\n";
 	}
+
+
 
 	int sol = 1;
 	for(int i=0; i<n; i++){
 
+		// print those vectors whose size is equal to the optimum solution vector size
 		if(optimal_solutions[i].size() == opt_value){
 
 			cout << "Optimal solution: " <<  sol++ << endl;
+
+			// this loop prints the pairs of the optimal solution
 			for(int j=0; j<opt_value; j++){
 				cout << "Start: " << optimal_solutions[i][j].start << ", End: " << optimal_solutions[i][j].finish << endl;
 			}
 
 			cout << endl;
-
 		}
 	}
 
