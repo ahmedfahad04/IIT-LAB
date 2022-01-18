@@ -1,44 +1,12 @@
+Optimal solution: 1
 Start: 1, End: 4
 Start: 5, End: 7
 Start: 8, End: 11
 Start: 12, End: 16
-Total Work Done: 4
 
+Optimal solution: 2
 Start: 3, End: 5
 Start: 5, End: 7
 Start: 8, End: 11
 Start: 12, End: 16
-Total Work Done: 4
-
-Start: 0, End: 6
-Start: 6, End: 10
-Start: 12, End: 16
-Total Work Done: 3
-
-Start: 5, End: 7
-Start: 8, End: 11
-Start: 12, End: 16
-Total Work Done: 3
-
-Start: 3, End: 9
-Start: 12, End: 16
-Total Work Done: 2
-
-Start: 6, End: 10
-Start: 12, End: 16
-Total Work Done: 2
-
-Start: 8, End: 11
-Start: 12, End: 16
-Total Work Done: 2
-
-Start: 8, End: 12
-Start: 12, End: 16
-Total Work Done: 2
-
-Start: 2, End: 14
-Total Work Done: 1
-
-Start: 12, End: 16
-Total Work Done: 1
 
