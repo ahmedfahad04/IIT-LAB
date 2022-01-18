@@ -1,3 +1,16 @@
+/* Here we'll denote the pair of starting and finishing time as (s,f)
+
+The Algorithm we followed to solve "Activity Selection Problem" is:
+1. Sorting the activites by finishing time
+2. pick the activity (s,f) which finishes first
+3. then remove those pairs that conflicts with that pair
+4. repeat till the end of activites to find the optimal answer.
+
+The basic implementation of the algorithm is showed in the 'activity_selector' function.
+Later on is an extra demonstration on how we can display all of the optimal solutions of "Activity 
+Selection Problem"
+*/
+
 #include <bits/stdc++.h>
 #define start first
 #define finish second
@@ -33,11 +46,10 @@ vector<pair<int,int>> activity_selector (vector<pair<int,int>> data, int initial
 
 int main(){
 
-
-	#ifndef 
+	// taking input form txt file
 	freopen("input.txt","r",stdin); 	//file input.txt is opened in reading mode i.e "r"
-	freopen("output.txt","w",stdout);   //file output.txt is opened in writing mode i.e "w"
-	#endif
+	//freopen("output.txt","w",stdout);   //file output.txt is opened in writing mode i.e "w"
+	
 
 	// vector of pairs 
 	vector<pair<int, int>> p, ans, temp;
@@ -72,6 +84,7 @@ int main(){
 
 		
 		// vector of an optimal solution is returned to 'ans'
+		// *** this function shows the basic implementation of the algorithm mentioned above ***
 		ans = activity_selector(p, i);
 
 		for(int i=0; i<ans.size(); i++){
