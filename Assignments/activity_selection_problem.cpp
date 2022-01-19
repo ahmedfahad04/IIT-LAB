@@ -47,7 +47,7 @@ vector<pair<int,int>> activity_selector (vector<pair<int,int>> data, int initial
 int main(){
 
 	// taking input form txt file
-	freopen("input.txt","r",stdin); 	//file input.txt is opened in reading mode i.e "r"
+	freopen("input - Copy.txt","r",stdin); 	//file input.txt is opened in reading mode i.e "r"
 	//freopen("output.txt","w",stdout);   //file output.txt is opened in writing mode i.e "w"
 	
 
