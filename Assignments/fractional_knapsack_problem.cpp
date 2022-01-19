@@ -3,6 +3,8 @@
 #define wi second
 using namespace std;
 
+map<double,int> itemID;
+
 
 void fractionKnapSack(vector<pair<double,double>> valueWeightPair, double maxWeight){
 	double maxProfit = 0;
@@ -16,18 +18,19 @@ void fractionKnapSack(vector<pair<double,double>> valueWeightPair, double maxWei
 			maxProfit += valueWeightPair[i].value * xi;
 		}
 		else{
-			double x = min(maxWeight, abs(xi - maxWeight));
-			maxWeight -= x;
-			maxProfit += x * valueWeightPair[i].value;
+			
+			xi = min(maxWeight, abs(xi - maxWeight));
+			maxWeight -= xi;
+			maxProfit += xi * valueWeightPair[i].value;
 		}
 
-		cout << maxWeight << "---" << maxProfit << endl;
+		cout << xi << " ml of item " << itemID[valueWeightPair[i].value] << endl;
 
 		if(maxWeight <= 0) break;
 		
 	}
 
-	cout << "Maximum Profit Earned: " << maxProfit << endl;
+	cout << "\nMaximum Benefit: " << maxProfit << endl;
 }
 
 
@@ -39,7 +42,7 @@ int main(){
 	
 
 	// input formate------
-	// total items, total Weight of container
+	// total items, total Weight of the container
 	// list of items' profit
 	// list of items' weight
 
@@ -50,6 +53,7 @@ int main(){
 
 	vector<double> benefit, weight;
 	vector<pair<double,double>> valueWeightPair;
+	
 
 	for(int i = 0; i < size; i++){
 		double x;
@@ -62,9 +66,35 @@ int main(){
 		cin >> x;
 		weight.push_back(x);
 		valueWeightPair.push_back(make_pair(benefit[i]/x, x));
+		itemID[benefit[i]/x] = i+1;
 	}
+
+	cout << "Total Item: " << size << endl;
+	cout << "Container Weight: " << maxWeight << endl;
+
+	cout << "Items:		 ";
+	for(int i = 0; i < size; i++){
+		cout << i+1 << " ";
+	}
+
+	cout << "\nBenefit:     ";
+	for(int i = 0; i < size; i++){
+		cout << benefit[i] << " ";
+	}
+
+	cout << "\nWeights:	 ";
+	for(int i = 0; i < size; i++){
+		cout << weight[i] << " ";
+	}
+
+	cout << "\nUnit Weight: ";
+	for(int i = 0; i < size; i++){
+		cout << valueWeightPair[i].value << " ";
+	}
+
+	cout << "\n\n";
 
 	sort(valueWeightPair.rbegin(), valueWeightPair.rend());
 
-	fractionKnapSack(valueWeightPair, maxWeight);
+ 	fractionKnapSack(valueWeightPair, maxWeight);
 }
