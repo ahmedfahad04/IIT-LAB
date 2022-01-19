@@ -1,0 +1,12 @@
+Optimal solution: 1
+Start: 1, End: 4
+Start: 5, End: 7
+Start: 8, End: 11
+Start: 12, End: 16
+
+Optimal solution: 2
+Start: 2, End: 5
+Start: 5, End: 7
+Start: 8, End: 11
+Start: 12, End: 16
+

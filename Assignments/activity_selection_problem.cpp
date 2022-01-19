@@ -1,4 +1,4 @@
-/* Here we'll denote the pair of starting and finishing time as (s,f)
+/* Here we'll denote the pair of starting and finishing time as (start, finish) == (s,f)
 
 The Algorithm we followed to solve "Activity Selection Problem" is:
 1. Sorting the activites by finishing time
@@ -64,6 +64,7 @@ int main(){
 	// taking input
 	for(int i=0; i<n; i++){
 
+		// (start, finish)
 		int a, b;
 		cin >> a >> b;
 
