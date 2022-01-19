@@ -11,14 +11,22 @@ void fractionKnapSack(vector<pair<double,double>> valueWeightPair, double maxWei
 
 	for(int i=0; i<valueWeightPair.size(); i++){
 
+		// weight of each item (wi)
 		double xi = valueWeightPair[i].wi;
 		
+
+		// check if the item weight is less or equal to Max weight
 		if(maxWeight >= xi){ 
+
+			// if conditoin satisfys then proceed to adding benefits and 
+			// updating the maxWeight value
 			maxWeight -= xi;
 			maxProfit += valueWeightPair[i].value * xi;
 		}
 		else{
 			
+			// if condition doesn't satisfy then the minimum weight
+			// and calculate the remainig benefit
 			xi = min(maxWeight, abs(xi - maxWeight));
 			maxWeight -= xi;
 			maxProfit += xi * valueWeightPair[i].value;
@@ -26,6 +34,7 @@ void fractionKnapSack(vector<pair<double,double>> valueWeightPair, double maxWei
 
 		cout << xi << " ml of item " << itemID[valueWeightPair[i].value] << endl;
 
+		// when item weight exceeds Max weight the loop terminates 
 		if(maxWeight <= 0) break;
 		
 	}
@@ -37,8 +46,8 @@ void fractionKnapSack(vector<pair<double,double>> valueWeightPair, double maxWei
 int main(){
 
 	// taking input form txt file
-	freopen("input.txt","r",stdin); 	//file input.txt is opened in reading mode i.e "r"
-	freopen("output.txt","w",stdout);   //file output.txt is opened in writing mode i.e "w"
+	//freopen("input.txt","r",stdin); 	//file input.txt is opened in reading mode i.e "r"
+	//freopen("output.txt","w",stdout);   //file output.txt is opened in writing mode i.e "w"
 	
 
 	// input formate------
@@ -49,18 +58,28 @@ int main(){
 
 	int size;
 	double maxWeight;
-	cin >> size >> maxWeight;
+
+	cout << "Enter item size: ";
+	cin >> size;
+
+	cout << "Enter Max Weight: ";
+	cout << maxWeight;
 
 	vector<double> benefit, weight;
 	vector<pair<double,double>> valueWeightPair;
 	
 
+	// taking input of list of benefit
+	cout << "Enter items' benefits: ";
 	for(int i = 0; i < size; i++){
 		double x;
 		cin >> x;
 		benefit.push_back(x);
 	}
 
+
+	// taking input of list of weights
+	cout << "Enter items' weights: ";
 	for(int i = 0; i < size; i++){
 		double x;
 		cin >> x;
@@ -69,8 +88,10 @@ int main(){
 		itemID[benefit[i]/x] = i+1;
 	}
 
+
+	// displaying primary information
 	cout << "Total Item: " << size << endl;
-	cout << "Container Weight: " << maxWeight << endl;
+	cout << "Max Weight: " << maxWeight << endl;
 
 	cout << "Items:		 ";
 	for(int i = 0; i < size; i++){
@@ -94,7 +115,12 @@ int main(){
 
 	cout << "\n\n";
 
+
+	// sort the array so that we can pick the most valued ratio
+	// to ensure best pick
 	sort(valueWeightPair.rbegin(), valueWeightPair.rend());
 
+
+	// perform fractionKnapSack
  	fractionKnapSack(valueWeightPair, maxWeight);
 }

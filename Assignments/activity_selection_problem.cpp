@@ -47,8 +47,8 @@ vector<pair<int,int>> activity_selector (vector<pair<int,int>> data, int initial
 int main(){
 
 	// taking input form txt file
-	freopen("input - Copy.txt","r",stdin); 	//file input.txt is opened in reading mode i.e "r"
-	//freopen("output.txt","w",stdout);   //file output.txt is opened in writing mode i.e "w"
+	//freopen("input - Copy.txt","r",stdin); 	//file input.txt is opened in reading mode i.e "r"
+	//freopen("output - Copy.txt","w",stdout);   //file output.txt is opened in writing mode i.e "w"
 	
 
 	// vector of pairs 
@@ -58,10 +58,12 @@ int main(){
 
 
 	// total number of pairs of (s,f)
+	cout << "How many pairs do you want to enter: ";
 	cin >> n;
 
 
 	// taking input
+	cout << "Enter start time and finish time correspondingly: ";
 	for(int i=0; i<n; i++){
 
 		// (start, finish)
@@ -72,8 +74,20 @@ int main(){
 	}
 
 
+	cout << "Given Data: \n";
+	for(int i=0; i<n; i++){
+		cout << p[i].start  << " " << p[i].finish << endl;
+	}
+
+
 	// sort the pair of (s,f) using comparator 'compsec'
 	sort(p.begin(), p.end(), compsec);
+
+
+	cout << "\nSorted Data according to Finishing time: \n";
+	for(int i=0; i<n; i++){
+		cout << p[i].start  << " " << p[i].finish << endl;
+	}
 
 
 	// it'll store the size of optimal (s,f) pair
@@ -113,14 +127,13 @@ int main(){
 		// print those vectors whose size is equal to the optimum solution vector size
 		if(optimal_solutions[i].size() == opt_value){
 
-			cout << "Optimal solution: " <<  sol++ << endl;
+			cout << "\nOptimal solution: " <<  sol++ << endl;
 
 			// this loop prints the pairs of the optimal solution
 			for(int j=0; j<opt_value; j++){
 				cout << "Start: " << optimal_solutions[i][j].start << ", End: " << optimal_solutions[i][j].finish << endl;
 			}
 
-			cout << endl;
 		}
 	}
 

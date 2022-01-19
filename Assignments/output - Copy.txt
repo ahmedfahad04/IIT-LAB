@@ -1,3 +1,27 @@
+Given Data: 
+2 5
+5 7
+6 10
+1 4
+3 9
+0 6
+12 16
+2 14
+8 11
+8 12
+
+Sorted Data according to Finishing time: 
+1 4
+2 5
+0 6
+5 7
+3 9
+6 10
+8 11
+8 12
+2 14
+12 16
+
 Optimal solution: 1
 Start: 1, End: 4
 Start: 5, End: 7
@@ -9,4 +33,3 @@ Start: 2, End: 5
 Start: 5, End: 7
 Start: 8, End: 11
 Start: 12, End: 16
-

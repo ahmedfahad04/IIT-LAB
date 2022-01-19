@@ -1,16 +1,16 @@
 Total Item: 7
-Container Weight: 15
+Max Weight: 15
 Items:		 1 2 3 4 5 6 7 
-Benefit:     10 5 15 7 6 18 3 
+Benefit:     10 5 20 7 6 18 3 
 Weights:	 2 3 5 7 1 4 1 
-Unit Weight: 5 1.66667 3 1 6 4.5 3 
+Unit Weight: 5 1.66667 4 1 6 4.5 3 
 
 1 ml of item 5
 2 ml of item 1
 4 ml of item 6
-5 ml of item 7
+5 ml of item 3
 1 ml of item 7
 1 ml of item 2
 1 ml of item 4
 
-Maximum Benefit: 54.6667
+Maximum Benefit: 59.6667
