@@ -77,36 +77,48 @@ int main()
 
 	current_state = start_state;
 
-	string data;
-	cout << "\nEnter your string: ";
-	cin >> data;
+	cout << "\nEnter -1 to terminate the program...\n.";
 
-	cout << endl;
+	string data = "5";
 
-	for (int i = 0; i < data.size(); i++)
+	while (1)
 	{
-		for (int j = 0; j < states.size(); j++)
-		{
-			if (current_state == states[j].first) // a
-			{
-				for (int st = 0; st < alpha; st++)
-				{
-					if (data[i] == alphabets[st]) // 0
-					{
-						cout << states[j].second[st] << " ";
-						current_state = states[j].second[st];
-					}
-				}
+		cout << "\nEnter your string: ";
+		cin >> data;
 
-				break;
+		current_state = start_state;
+
+		if (data == "-1") break;
+
+		cout << start_state << " ";
+
+		for (int i = 0; i < data.size(); i++)
+		{
+			for (int j = 0; j < states.size(); j++)
+			{
+				if (current_state == states[j].first) // a
+				{
+					for (int st = 0; st < alpha; st++)
+					{
+						if (data[i] == alphabets[st]) // 0
+						{
+							cout << states[j].second[st] << " ";
+							current_state = states[j].second[st];
+						}
+					}
+
+					break;
+				}
 			}
 		}
+
+		cout << endl;
+
+		cout << "\nFINISHING STATE: " << current_state << endl;
+
+		if (current_state == finish_state)
+			cout << "\nString ACCEPTED!!";
+		else
+			cout << "\nString REJECTED!";
 	}
-
-	cout << endl;
-
-	cout << "\nFINISHING STATE: " << current_state << endl;
-
-	if(current_state == finish_state) cout << "\nString ACCEPTED!!";
-	else cout << "\nString REJECTED!";
 }
