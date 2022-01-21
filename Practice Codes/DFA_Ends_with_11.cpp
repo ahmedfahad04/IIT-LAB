@@ -4,18 +4,19 @@ using namespace std;
 int main(){
 
 	freopen("in.txt", "r", stdin);
-	freopen("out.txt", "w", stdout);
+	//freopen("out.txt", "w", stdout);
 	
 	string data;
-	int track = 0;
 	cin >> data;
 
 	cout << "Transition State: ";
 
 	char current_state = 'a';
+
 	for(int i=0; i<data.size(); i++){
 
 		if(current_state == 'a'){
+		
 			if (data[i] == '0'){
 				
 				cout << "A ";

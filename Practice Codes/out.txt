@@ -1,2 +1,0 @@
-Transition State: A A B *C A B A B A B A B A B A B 
-REJECTD!

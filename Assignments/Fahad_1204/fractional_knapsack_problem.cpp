@@ -1,3 +1,11 @@
+/*
+	input formate------
+	total items, total Weight of the container
+	list of items' profit
+	list of items' weight
+*/
+
+
 #include <bits/stdc++.h>
 #define value first
 #define wi second
@@ -32,28 +40,22 @@ void fractionKnapSack(vector<pair<double,double>> valueWeightPair, double maxWei
 			maxProfit += xi * valueWeightPair[i].value;
 		}
 
-		cout << xi << " ml of item " << itemID[valueWeightPair[i].value] <<  " = " << valueWeightPair[i].value*xi << "$" << endl;
+		printf("%0.2f gm of item %d = %0.2f/- \n", xi, itemID[valueWeightPair[i].value], valueWeightPair[i].value*xi);
 
 		// when item weight exceeds Max weight the loop terminates 
 		if(maxWeight <= 0) break;
 		
 	}
 
-	cout << "\nMaximum Benefit: " << maxProfit << "$" <<endl;
+	printf("\nTotal Benefit: %0.2f/- \n", maxProfit);
 }
 
 
 int main(){
 
 	// taking input form txt file
-	freopen("input.txt","r",stdin); 	//file input.txt is opened in reading mode i.e "r"
-	freopen("output.txt","w",stdout);   //file output.txt is opened in writing mode i.e "w"
-	
-
-	// input formate------
-	// total items, total Weight of the container
-	// list of items' profit
-	// list of items' weight
+	freopen("input2.txt","r",stdin); 	//file input.txt is opened in reading mode i.e "r"
+	//freopen("output.txt","w",stdout);   //file output.txt is opened in writing mode i.e "w"
 
 
 	int size;
@@ -93,24 +95,20 @@ int main(){
 	cout << "Total Item: " << size << endl;
 	cout << "Max Weight: " << maxWeight << endl;
 
-	cout << "Items:		 ";
-	for(int i = 0; i < size; i++){
-		cout << i+1 << " ";
-	}
-
+	
 	cout << "\nBenefit:     ";
 	for(int i = 0; i < size; i++){
-		cout << benefit[i] << " ";
+		printf("%0.2f	", benefit[i]);
 	}
 
 	cout << "\nWeights:	 ";
 	for(int i = 0; i < size; i++){
-		cout << weight[i] << " ";
+		printf("%0.2f	", weight[i]);
 	}
 
 	cout << "\nUnit Weight: ";
 	for(int i = 0; i < size; i++){
-		cout << valueWeightPair[i].value << " ";
+		printf("%0.2f	", valueWeightPair[i].value);
 	}
 
 	cout << "\n\n";
