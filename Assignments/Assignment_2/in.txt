@@ -1,1 +1,3 @@
-5
+7 6
+A B C B D A B
+B D C A B A

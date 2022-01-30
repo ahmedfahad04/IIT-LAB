@@ -5,6 +5,7 @@ int main(){
 
 	//freopen("in.txt", "r", stdin);
 	//freopen("out.txt", "w", stdout);
+<<<<<<< HEAD:Practice Codes/DFA_Ends_with_11.cpp
 
 	cout << "Enter your String: ";
 
@@ -12,6 +13,8 @@ int main(){
 	cin >> data;
 
 	cout << "Transition State: ";
+=======
+>>>>>>> 3ce93520ffcb2f645bcbec178d1668944c92aee0:Labs/DFA_Ends_with_11.cpp
 
 	// 5 tuple explained
 
@@ -20,9 +23,31 @@ int main(){
 	char starting_state = states[0];
 	char finishing_state = states[2];
 	char current_state = starting_state;
+	int n = 3;
+
+	cout << "States: ";
+	for(int i=0; i<n; i++) cout << states[i] << " ";
+
+	cout << "\nAlphabets: ";
+	for(int i=0; i<n; i++) cout << alphabets[i] << " ";
+
+	cout << "\nStarting State: " << starting_state << endl;
+	cout << "Finishing State: " << finishing_state << endl;
 
 
-	for(int i=0; i<data.size(); i++){
+
+	cout << "\nEnter your string: ";
+
+	string data;
+	cin >> data;
+
+
+	cout << "\nTransition States: ";
+	
+
+	int i = 0;
+	while(data[i] != '\0')
+	{
 
 		if(current_state == states[0]){
 
@@ -75,10 +100,12 @@ int main(){
 			}
 		}
 
+		i++;
+
 	}
 
 
-	if(current_state == finishing_state) cout << "\nACCEPTED!!!";
-	else cout << "\nREJECTD!";
+	if(current_state == finishing_state) cout << "\nACCEPTED!!!\n\n";
+	else cout << "\nREJECTED!\n\n";
 
 }
