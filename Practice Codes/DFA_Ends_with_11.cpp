@@ -3,9 +3,11 @@ using namespace std;
 
 int main(){
 
-	freopen("in.txt", "r", stdin);
-	freopen("out.txt", "w", stdout);
-	
+	//freopen("in.txt", "r", stdin);
+	//freopen("out.txt", "w", stdout);
+
+	cout << "Enter your String: ";
+
 	string data;
 	cin >> data;
 
@@ -23,9 +25,9 @@ int main(){
 	for(int i=0; i<data.size(); i++){
 
 		if(current_state == states[0]){
-		
+
 			if (data[i] == alphabets[0]){
-				
+
 				cout << "A ";
 				current_state = states[0];
 
@@ -39,32 +41,32 @@ int main(){
 
 
 		else if(current_state == states[1]){
-			
+
 			if (data[i] == alphabets[0]){
 
 				cout << "A ";
 				current_state = states[0];
 
 			}
-			
+
 			else{
-				
+
 				cout << "*C ";
 				current_state = states[2];
-				
-			}	
+
+			}
 		}
 
 
 		else if(current_state == states[2]){
-			
+
 			if (data[i] == alphabets[0]){
-				
+
 				cout << "A " ;
 				current_state = states[0];
 
 			}
-			
+
 			else{
 
 				cout << "*C ";

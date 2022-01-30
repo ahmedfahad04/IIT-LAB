@@ -1,0 +1,28 @@
+
+
+id: 1
+R: 2
+
+id: 1
+id: 2
+R: 5
+
+id: 1
+id: 2
+id: 3
+R: 9
+
+id: 1
+id: 2
+id: 3
+id: 4
+R: 11
+
+id: 1
+id: 2
+id: 3
+id: 4
+id: 5
+R: 32527
+
+MAX revenue: 32527

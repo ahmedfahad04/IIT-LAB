@@ -5,7 +5,7 @@ using namespace std;
 int main(int argc, char *argv[])
 {	
 
-	//freopen("in.txt", "r", stdin);
+	freopen("in.txt", "r", stdin);
 	int t;
 	cin >> t;
 
