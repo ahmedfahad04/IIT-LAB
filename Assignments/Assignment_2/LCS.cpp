@@ -48,16 +48,19 @@ void Print_LCS(char x[], int i, int j){
 
     if (i==0 or j ==0) return;
 
-    if (b[i][j] == 3){
+    // diagonal
+    if (b[i][j] == 3){  
         Print_LCS(x, i-1, j-1);
         cout << x[i] << " "; 
     }
 
+    // up
     else if (b[i][j] == 1){
         Print_LCS(x, i-1, j);
         
     }
 
+    // left
     else if (b[i][j] == 2){
         Print_LCS(x, i, j-1);
     }
