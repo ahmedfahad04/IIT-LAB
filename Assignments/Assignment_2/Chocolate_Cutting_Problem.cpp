@@ -1,89 +1,81 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-const int INF = -1e5 + 5;
+const int INF = -1e8 + 5;
 
-int r[100][100];
+int rev[100][100];
+int s[100][100];
 
-int chocolate_cut(int p[100][100], int m, int n)
-{ // array size must be mentioned
+int chocolate_cut(int price[100][100], int col, int row)
+{
 
-    //m - columns
-    //n - rows
+	if (rev[row][col] >= 0)
+		return rev[row][col];
 
-    r[0][0] = 0;
+	int horizontal, vertical;
 
-    for (int k = 0; k < m; k++)
-    {
-        for (int j = 1; j <= n; j++)
-        {
-            int q = INF;
+	if (row == 0)
+		horizontal = 0;
+	else
+	{
+		horizontal = INF;
 
-            for (int i = 1; i <= j; i++)
-            {
+		for (int i = 1; i <= row; i++)
+		{
+			int x = price[i][col] + chocolate_cut(price, col, row - i);
+			if (horizontal < x) horizontal = x;
+		}
+	}
 
-                if (q < p[i - 1][k] + r[j - i][k])
-                {
-                    q = p[i - 1][k] + r[j - i][k];
-                }
-            }
+	if (col == 0)
+	{
+		vertical = 0;
+	}
 
-            r[j][k] = q;
-        }
-    }
+	else
+	{
+		vertical = INF;
 
-    for (int k = 0; k < n; k++)
-    {
-        for (int j = 1; j <= m; j++)
-        {
-            int q = INF;
+		for (int i = 1; i <= col; i++)
+		{
+			int y = price[row][i] + chocolate_cut(price, col - i, row);
+			if (vertical < y) vertical = y;
+		}
+	}
 
-            for (int i = 1; i <= j; i++)
-            {
-
-                if (q < p[k][i - 1] + r[k][j - i])
-                {
-                    q = p[k][i - 1] + r[k][j - i];
-                }
-            }
-
-            r[m][j] = q;
-        }
-    }
-
-    int max_revenue = -1;
-
-    for (int i = 1; i <= n; i++)
-    {
-        for (int j = 0; j < m; j++)
-        {
-            //cout << r[i][j] << " ";
-            max_revenue = max(max_revenue, r[i][j]);
-        }
-        //cout << endl;
-    }
-
-    return max_revenue;
+	rev[row][col] = max(horizontal, vertical);
+	return rev[row][col];
 }
 
 int main()
 {
 
-    freopen("in.txt", "r", stdin);
+	freopen("in.txt", "r", stdin);
 
-    int p[100][100], r, c;
+	int row, col, price[100][100];
+	cin >> row >> col;
 
-    cin >> r >> c;
+	for (int i = 1; i <= row; i++)
+	{
+		for (int j = 1; j <= col; j++)
+		{
+			cin >> price[i][j];
+		}
+	}
 
-    for (int i = 0; i < r; i++)
-    {
-        for (int j = 0; j < c; j++)
-        {
-            cin >> p[i][j];
-        }
-    }
+	for (int i = 0; i <= row; i++)
+		rev[i][0] = 0;
+	for (int i = 0; i <= col; i++)
+		rev[0][i] = 0;
 
-    int p1 = chocolate_cut(p, c, r); // cols
+	for (int i = 0; i <= row; i++)
+	{
+		for (int j = 0; j <= col; j++)
+		{
+			rev[i][j] = -1;
+		}
+	}
 
-    cout << "Max Revenue: " << p1 << endl;
+	int max_rev = chocolate_cut(price, col, row);
+	cout << "MAX REVENUE: " << max_rev << endl;
 }

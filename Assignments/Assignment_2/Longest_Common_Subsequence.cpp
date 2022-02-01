@@ -1,3 +1,15 @@
+/*
+	
+	Input Formate:
+	Size of Array 1, Size of Arry 2 
+	Array 1 
+	Array 2 
+	
+	Output Formate:
+	Longest Common Subsequence
+
+*/
+
 #include <bits/stdc++.h>
 #define UP 1
 #define LEFT 2
@@ -25,18 +37,19 @@ void LCS_LENGTH(char x[], char y[], int row, int col){
             
             if(x[i] == y[j]){
                 c[i][j] = c[i-1][j-1] + 1;
-                b[i][j] = 3;
-                cout << x[i] << " " << y[j] << endl;
+                b[i][j] = DIAGONAL; 
             }
 
             else{
+            	
                 if(c[i-1][j] >= c[i][j-1]){
                     c[i][j] = c[i-1][j];
-                    b[i][j] = 1;
+                    b[i][j] = UP; 
                 }
+                
                 else{
                     c[i][j] = c[i][j-1];
-                    b[i][j] = 2;
+                    b[i][j] = LEFT; 
                 }
             }
         }
@@ -48,20 +61,20 @@ void Print_LCS(char x[], int i, int j){
 
     if (i==0 or j ==0) return;
 
-    // diagonal
-    if (b[i][j] == 3){  
+   
+    if (b[i][j] == DIAGONAL){  
         Print_LCS(x, i-1, j-1);
         cout << x[i] << " "; 
     }
 
-    // up
-    else if (b[i][j] == 1){
+    
+    else if (b[i][j] == UP){
         Print_LCS(x, i-1, j);
         
     }
 
-    // left
-    else if (b[i][j] == 2){
+    
+    else if (b[i][j] == LEFT){
         Print_LCS(x, i, j-1);
     }
 
@@ -71,7 +84,7 @@ void Print_LCS(char x[], int i, int j){
 int main(){
     
     freopen("in.txt", "r", stdin);
-    freopen("out.txt", "w", stdout);
+    //freopen("out.txt", "w", stdout);
 
 
     char x[100], y[100];
@@ -92,7 +105,8 @@ int main(){
 
     // funtion call
     LCS_LENGTH(x, y, m, n);
+    
+    cout << "Longest Common Subsequence: ";
     Print_LCS(x, m-1, n-1);
-
     
 }

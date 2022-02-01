@@ -1,0 +1,16 @@
+Edit Distance: 5
+
+5 6
+4 5
+4 4
+4 3
+3 2
+2 1
+1 0
+delete s
+substitue p by h
+**Keep e as it is
+**Keep a as it is
+insert t
+insert e
+substitue k by r
