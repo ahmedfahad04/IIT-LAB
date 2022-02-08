@@ -1,0 +1,1 @@
+Total ways of making the coins are: 5
