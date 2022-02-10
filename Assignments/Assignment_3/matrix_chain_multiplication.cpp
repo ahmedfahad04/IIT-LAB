@@ -20,7 +20,7 @@ int lookup_chain(int i, int j){
 			int q = lookup_chain(i, k) + lookup_chain(k+1,j) + p[i-1]*p[k]*p[j];
 			if (q < m[i][j]){
 				m[i][j] = q;
-				s[i][j] = k;
+				s[i][j] = k; // this array track from which kth calculation, the min value was obtained
 			}
 		}
 	}
@@ -29,7 +29,7 @@ int lookup_chain(int i, int j){
 }
 
 void print_mcm(int i, int j){
-	
+
 	if(i == j){
 		cout << " A" << i << " ";
 	}
@@ -51,13 +51,14 @@ int main(){
 	for(int i=0; i<n; i++)
 		cin >> p[i];
 
+	// initializing m[i][j]  with infinity
 	for(int i=1; i<=n; i++){
 		for(int j=i; j<=n; j++){
 			m[i][j] = INF;
 		}
 	}
 
-	int value = lookup_chain(1, n-1);
+	lookup_chain(1, n-1);
 
 	cout << "Optimal Parenthesis sequence is: ";
 
