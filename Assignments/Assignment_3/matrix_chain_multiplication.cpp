@@ -1,3 +1,13 @@
+/*	
+	input format:
+	size
+	values...
+
+	output format:
+	Optimal Parenthesis sequence
+*/
+
+
 #include <bits/stdc++.h>
 #define N 10005
 #define INF 1000009
@@ -60,10 +70,10 @@ int main(){
 
 	lookup_chain(1, n-1);
 
-	cout << "Optimal Parenthesis sequence is: ";
+	cout << "Optimal Parenthesis sequence is: \n";
 
 	print_mcm(1, n-1);
 
-	cout << endl;
+	cout << "\n\n";
 
 }

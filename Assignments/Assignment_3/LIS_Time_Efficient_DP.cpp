@@ -74,7 +74,9 @@ void print (int n){ // problem
 int main(){
 
 	freopen("in.txt", "r", stdin);
+	//freopen("out.txt", "w", stdout);
 
+	
 	int size;
 	cin >> size;
 
@@ -83,7 +85,7 @@ int main(){
 	}
 
 	int ll = LIS_FAST_DP(size);
-	
+
 	cout << "Length of LIS: " << ll << "\nLIS: ";
 
 	print(size-1);

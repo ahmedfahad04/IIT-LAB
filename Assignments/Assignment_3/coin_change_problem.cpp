@@ -1,3 +1,14 @@
+/*
+	input format:
+	total coin, total value
+	value of each coins...
+
+	output format:
+	Total ways of making the change
+	Minimum coins
+*/
+
+
 #include <bits/stdc++.h>
 #define N 10005
 using namespace std;
@@ -50,6 +61,6 @@ int main(){
 
 	dp(n,w);
 
-	cout << "Total ways of making the coins are: " << ways[n][w] << endl;
+	cout << "Total ways of making the change: " << ways[n][w] << endl;
 	cout << "Minimum coins: " << min_coin[n][w] << endl; 
 }

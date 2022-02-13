@@ -84,6 +84,7 @@ void Print_LCS(int x[], int i, int j){
 int main(){
 
 	freopen("in.txt", "r", stdin);
+    //freopen("out.txt", "w", stdout);
 
 	cin >> size;
 

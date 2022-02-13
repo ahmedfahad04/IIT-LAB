@@ -63,7 +63,9 @@ int main()
 {
 
     freopen("in.txt", "r", stdin);
+    //freopen("out.txt", "w", stdout);
 
+    
     int size;
     cin >> size;
 
