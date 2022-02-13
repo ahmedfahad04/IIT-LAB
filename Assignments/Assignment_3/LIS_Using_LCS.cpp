@@ -1,3 +1,13 @@
+/*
+	input format:
+	size of array
+	array elements....
+
+	output format:
+	LIS: 
+	Length of LIS:
+*/
+
 #include <bits/stdc++.h>
 #define UP 1
 #define LEFT 2

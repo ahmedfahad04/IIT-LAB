@@ -1,3 +1,13 @@
+/*
+	input format:
+	size of array
+	array elements....
+
+	output format:
+	Length of LIS:
+	LIS: 
+*/
+
 #include <bits/stdc++.h>
 #define N 1000
 #define mINF -100005
@@ -88,5 +98,7 @@ int main(){
 	cout << "Length of LIS: " << ll << "\nLIS: ";
 
 	print(size);
+
+	cout << endl;
 
 }

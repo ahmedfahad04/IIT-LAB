@@ -1,3 +1,13 @@
+/*
+    input format:
+    size of array
+    array elements....
+
+    output format:
+    Length of LIS:
+    LIS: 
+*/
+
 #include <bits/stdc++.h>
 #define N 1000
 using namespace std;

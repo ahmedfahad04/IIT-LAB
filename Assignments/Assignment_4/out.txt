@@ -1,1 +1,0 @@
-MAXIMUM sum is: 13
