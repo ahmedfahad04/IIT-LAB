@@ -1,5 +1,12 @@
 #include <bits/stdc++.h>
 using namespace std;
+
+int L[10];
+
+int size(int a[]){
+
+    
+}
 int count(int p[], int n, int m)
 {
 
@@ -70,20 +77,24 @@ int min_coins(int p[], int m, int n)
 int main()
 {
 
-    freopen("in.txt", "r", stdin);
+    // freopen("in.txt", "r", stdin);
 
-    int val; // total value
-    cin >> val;
+    // int val; // total value
+    // cin >> val;
 
-    int m; // total number of coins
-    cin >> m;
-    int p[m]; // array of coins
+    // int m; // total number of coins
+    // cin >> m;
+    // int p[m]; // array of coins
 
-    for (int i = 0; i < m; i++)
-    {
-        cin >> p[i];
-    }
+    // for (int i = 0; i < m; i++)
+    // {
+    //     cin >> p[i];
+    // }
 
-    cout << "Coin change count: " << count(p, val, m) << endl;
-    cout << "Minimum coins: " << min_coins(p, val, m) << endl;
+    // cout << "Coin change count: " << count(p, val, m) << endl;
+    // cout << "Minimum coins: " << min_coins(p, val, m) << endl;
+
+    
+    int len = sizeof(L)/sizeof(L[0]);
+    cout << "SIZE: " << len << endl;
 }

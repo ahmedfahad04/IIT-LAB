@@ -78,7 +78,7 @@ int main()
 
     // cout << endl;
 
-    cout << "LIS Length: " << maxlen << "\nLIS: ";
+    cout << "Length: " << maxlen << "\nLIS: ";
 
     print(maxid);
 
