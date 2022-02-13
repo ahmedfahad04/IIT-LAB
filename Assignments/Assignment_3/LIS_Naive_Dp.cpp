@@ -74,21 +74,7 @@ int main()
 
     LIS_NAIVE(size);
 
-    // for (int i = 0; i <= size; i++)
-    // {
-    //     cout << L[i] << " ";
-    // }
-
-    // cout << endl;
-
-    // for (int i = 0; i <= size; i++)
-    // {
-    //     cout << pre[i] << " ";
-    // }
-
-    // cout << endl;
-
-    cout << "Length: " << maxlen << "\nLIS: ";
+    cout << "Length of LIS: " << maxlen << "\nLIS: ";
 
     print(maxid);
 

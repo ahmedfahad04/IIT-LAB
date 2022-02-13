@@ -83,21 +83,10 @@ int main(){
 	}
 
 	int ll = LIS_FAST_DP(size);
-
-	// for(int i=1; i<=size; i++){
-	//  	cout << pre[i] << " ";
-	// }
-
-	// cout << endl;
-
-	// for(int i=0; i<=size; i++){
-	//  	cout << a[i] << " ";
-	// }
-	// cout << endl;
-
+	
 	cout << "Length of LIS: " << ll << "\nLIS: ";
 
-	print(size);
+	print(size-1);
 
 	cout << endl;
 
