@@ -15,6 +15,8 @@ int main()
     int n;
     cout << "Enter number of states in DFA: ";
     cin >> n;
+    
+    
 
     for (int i = 0; i < n; i++)
     {
@@ -25,6 +27,8 @@ int main()
 
         states.push_back(ch);
     }
+    
+    
 
     int alpha;
     cout << "\nHow many alphabets are there in your DFA: ";
@@ -38,6 +42,8 @@ int main()
 
         alphabets.push_back(k);
     }
+    
+    
 
     cout << "\nEnter the state transition table: \n";
     for (int i = 0; i < n; i++)
@@ -55,6 +61,8 @@ int main()
         transition_table.push_back({start, temp});
         temp.clear();
     }
+    
+    
 
     cout << "\nTransition Table: \n";
     printf("states      %-5c     %-5c\n", alphabets[0], alphabets[1]);
@@ -71,6 +79,9 @@ int main()
         }
         cout << endl;
     }
+    
+    
+    
 
     char start_state, finish_state, current_state;
     cout << "\nEnter starting state: ";
@@ -89,35 +100,40 @@ int main()
         cout << "\nEnter your string: ";
         cin >> data;
 
-        current_state = start_state;
+        current_state = start_state;	// current state is like a pointer to a state on which currently I am working on
 
         if (data == "-1")
             break;
+            
+            
 
         cout << "Transition states: ";
 
-        for (int i = 0; i < data.size(); i++)   // string to be tested...
+        for (int i = 0; i < data.size(); i++)   // Iterate over the string to be tested..
         {
             for (int j = 0; j < transition_table.size(); j++)   // number of rows in transition table
             {
-                if (current_state == transition_table[j].first) // a, it checks whether I am in the correct row of table or not
+                if (current_state == transition_table[j].first) // a, it checks whether I am in the correct state
                 {
+                
                     // when get to the correct table row, check the alphabet of corresponding state
                     for (int st = 0; st < alpha; st++)  
                     {
                         if (data[i] == alphabets[st]) // 0
                         {
                             cout << transition_table[j].second[st] << " ";  // show the alphabet
-                            current_state = transition_table[j].second[st]; // now point to that alphabet
+                            current_state = transition_table[j].second[st]; // now point to that new state
                         }
                     }
 
-                    break;
+                    break;	// once done with finding current satate, just break the loop and go for the next alphabet in the  user given string
                 }
             }
         }
 
         cout << endl;
+        
+        
 
         // cout << "\nFINISHING STATE: " << current_state << endl;
 
