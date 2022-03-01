@@ -4,12 +4,12 @@ using namespace std;
 int main()
 {
 
-    //freopen("in.txt", "r", stdin);
-    //freopen("out.txt", "w", stdout);
+    // freopen("in.txt", "r", stdin);
+    // freopen("out.txt", "w", stdout);
 
-    vector<pair<char, vector<char>>> states;
+    vector<pair<char, vector<char>>> transition_table;
 
-    vector<char> given_st;
+    vector<char> states;
     vector<char> alphabets, temp;
 
     int n;
@@ -23,7 +23,7 @@ int main()
         cin >> ch;
         fflush(stdin);
 
-        given_st.push_back(ch);
+        states.push_back(ch);
     }
 
     int alpha;
@@ -52,18 +52,22 @@ int main()
             temp.push_back(ch);
         }
 
-        states.push_back({start, temp});
+        transition_table.push_back({start, temp});
         temp.clear();
     }
 
     cout << "\nTransition Table: \n";
+    printf("states      %-5c     %-5c\n", alphabets[0], alphabets[1]);
+    printf("------    -----     -----\n");
+
     for (int i = 0; i < n; i++)
     {
 
-        cout << states[i].first << "----";
-        for (char ch : states[i].second)
+        printf("%-10c", transition_table[i].first);
+        for (char ch : transition_table[i].second)
         {
-            cout << ch << " ";
+            // cout << ch << "         ";
+            printf("%-10c", ch);
         }
         cout << endl;
     }
@@ -71,39 +75,40 @@ int main()
     char start_state, finish_state, current_state;
     cout << "\nEnter starting state: ";
     cin >> start_state;
-
     cout << "\nEnter finishing state: ";
     cin >> finish_state;
-
     current_state = start_state;
-
     cout << "\nEnter -1 to terminate the program...\n";
 
     string data;
 
     while (1)
     {
+    
+    	cout << "-----------------------------------------\n";
         cout << "\nEnter your string: ";
         cin >> data;
 
         current_state = start_state;
 
-        if (data == "-1") break;
+        if (data == "-1")
+            break;
 
-        cout << "Transition States: ";
+        cout << "Transition states: ";
 
-        for (int i = 0; i < data.size(); i++)
+        for (int i = 0; i < data.size(); i++)   // string to be tested...
         {
-            for (int j = 0; j < states.size(); j++)
+            for (int j = 0; j < transition_table.size(); j++)   // number of rows in transition table
             {
-                if (current_state == states[j].first) // a
+                if (current_state == transition_table[j].first) // a, it checks whether I am in the correct row of table or not
                 {
-                    for (int st = 0; st < alpha; st++)
+                    // when get to the correct table row, check the alphabet of corresponding state
+                    for (int st = 0; st < alpha; st++)  
                     {
                         if (data[i] == alphabets[st]) // 0
                         {
-                            cout << states[j].second[st] << " ";
-                            current_state = states[j].second[st];
+                            cout << transition_table[j].second[st] << " ";  // show the alphabet
+                            current_state = transition_table[j].second[st]; // now point to that alphabet
                         }
                     }
 
@@ -114,11 +119,13 @@ int main()
 
         cout << endl;
 
-        //cout << "\nFINISHING STATE: " << current_state << endl;
+        // cout << "\nFINISHING STATE: " << current_state << endl;
 
         if (current_state == finish_state)
             cout << "\nString ACCEPTED!!\n";
         else
             cout << "\nString REJECTED!\n";
+            
+          
     }
 }
