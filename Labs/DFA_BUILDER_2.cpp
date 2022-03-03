@@ -8,16 +8,16 @@ int main()
     // freopen("out.txt", "w", stdout);
 
     vector<pair<char, vector<char>>> transition_table;
-
-    vector<char> states;
+    vector<char> states, finishing_states;
     vector<char> alphabets, temp;
+
 
     int n;
     cout << "Enter number of states in DFA: ";
     cin >> n;
 
     for (int i = 0; i < n; i++)
-    {
+    { 
         char ch;
         cout << "State " << i + 1 << ": ";
         cin >> ch;
@@ -25,6 +25,8 @@ int main()
 
         states.push_back(ch);
     }
+
+
 
     int alpha;
     cout << "\nHow many alphabets are there in your DFA: ";
@@ -39,7 +41,15 @@ int main()
         alphabets.push_back(k);
     }
 
+
     cout << "\nEnter the state transition table: \n";
+    for (int i = 0; i < alpha; i++)
+    {
+        cout << "        " << alphabets[i];
+    }
+    cout << endl;
+
+
     for (int i = 0; i < n; i++)
     {
         char start;
@@ -55,6 +65,7 @@ int main()
         transition_table.push_back({start, temp});
         temp.clear();
     }
+
 
     cout << "\nTransition Table: \n";
     printf("states      %-5c     %-5c\n", alphabets[0], alphabets[1]);
@@ -72,21 +83,33 @@ int main()
         cout << endl;
     }
 
-    char start_state, finish_state, current_state;
+
+    char start_state, current_state;
     cout << "\nEnter starting state: ";
     cin >> start_state;
-    cout << "\nEnter finishing state: ";
-    cin >> finish_state;
+
+    int fstate;
+    cout << "\nNumber of finishing States: ";
+    cin >> fstate;
+
+    cout << "\nEnter finishing states: ";
+    for (int i = 0; i < fstate; i++)
+    {
+        char val;
+        cin >> val;
+        finishing_states.push_back(val);
+    }
+
     current_state = start_state;
     cout << "\nEnter -1 to terminate the program...\n";
-
-    string data;
 
     while (1)
     {
 
         cout << "-----------------------------------------\n";
         cout << "\nEnter your string: ";
+
+        string data;
         cin >> data;
 
         current_state = start_state; // current state is like a pointer to a state on which currently I am working on
@@ -102,7 +125,6 @@ int main()
             {
                 if (current_state == transition_table[j].first) // it checks whether I am in the correct state
                 {
-
                     // when get to the correct table row, check the alphabet of corresponding state
                     for (int st = 0; st < alpha; st++)
                     {
@@ -122,9 +144,17 @@ int main()
 
         // cout << "\nFINISHING STATE: " << current_state << endl;
 
-        if (current_state == finish_state)
-            cout << "\nString ACCEPTED!!\n";
-        else
+        int f = 1;
+        for (int i = 0; i < fstate; i++)
+        {
+            if (current_state == finishing_states[i])
+            {
+                cout << "\nString ACCEPTED!!\n";
+                f = 0;
+            }
+        }
+
+        if (f)
             cout << "\nString REJECTED!\n";
     }
 }
