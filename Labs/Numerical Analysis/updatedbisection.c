@@ -15,6 +15,8 @@ int main()
     double a = 1, b = 2, c;
     int itr = 0;
 
+    printf("\"itr\",\"Root\"\n");
+
     while (1)
     {
         itr++;
@@ -22,8 +24,6 @@ int main()
 
         if (fabs(func(c)) <= EPS)
         {
-            printf("Root (Bisection Method) is: %0.9lf\n", c);
-            printf("\nIteration: %d", itr);
             break;
         }
 
@@ -35,5 +35,9 @@ int main()
         {
             a = c;
         }
+
+        printf("%d,%lf\n", itr, c);
     }  
+
+    
 }
