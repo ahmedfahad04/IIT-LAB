@@ -16,7 +16,7 @@ int main()
 
     while (1)
     {
-        c = (a * func(b) - b * func(a)) / (func(b) - func(c));
+        c = (a * func(b) - b * func(a)) / (func(b) - func(a));
         itr++;
 
         if (fabs(func(c)) <= EPS)

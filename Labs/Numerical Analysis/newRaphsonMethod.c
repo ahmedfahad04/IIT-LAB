@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <math.h>
-#define df(x) (3*x*x + 8*x)
-#define f(x) (x*x*x + 4*x*x - 10)
+#define df(x) (3*(x)*(x) + 8*(x))
+#define f(x) ((x)*(x)*(x) + 4*(x)*(x) - 10)
 #define EPS 1e-9
 
 double func(double x)
