@@ -4,7 +4,7 @@
 
 double func(double x)
 {
-    double eqn = x * x * x + 4 * x * x - 10;
+    double eqn = x * x * x - 4 * x - 8.95;
     //printf("RES: %lf\n", eqn);
     return eqn;
 }
@@ -12,7 +12,7 @@ double func(double x)
 int main()
 {
 
-    double a = 1, b = 2, c;
+    double a = 2, b = 3, c;
     int itr = 0;
 
     while (1)
@@ -20,6 +20,7 @@ int main()
         itr++;
         c = (a + b) / 2;
 
+        printf("%-3d  a:%lf   b:%lf    c:%lf     (b-c):%lf     f(c):%lf\n", itr, a, b, c, (b-c), func(c));
         if (fabs(func(c)) <= EPS)
         {
             printf("Root (Bisection Method) is: %0.9lf\n", c);
@@ -35,5 +36,6 @@ int main()
         {
             a = c;
         }
+
     }  
 }
