@@ -1,18 +1,13 @@
 #include <stdio.h>
 #include <math.h>
+#define func(x) ((x)*(x)*(x) + 4*(x)*(x) - 10)
 #define EPS 1e-9
 
-double func(double x)
-{
-    double eqn = x * x * x - 4 * x - 8.95;
-    //printf("RES: %lf\n", eqn);
-    return eqn;
-}
 
 int main()
 {
 
-    double a = 2, b = 3, c;
+    double a = 1, b = 2, c;
     int itr = 0;
 
     while (1)
@@ -24,7 +19,7 @@ int main()
         if (fabs(func(c)) <= EPS)
         {
             printf("Root (Bisection Method) is: %0.9lf\n", c);
-            printf("\nIteration: %d", itr);
+            printf("Iteration: %d\n", itr);
             break;
         }
 

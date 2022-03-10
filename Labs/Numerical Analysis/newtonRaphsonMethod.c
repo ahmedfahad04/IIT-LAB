@@ -22,6 +22,8 @@ int main()
         itr++;
         c = a - (f(a)/df(a));
 
+        // printf("%-3d  a:%lf   b:%lf    c:%lf     (b-c):%lf     f(c):%lf\n", itr, a, b, c, (b-c), func(c));
+        
         if (fabs(f(c)) <= EPS)
         {
             printf("Root (Newton Raphson Method) is: %0.9lf\n", c);

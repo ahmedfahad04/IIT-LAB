@@ -1,12 +1,13 @@
 #include <stdio.h>
 #include <math.h>
+#define func(x) ((x)*(x)*(x) + 4*(x)*(x) - 10)
 #define EPS 1e-9
 
-double func(double x)
-{
-    double eqn = pow(x,3) + 4 * pow(x,2) - 10;
-    return eqn;
-}
+// double func(double x)
+// {
+//     double eqn = pow(x,3) + 4 * pow(x,2) - 10;
+//     return eqn;
+// }
 
 int main()
 {
