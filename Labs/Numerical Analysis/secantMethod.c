@@ -24,7 +24,7 @@ int main()
         else 
         {
             a = b;
-	    b = c;
+	        b = c;
         } 
     }
 }

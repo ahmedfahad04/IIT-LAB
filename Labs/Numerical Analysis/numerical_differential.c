@@ -35,7 +35,7 @@ int main()
     double b = 10.0;
     double max_diff = -1000009;
     dynamic_df[0] = ford(1, 0);
-    dynamic_df[0] = back(N, N-1);
+    dynamic_df[N] = back(N, N-1);
     x[0] = 0;
     f[0] = func(0);
 
