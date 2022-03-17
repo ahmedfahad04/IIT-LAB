@@ -1,0 +1,16 @@
+3
+A
+B
+C
+
+2
+0
+1
+
+A	A	AB
+B   C	C
+C	phi	phi
+
+A
+1
+C
