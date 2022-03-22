@@ -2,11 +2,30 @@
 #include <ctype.h>
 using namespace std;
 
+string uniqChar(string x, string y){
+    set<char> res;
+
+    for(int i=0; i<x.size(); i++){
+        if(!res.count(x[i])) res.insert(x[i]);
+    }
+
+    for(int i=0; i<y.size(); i++){
+        if(!res.count(y[i])) res.insert(y[i]);
+    }
+
+    string ans = "";
+    for(char a: res){
+        ans += a;
+    }
+
+    return ans;
+}
+
 int main()
 {
 
     freopen("in.txt", "r", stdin);
-    // freopen("out.txt", "w", stdout);
+    //  freopen("out.txt", "w", stdout);
 
     int nState, nAlphabets, nFinishStates;
     string startState;
@@ -42,7 +61,6 @@ int main()
     }
 
     // cout << "Enter the state Transition Table: ";
-
     for (int i = 0; i < nState; i++)
     {
 
@@ -107,7 +125,7 @@ int main()
 
     //--------------------------------------NFA TO DFA PROCESSING---------------------------------------
 
-    // now making the dfa table from NFA;
+    // now making the dfa table from NFA; a , a bc
     dTable.push_back({table[0].first, table[0].second});
 
     // compute the DFA named set
@@ -115,6 +133,8 @@ int main()
         
     // enlist those states that's processing is over
     done.insert(table[0].first);
+
+    //cout << dTable[0].first << " " << dTable[1].second[0] << endl;
 
 
 
@@ -124,6 +144,7 @@ int main()
             break;
 
         string pState = track.top();
+        cout << pState << endl;
         track.pop();
 
         if (done.count(pState))
@@ -145,22 +166,24 @@ int main()
                 xx += pState[k];
                 indivStates.push_back(xx);
             }
+
         } // a and b
 
+        cout << "EXTRACT: " << indivStates.size() << endl;
 
 
         // now find corresponding sub states of each singly identified states
         for (int i = 0; i < nAlphabets; i++) // 0
         {
-            for (string singleState : indivStates) // first a and then b
+            // ==> need to debug
+            // in each turn I have to calculate for a single alphabet...
+           for (string singleState : indivStates) // first a and then b
             {
-
                 for (int j = 0; j < nState; j++)
                 {
-
                     if (table[j].first == singleState && table[j].second[i] != "phi")
                     {
-                        newDFASubState += table[j].second[i];
+                        newDFASubState = uniqChar(newDFASubState, table[j].second[i]);
                         newDFASubState += "";
                         break;
                     }
@@ -174,13 +197,14 @@ int main()
                 DFA.insert(newDFASubState);
                 track.push(newDFASubState);
             }
+            cout << "ALPHA: " << i << "DFA: " << newDFASubState << endl;
             newDFASubState.clear();
+            //fflush(stdin);
         }
 
-        cout << "HELLO\n";
+
         done.insert(pState);
         dTable.push_back({pState, tmp});
-
         tmp.clear();
     }
 
@@ -190,7 +214,7 @@ int main()
     // header of the table
     for (int i = 0; i < nAlphabets; i++)
     {
-        cout << "\t\t\t" << alphabets[i];
+        cout << "\t\t" << alphabets[i];
     }
 
     cout << endl;

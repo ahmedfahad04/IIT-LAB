@@ -1,0 +1,12 @@
+STT for NFA
+		0		1
+->A		AB		A		
+  B		phi		C		
+ *C		phi		phi		
+
+
+STT for DFA
+			0			1
+-> A		AB		A		
+  AB		AB		AC		
+ *AC		AB		A		
