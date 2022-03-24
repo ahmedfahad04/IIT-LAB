@@ -1,16 +1,14 @@
 3
-A
-B
-C
+a b c
 
 2
-0
-1
+0 1
 
-A	A	AB
-B   C	C
-C	phi	phi
 
-A
+a	a	ab
+b   c	c
+c	phi	phi
+
+a
 1
-C
+c

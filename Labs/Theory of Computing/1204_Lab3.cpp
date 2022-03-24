@@ -2,11 +2,36 @@
 #include <ctype.h>
 using namespace std;
 
+string uniqChar(string x, string y)
+{
+    set<char> res;
+
+    for (int i = 0; i < x.size(); i++)
+    {
+        if (!res.count(x[i]))
+            res.insert(x[i]);
+    }
+
+    for (int i = 0; i < y.size(); i++)
+    {
+        if (!res.count(y[i]))
+            res.insert(y[i]);
+    }
+
+    string ans = "";
+    for (char a : res)
+    {
+        ans += a;
+    }
+
+    return ans;
+}
+
 int main()
 {
 
     freopen("in.txt", "r", stdin);
-    freopen("out.txt", "w", stdout);
+    // freopen("out.txt", "w", stdout);
 
     int nState, nAlphabets, nFinishStates;
     string startState;
@@ -14,7 +39,6 @@ int main()
     vector<pair<string, vector<string>>> table, dTable;
     set<string> finishingStates, done, DFA;
     stack<string> track;
-
 
     //--------------------------------------INPUT---------------------------------------
     // cout << "Enter number of states: ";
@@ -42,7 +66,6 @@ int main()
     }
 
     // cout << "Enter the state Transition Table: ";
-
     for (int i = 0; i < nState; i++)
     {
 
@@ -75,15 +98,13 @@ int main()
 
     //--------------------------------------OUTPUT 1---------------------------------------
 
-
-    cout << "STT for NFA\n";
+    cout << "\nTransition Table for NFA\n";
     // header of the table
     for (int i = 0; i < nAlphabets; i++)
     {
         cout << "\t\t" << alphabets[i];
     }
-
-    cout << endl;
+    cout << "\n-----------------------------------------\n";
 
     // table info
     for (int i = 0; i < nState; i++)
@@ -107,16 +128,17 @@ int main()
 
     //--------------------------------------NFA TO DFA PROCESSING---------------------------------------
 
-    // now making the dfa table from NFA;
+    // now making the dfa table from NFA; a , a bc
     dTable.push_back({table[0].first, table[0].second});
 
     // compute the DFA named set
-    for (int i = 0; i < nAlphabets; i++) track.push(dTable[0].second[i]);
-        
+    for (int i = 0; i < nAlphabets; i++)
+        track.push(dTable[0].second[i]);
+
     // enlist those states that's processing is over
     done.insert(table[0].first);
 
-
+    // cout << dTable[0].first << " " << dTable[1].second[0] << endl;
 
     while (1)
     {
@@ -124,6 +146,7 @@ int main()
             break;
 
         string pState = track.top();
+        // cout << pState << endl;
         track.pop();
 
         if (done.count(pState))
@@ -145,22 +168,22 @@ int main()
                 xx += pState[k];
                 indivStates.push_back(xx);
             }
+
         } // a and b
 
-
+        // cout << "EXTRACTED State Length: " << indivStates.size() << endl;
 
         // now find corresponding sub states of each singly identified states
         for (int i = 0; i < nAlphabets; i++) // 0
         {
+            // in each turn I have to calculate for a single alphabet...
             for (string singleState : indivStates) // first a and then b
             {
-
                 for (int j = 0; j < nState; j++)
                 {
-
                     if (table[j].first == singleState && table[j].second[i] != "phi")
                     {
-                        newDFASubState += table[j].second[i];
+                        newDFASubState = uniqChar(newDFASubState, table[j].second[i]);
                         newDFASubState += "";
                         break;
                     }
@@ -174,34 +197,34 @@ int main()
                 DFA.insert(newDFASubState);
                 track.push(newDFASubState);
             }
+            // cout << "ALPHA: " << i << ", STATE: " << newDFASubState << endl;
             newDFASubState.clear();
+            // fflush(stdin);
         }
-
 
         done.insert(pState);
         dTable.push_back({pState, tmp});
-
         tmp.clear();
+        // cout << endl;
     }
 
     //--------------------------------------FINAL OUTPUT---------------------------------------
 
-    cout << "STT for DFA\n\t";
+    cout << "Transition Table for DFA\n";
     // header of the table
     for (int i = 0; i < nAlphabets; i++)
     {
         cout << "\t\t" << alphabets[i];
     }
 
-    cout << endl;
-
+    cout << "\n-----------------------------------------\n";
 
     // DFA table info
     for (int i = 0; i < dTable.size(); i++)
     {
 
         if (i == 0)
-            cout << "-> " << dTable[i].first << "\t\t";
+            cout << "->" << dTable[i].first << "\t\t";
         else
         {
             int flag = 1;
@@ -221,7 +244,7 @@ int main()
             }
 
             if (flag)
-                cout << setw(4) <<dTable[i].first << "\t\t";
+                cout << setw(4) << dTable[i].first << "\t\t";
         }
 
         for (int j = 0; j < nAlphabets; j++)
