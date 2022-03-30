@@ -1,14 +1,5 @@
 3
-a b c
-
-2
-0 1
-
-
-a	a	ab
-b   c	c
-c	phi	phi
-
-a
-1
-c
+E+E E
+E*E E
+(E) E
+((0)*1*0*0)

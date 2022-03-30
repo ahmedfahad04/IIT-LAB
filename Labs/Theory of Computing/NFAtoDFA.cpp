@@ -6,7 +6,7 @@ int main()
 {
 
     freopen("in.txt", "r", stdin);
-    freopen("out.txt", "w", stdout);
+    // freopen("out.txt", "w", stdout);
 
     int nState, nAlphabets, nFinishStates;
     string startState;
@@ -177,7 +177,7 @@ int main()
             newDFASubState.clear();
         }
 
-
+        cout << "HELLO\n";
         done.insert(pState);
         dTable.push_back({pState, tmp});
 
@@ -190,7 +190,7 @@ int main()
     // header of the table
     for (int i = 0; i < nAlphabets; i++)
     {
-        cout << "\t\t" << alphabets[i];
+        cout << "\t\t\t" << alphabets[i];
     }
 
     cout << endl;
