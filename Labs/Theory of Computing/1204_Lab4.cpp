@@ -70,6 +70,7 @@ int main()
     int productions;
     cin >> productions;
 
+    // taking user input
     for (int i = 0; i < productions; i++)
     {
         string form, to;
@@ -78,10 +79,11 @@ int main()
         formates.push_back({form, to});
     }
 
+
     string user_input, updated_input = "";
     cin >> user_input;
 
-    int terminal = 0;
+    int terminal = 1;
 
     // initilize the input with "E"
     for (int i = 0; i < user_input.size(); i++)
@@ -97,6 +99,7 @@ int main()
         }
     }
 
+    // main execution point
     while (terminal--)
     {
         int flag = 0;
@@ -114,6 +117,7 @@ int main()
         }
     }
 
+
     // cout << updated_input << endl;
     if (updated_input.size() == 1)
     {
@@ -121,4 +125,5 @@ int main()
     }
     else
         cout << "REJECTED\n";
+        
 }

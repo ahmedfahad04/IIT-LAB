@@ -45,19 +45,19 @@ int main()
 {
     double a = 0.0, b = (4*PI), odd = 0.0, even = 0.0, h = fabs(b - a) / size, summation = 0.0;
     
-    x[0] = 0.0;
-    fx[0] = 0.0;
-    for (int i = 1; i < size; i++)
-    {   
-        x[i] = x[i-1] + h;
-        fx[i] = f(x[i]);
+    // x[0] = 0.0;
+    // fx[0] = 0.0;
+    // for (int i = 1; i < size; i++)
+    // {   
+    //     x[i] = x[i-1] + h;
+    //     fx[i] = f(x[i]);
 
-        // if(i&1) odd += f(x);
-        // else even += f(x);
-    }
+    //     // if(i&1) odd += f(x);
+    //     // else even += f(x);
+    // }
 
-    x[N] = size;
-    fx[N] = f(x[N]);
+    // x[N] = size;
+    // fx[N] = f(x[N]);
 
     double y=0.0;
     for(int i=0; i<=N; i++){
@@ -65,8 +65,8 @@ int main()
         printf("%lf, %lf\n", y, f(y));
     }
 
-    summation += (f(a) + f(b)) + (4*odd + 2*even);
-    summation = (h * summation) / 3;
+    // summation += (f(a) + f(b)) + (4*odd + 2*even);
+    // summation = (h * summation) / 3;
 
-    printf("%lf\n", summation);
+    // printf("%lf\n", summation);
 }
