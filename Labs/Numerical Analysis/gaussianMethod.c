@@ -3,10 +3,10 @@
 #define N 3
 #define EPS 1e-9
 #define f1(x, y, z) ((85 - 3 * (y) + 2 * (z)) / 15)
-#define f2(x, y, z) ((51 - 2 * (x) -z) / 10)
+#define f2(x, y, z) ((51 - 2 * (x) - (z)) / 10)
 #define f3(x, y, z) ((5 - (x) + 2 * (y)) / 8)
 
-int a[N][N], b[N], x[N], nx[N], e[N]; 
+int a[N][N], b[N], x[N], nx[N], e[N];
 
 int main()
 {
@@ -17,7 +17,6 @@ int main()
 
     while (1)
     {
-
         nx1 = f1(ox1, ox2, ox3);
         nx2 = f2(ox1, ox2, ox3);
         nx3 = f3(ox1, ox2, ox3);
@@ -27,7 +26,7 @@ int main()
         e3 = fabs(nx3 - ox3);
 
         cnt++;
-        
+
         if (e1 < EPS && e2 < EPS && e3 < EPS)
         {
             printf("X: %lf, Y: %lf, Z: %lf\n", nx1, nx2, nx3);
@@ -41,7 +40,5 @@ int main()
             ox2 = nx2;
             ox3 = nx3;
         }
-
-        cnt++;
     }
 }
