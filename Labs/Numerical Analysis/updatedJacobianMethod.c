@@ -25,17 +25,19 @@ double f3(double x, double y, double z){
 
 int main()
 {
-    printf("Enter the value of a: \n");
+    freopen("in.txt", "r", stdin);
+
+    //printf("Enter the value of a: \n");
     for(int i=1; i<=3; i++){
         for(int j=1; j<=3; j++){
-            printf("a[%d][%d]: ", i,j);
+            //printf("a[%d][%d]: ", i,j);
             scanf("%d", &a[i][j]);
         }
     }
 
-    printf("\nEnter value of b: \n");
+    //printf("\nEnter value of b: \n");
     for(int i=1; i<=3; i++){
-        printf("b[%d]: ", i);
+        //printf("b[%d]: ", i);
         scanf("%d", &bb[i]);
     }
 
@@ -48,7 +50,7 @@ int main()
         }
 
         if(abs(a[i][i]) >= tmp) flag = 1;
-        printf("%d---%d\n", abs(a[i][i]), tmp);
+        //printf("%d---%d\n", abs(a[i][i]), tmp);
     }
 
     if(flag) printf("Possible\n");
