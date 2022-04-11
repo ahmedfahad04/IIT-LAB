@@ -1,11 +1,13 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-string stackState(stack<char> st) {
+string stackState(stack<char> st)
+{
 
     string ans = "";
 
-    while(!st.empty()){
+    while (!st.empty())
+    {
         ans += st.top();
         st.pop();
     }
@@ -13,13 +15,15 @@ string stackState(stack<char> st) {
     return ans;
 }
 
-string infoState(string str, int id){
+string infoState(string str, int id)
+{
 
     string ans = "";
-    for(int i=id; i<str.size(); i++){
+    for (int i = id; i < str.size(); i++)
+    {
         ans += str[i];
     }
-    
+
     return ans;
 }
 
@@ -44,14 +48,14 @@ int main()
             if (i < k)
             {
                 pda.push(info[i]);
-                cout << "PUSH: " << info[i] << endl;
+                // cout << "PUSH: " << info[i] << endl;
                 nfaState.push_back("Q1");
             }
             else
             {
                 if (pda.top() == info[i])
                 {
-                    cout << "POP: " << pda.top() << endl;
+                    // cout << "POP: " << pda.top() << endl;
                     pda.pop();
                     nfaState.push_back("Q2");
                 }
@@ -63,33 +67,39 @@ int main()
             }
 
             states.push_back(stackState(pda));
-            string x = infoState(info, i+1);
-            
-            if(x.size() == 0) inputState.push_back("e");
-            else inputState.push_back(x);
+            string x = infoState(info, i + 1);
+
+            if (x.size() == 0)
+                inputState.push_back("e");
+            else
+                inputState.push_back(x);
         }
 
         if (flag)
         {
             if (!pda.empty() and pda.top() == 'Z')
             {
-                cout << "ACCEPTED\n";
+                cout << "\n** ACCEPTED **\n\n";
                 rej = 0;
                 break;
             }
         }
 
         flag = 1;
-        states.clear();
-        inputState.clear();
-        nfaState.clear();
+
+        if (k != info.size()-1)
+        {
+            states.clear();
+            inputState.clear();
+            nfaState.clear();
+        }
     }
 
-    
     if (rej == 1)
-        cout << "REJECTED\n";
+        cout << "\n** REJECTED **\n\n";
 
-    for(int i=0; i<states.size(); i++){
-        cout << inputState[i] << " " << states[i] << endl;
+    for (int i = 0; i < states.size(); i++)
+    {
+        cout << "delta(" << nfaState[i] << ", " << inputState[i] << ", " << states[i] << ")" << endl;
     }
 }

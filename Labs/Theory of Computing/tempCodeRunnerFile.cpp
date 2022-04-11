@@ -1,3 +1,1 @@
-for(string x: done){
-        cout << x << endl;
-    }
+ if (rej == 1)
