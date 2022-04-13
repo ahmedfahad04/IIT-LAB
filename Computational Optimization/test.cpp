@@ -1,27 +1,49 @@
+// C++ program for implementation of Ford Fulkerson
+// algorithm
+#include <iostream>
+#include <limits.h>
+#include <queue>
+#include <string.h>
 #include <bits/stdc++.h>
 using namespace std;
 
 
-int main() {
+const int N = 50;
 
-    vector<vector<pair<int,int>>> G(10);
-    //  insufficient initial size  ^^^
+int graph[N][N];
+int rGraph[N][N];
+map<string, int> G;
 
-    int p, q, l;
-    while ( cin >> p >> q >> l )
+int main(){
+
+    //freopen("in2.txt", "r", stdin);
+
+    int nodes, edges;
+    cin >> nodes >> edges;
+
+    int track = 1;
+
+    for (int i = 0; i < edges; i++)
     {
-        // resize the vector to avoid index out of bound
-    
-        G[p].push_back(std::make_pair(q, l));
-        G[q].push_back(std::make_pair(p, l));
-    } 
+        string src;
+        cin >> src;
+        fflush(stdin);
+        G[src] = track;
 
-    for( int r = 0; r < G.size(); ++r )
-    {
-        for ( int c = 0; c < G[r].size(); ++c ) {
-            cout << r << ", " << c << ": " << G[r][c].first << ' ' << G[r][c].second << '\n';
+        int dest, weight;
+
+        cin >> dest >> weight;
+        graph[track][dest] = weight;
+
+        track++;
+        // cout << graph[u][v] << " ";
+    }
+
+    for(int i = 0; i<nodes; i++){
+        for(int j=0; j<nodes; j++){
+            cout << graph[i][j] << " ";
         }
-    } 
+        cout << endl;
+    }
 
-    return 0;
 }

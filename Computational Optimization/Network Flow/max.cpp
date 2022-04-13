@@ -7,18 +7,19 @@
 using namespace std;
 
 // Number of vertices in given graph
-#define V 50
-int capacity[V];
+#define V 100
+#define inf 1e5
+int n;
 
 /* Returns true if there is a path from source 's' to sink
 't' in residual graph. Also fills parent[] to store the
 path */
-bool bfs(int rGraph[V][V], int s, int t, int parent[], int nodes)
+bool bfs(int rGraph[V][V], int s, int t, int parent[])
 {
 	// Create a visited array and mark all vertices as not
 	// visited
-	bool visited[nodes + 1];
-	memset(visited, false, sizeof(visited));
+	bool visited[V];
+	memset(visited, 0, sizeof(visited));
 
 	// Create a queue, enqueue source vertex and mark source
 	// vertex as visited
@@ -28,19 +29,17 @@ bool bfs(int rGraph[V][V], int s, int t, int parent[], int nodes)
 	parent[s] = -1;
 
 	// Standard BFS Loop
-	while (!q.empty())
-	{
+	while (!q.empty()) {
 		int u = q.front();
 		q.pop();
 
-		for (int v = 1; v <= nodes; v++)
-		{
-			if (visited[v] == false && rGraph[u][v] > 0)
-			{
-				// cout << "src: " << u << ", dest: " << v << endl;
-			
-				if (v == t)
-				{
+		for (int v = 0; v <= n+1; v++) {
+			if (visited[v] == false && rGraph[u][v] > 0) {
+				// If we find a connection to the sink node,
+				// then there is no point in BFS anymore We
+				// just have to set its parent and can return
+				// true
+				if (v == t) {
 					parent[v] = u;
 					return true;
 				}
@@ -57,7 +56,7 @@ bool bfs(int rGraph[V][V], int s, int t, int parent[], int nodes)
 }
 
 // Returns the maximum flow from s to t in the given graph
-int fordFulkerson(int graph[V][V], int s, int t, int nodes)
+int fordFulkerson(int graph[V][V], int s, int t)
 {
 	int u, v;
 
@@ -65,45 +64,36 @@ int fordFulkerson(int graph[V][V], int s, int t, int nodes)
 	// with given capacities in the original graph as
 	// residual capacities in residual graph
 	int rGraph[V]
-			  [V]; // Residual graph where rGraph[i][j]
-				   // indicates residual capacity of edge
-				   // from i to j (if there is an edge. If
-				   // rGraph[i][j] is 0, then there is not)
-	for (u = 1; u <= nodes; u++)
-		for (v = 1; v <= nodes; v++)
+			[V]; // Residual graph where rGraph[i][j]
+				// indicates residual capacity of edge
+				// from i to j (if there is an edge. If
+				// rGraph[i][j] is 0, then there is not)
+	for (u = 0; u <= n+1; u++)
+		for (v = 0; v <= n+1; v++)
 			rGraph[u][v] = graph[u][v];
 
-	int parent[nodes + 1]; // This array is filled by BFS and to
-						   // store path
+	int parent[V]; // This array is filled by BFS and to
+				// store path
 
 	int max_flow = 0; // There is no flow initially
 
 	// Augment the flow while there is path from source to
 	// sink
-	while (bfs(rGraph, s, t, parent, nodes))
-	{
-		// cout << "HELLO\n";
-		// cout << "SRC: " << s << ", Dest: " << t << endl;
-		
+	while (bfs(rGraph, s, t, parent)) {
+		// Find minimum residual capacity of the edges along
+		// the path filled by BFS. Or we can say find the
+		// maximum flow through the path found.
 		int path_flow = INT_MAX;
-		for (v = t; v != s; v = parent[v])
-		{
+		for (v = t; v != s; v = parent[v]) {
 			u = parent[v];
 			path_flow = min(path_flow, rGraph[u][v]);
-			// cout << "CAP: " << capacity[u] << endl;
-			path_flow = min(capacity[u], path_flow);
 		}
-	
-		// cout << "MAXFLOW: " << path_flow << endl;
 
-
-		
-		for (v = t; v != s; v = parent[v])
-		{
+		// update residual capacities of the edges and
+		// reverse edges along the path
+		for (v = t; v != s; v = parent[v]) {
 			u = parent[v];
-
 			rGraph[u][v] -= path_flow;
-			rGraph[u][v] -= capacity[u];
 			rGraph[v][u] += path_flow;
 		}
 
@@ -119,27 +109,22 @@ int fordFulkerson(int graph[V][V], int s, int t, int nodes)
 int main()
 {
 	// Let us create a graph shown in the above example
-	int graph[V][V];
-
 	freopen("in2.txt", "r", stdin);
 
-	int nodes, edges;
-	cin >> nodes >> edges;
-	int src, dest, cost;
+	int edgeNum,srcNum,sinkNum,u,v,f;
+	cout<<"How many vertices: "<<endl;
+	cin>>n;
 
-	for (int i = 0; i < edges; i++)
-	{
-		cin >> src >> dest >> cost;
-		graph[src][dest] = cost;
+	int graph[V][V]= { };
+
+	cout<<"Enter the edges and flow: "<<endl;
+	for(int i=0;i<edgeNum;i++){
+		cin>>u>>v>>f;
+		graph[u][v]=f;
 	}
 
-	for (int i = 1; i <= nodes; i++)
-	{
-		cin >> capacity[i];
-	}
-
-	cout << "The maximum possible flow is: "
-		 << fordFulkerson(graph, 1, nodes, nodes);
+	cout << "The maximum possible flow is "
+		<< fordFulkerson(graph, 1, n-1);
 
 	return 0;
 }

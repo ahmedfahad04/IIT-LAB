@@ -47,7 +47,7 @@ int ford_fulkerson(int s, int t, int nodes)
             int j = parent[i];
             path_flow = min(path_flow, residual_graph[j][i]);
         }
-      
+
         for (int i = t; i != s; i = parent[i])
         {
             int j = parent[i];
@@ -62,7 +62,7 @@ int ford_fulkerson(int s, int t, int nodes)
 }
 int main()
 {
-    freopen("maxflow.txt", "r", stdin);
+    freopen("in.txt", "r", stdin);
     int nodes, edges;
     cin >> nodes >> edges;
     int u, v, w;
