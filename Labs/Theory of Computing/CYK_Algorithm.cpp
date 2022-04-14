@@ -10,16 +10,12 @@ vector<pair<char, string>> production;
 string getValue(string text)
 {
 
-    // char flag = w[index];
-    // string text = "";
-    // text += flag;
     string ans = "";
 
     for (auto u : production)
     {
         if (u.second == text)
         {
-            // cout << "===>: " << u.first << " ---- " << u.second << endl;
             ans += u.first;
         }
     }
@@ -27,56 +23,58 @@ string getValue(string text)
     return ans;
 }
 
-vector<string> curtesianProduct(string a, string b){
+vector<string> curtesianProduct(string a, string b)
+{
 
     vector<string> ans;
-    
-    for(int i=0; i<a.size(); i++){
 
-        for(int j=0; j<b.size(); j++){
-            string temp = "", u="", v="";
+    for (int i = 0; i < a.size(); i++)
+    {
+
+        for (int j = 0; j < b.size(); j++)
+        {
+            string temp = "", u = "", v = "";
 
             u = a[i];
             v = b[j];
 
             temp += (u + v);
             ans.push_back(temp);
-            // ans.push_back(getValue(temp));
         }
-
     }
 
     return ans;
 }
 
-string removeDuplicate(string x){
+string removeDuplicate(string x)
+{
 
     set<char> alpha;
-    string ans="";
+    string ans = "";
 
-    for(int i=0; i<x.size(); i++){
-        if(alpha.count(x[i])==0){
+    for (int i = 0; i < x.size(); i++)
+    {
+        if (alpha.count(x[i]) == 0)
+        {
             ans += x[i];
-            //cout << "###->" << x[i];
+            // cout << "###->" << x[i];
             alpha.insert(x[i]);
         }
     }
 
-    //cout << "ANS: " << ans;
+    // cout << "ANS: " << ans;
 
-    return ans; 
+    return ans;
 }
 
 // calculating the index for each cell
 string evalEachCell(int i, int j)
 {
 
-
     if (i == j)
     {
         string xij = "";
 
-        // cout << i << ", " << j << endl;
         xij += w[i - 1];
         return getValue(xij);
     }
@@ -89,7 +87,6 @@ string evalEachCell(int i, int j)
     string xij = "";
     // cout << "\n**[" << i << ", "  << j << "]: \n";
 
-
     for (int k = 1; k <= level; k++)
     {
         string a, b;
@@ -98,27 +95,26 @@ string evalEachCell(int i, int j)
         // cout << l1 << ", " << r1 << "---";
         // cout << l2 << ", " << r2 << endl;
 
-        if(solution[l1-1][r1-1] == "") {
+        if (solution[l1 - 1][r1 - 1] == "")
+        {
             a = getValue(evalEachCell(l1, r1));
         }
+        else
+            a = solution[l1 - 1][r1 - 1];
 
-        else a = solution[l1-1][r1-1];
-
-
-        
-        if(solution[l2-1][r2-1] == "") {
+        if (solution[l2 - 1][r2 - 1] == "")
+        {
             b = getValue(evalEachCell(l2, r2));
         }
-        else b = solution[l2-1][r2-1];
+        else
+            b = solution[l2 - 1][r2 - 1];
 
-        
         temp = curtesianProduct(a, b);
-        for(string x: temp){
-            
+        for (string x : temp)
+        {
+
             xij += getValue(x);
         }
-
-        // cout << "TEMP: " << removeDuplicate(xij) << endl;
 
         r1++;
         l2++;
@@ -129,10 +125,10 @@ string evalEachCell(int i, int j)
 
 int main()
 {
-    freopen("in2.txt", "r", stdin);
+    freopen("in.txt", "r", stdin);
 
     int num;
-    cout << "How many production to be entered: ";
+    //cout << "How many production to be entered: ";
     cin >> num;
 
     // enter the production
@@ -146,13 +142,14 @@ int main()
         production.push_back({var, terminal});
     }
 
-    
+    cout << endl;
     cin >> w;
 
     int len = w.size();
     int level = len;
     int dif = 0;
 
+    // calculate the value of each cell of the TABLE
     for (int i = 0; i < len; i++)
     {
         for (int j = 0; j < len; j++)
@@ -164,25 +161,53 @@ int main()
 
         for (int row = 1; row <= level; row++)
         {
-            // cout << "(" << row << ", " << row + dif << ")";
+            // cout << "(" << row-1 << ", " << row + dif - 1 << ")";
             int u = row;
             int v = row + dif;
-            solution[u - 1][v - 1] = evalEachCell(row, row + dif);
-            
-            if(solution[u-1][v-1] == "") cout << "-\t ";
-            else cout << solution[u-1][v-1] << "\t ";
+            solution[u - 1][v - 1] = evalEachCell(row, row + dif);   
         }
 
         dif++;
         level--;
+    }
+
+
+    // print the table
+    int id = 0, k = 0;
+    for (int i = 0; i < len; i++)
+    {
+        id = 0;
+        for (int j = len - 1 - k; j < len; j++)
+        {
+            // cout << id++ << "," << j << " ";
+            if (solution[id][j] == "null")
+                continue;
+            else if (solution[id][j] == "")
+                cout << "-\t ";
+            else
+                cout << solution[id][j] << "\t ";
+            id++;
+        }
+        k++;
+
         cout << endl;
     }
 
-    // for (int i = 0; i < len; i++)
-    // {
-    //     for (int j = 0; j < len; j++)
-    //         cout << solution[i][j] << " ";
 
-    //     cout << endl;
-    // }
+    // show the descision, if it's accepted or rejected
+    int flag = 0;
+    for (int i = 0; i < solution[0][len - 1].size(); i++)
+    {
+
+        if (solution[0][len - 1][i] == 'S')
+        {
+            flag = 1;
+            break;
+        }
+    }
+
+    if (flag)
+        cout << "ACCEPTED!";
+    else
+        cout << "REJECTED!";
 }
