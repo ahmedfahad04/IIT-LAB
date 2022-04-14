@@ -1,6 +1,10 @@
-5
+8
 S AB
-A BB
-A a
-B AB
-B b
+S BC
+A BA
+A a 
+B CC
+B b 
+C AB 
+C a
+baaba 
