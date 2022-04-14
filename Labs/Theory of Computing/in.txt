@@ -1,2 +1,6 @@
-E+E
-E-E
+5
+S AB
+A BB
+A a
+B AB
+B b
