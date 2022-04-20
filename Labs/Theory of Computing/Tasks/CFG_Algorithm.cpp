@@ -79,7 +79,6 @@ int main()
         formates.push_back({form, to});
     }
 
-
     string user_input, updated_input = "";
     cin >> user_input;
 
@@ -117,13 +116,9 @@ int main()
         }
     }
 
-
     // cout << updated_input << endl;
     if (updated_input.size() == 1)
-    {
-        cout << "ACCEPTED\n";
-    }
+        cout << " >> ACCEPTED! << \n";
     else
-        cout << "REJECTED\n";
-        
+        cout << " >> REJECTED! <<\n";
 }

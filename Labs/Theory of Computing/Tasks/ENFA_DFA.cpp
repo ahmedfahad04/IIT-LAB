@@ -30,7 +30,7 @@ string uniqChar(string x, string y)
 int main()
 {
 
-    freopen("ENFA.txt", "r", stdin);
+    freopen("ENFA2.txt", "r", stdin);
     // freopen("out.txt", "w", stdout);
 
     int nState, nAlphabets, nFinishStates;
