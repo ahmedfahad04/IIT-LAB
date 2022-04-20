@@ -125,7 +125,7 @@ string evalEachCell(int i, int j)
 
 int main()
 {
-    freopen("in.txt", "r", stdin);
+    freopen("cyk1.txt", "r", stdin);
 
     int num;
     //cout << "How many production to be entered: ";
@@ -207,7 +207,7 @@ int main()
     }
 
     if (flag)
-        cout << "ACCEPTED!";
+        cout << " >> ACCEPTED! << \n";
     else
-        cout << "REJECTED!";
+        cout << " >> REJECTED! <<\n";
 }

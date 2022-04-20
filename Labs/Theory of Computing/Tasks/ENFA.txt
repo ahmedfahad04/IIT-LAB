@@ -1,0 +1,11 @@
+4
+A B C D
+2
+0 1  
+A C B phi 
+B phi phi D
+C phi C CD 
+D phi phi phi 
+A 
+1
+C 

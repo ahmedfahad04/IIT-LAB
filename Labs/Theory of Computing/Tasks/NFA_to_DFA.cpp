@@ -30,7 +30,7 @@ string uniqChar(string x, string y)
 int main()
 {
 
-    freopen("in.txt", "r", stdin);
+    freopen("nfa.txt", "r", stdin);
     // freopen("out.txt", "w", stdout);
 
     int nState, nAlphabets, nFinishStates;
@@ -151,6 +151,7 @@ int main()
 
         if (done.count(pState))
         {
+            // cout << "DONE" << pState << endl;
             continue;
         }
 
@@ -171,7 +172,8 @@ int main()
 
         } // a and b
 
-        // cout << "EXTRACTED State Length: " << indivStates.size() << endl;
+        for(string a: indivStates) cout << "EXTRACTED State Length: " << a << endl;
+
 
         // now find corresponding sub states of each singly identified states
         for (int i = 0; i < nAlphabets; i++) // 0
@@ -197,6 +199,7 @@ int main()
                 DFA.insert(newDFASubState);
                 track.push(newDFASubState);
             }
+             
             // cout << "ALPHA: " << i << ", STATE: " << newDFASubState << endl;
             newDFASubState.clear();
             // fflush(stdin);

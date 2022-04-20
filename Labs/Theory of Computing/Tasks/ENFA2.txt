@@ -1,0 +1,10 @@
+3
+A B C
+2
+a b 
+A B C phi
+B phi A phi
+C phi B BC 
+A
+1
+C

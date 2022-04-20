@@ -32,6 +32,7 @@ int main()
 
     string info;
     vector<string> states, inputState, nfaState;
+    cout << "Enter string to Test: ";
     cin >> info;
 
     fflush(stdin);
@@ -40,6 +41,7 @@ int main()
 
     for (int k = 2; k < info.size(); k++)
     {
+        // here k means estimated middle point
         stack<char> pda;
         pda.push('Z');
 
@@ -51,6 +53,7 @@ int main()
                 // cout << "PUSH: " << info[i] << endl;
                 nfaState.push_back("Q1");
             }
+
             else
             {
                 if (pda.top() == info[i])
@@ -70,7 +73,14 @@ int main()
             string x = infoState(info, i + 1);
 
             if (x.size() == 0)
+            {
                 inputState.push_back("e");
+                if (states.size() <= 1)
+                {
+                    nfaState.pop_back();
+                    nfaState.push_back("Q3");
+                }
+            }
             else
                 inputState.push_back(x);
         }
@@ -87,7 +97,7 @@ int main()
 
         flag = 1;
 
-        if (k != info.size()-1)
+        if (k != info.size() - 1)
         {
             states.clear();
             inputState.clear();
@@ -102,4 +112,7 @@ int main()
     {
         cout << "delta(" << nfaState[i] << ", " << inputState[i] << ", " << states[i] << ")" << endl;
     }
+
+    for (auto u : nfaState)
+        cout << ">>  " << u << endl;
 }

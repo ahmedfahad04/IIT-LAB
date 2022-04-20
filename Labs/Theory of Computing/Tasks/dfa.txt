@@ -1,0 +1,16 @@
+3
+A
+B
+C
+2
+a 
+b 
+A B B 
+B C C 
+C C C 
+A 
+1
+C
+bbb
+aaa
+-1
