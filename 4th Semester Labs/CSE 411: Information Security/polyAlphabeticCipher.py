@@ -1,24 +1,29 @@
 # generate table
 from ctypes.wintypes import PINT
+from gettext import lngettext
 
 
 upperCase = dict()
 lowerCase = dict()
+start = '\0'
+length = 127
+column = 10
 
-def generateTable():
+def generateTable(start, size, column):
     k = 0
-    ch = 'A'
-    for i in range(0, 26, 1):
+    ch = start
+    
+    for i in range(0, size, 1):
         
-        key = chr(ord('A') + i)
+        key = chr(ord(start) + i)
         tmp = []
         
-        for j in range(1, 27, 1):
+        for j in range(1, column+1, 1):
             tmp.append(ch)
-            ch = chr((ord(ch)-65 + 1)%26+65)
+            ch = chr((ord(ch) + 1)%127)
         
         upperCase[key] = tmp
-        key = chr((ord(key)-65 + 1)%26+65)
+        key = chr((ord(key) + 1)%127)
         ch = key 
         
 
@@ -26,66 +31,47 @@ def generateTable():
         print(k, v)
     
 
-def encrypt(text):
+def encrypt(text, column):
     
     eText = ""
     for i in range(len(text)):
-        asci = ord(text[i])
         
-        # handle lowercase letters
-        alpha = ""
-        if(asci >= 97 and asci <= 122):
-            alpha = chr(ord(text[i]) - 32)
-        elif (asci >= 65 and asci <= 90):
-            alpha = text[i]
-        else:   # handle other characters
-            eText += chr((ord(text[i])+5)%127)
-            continue
-            
-        # append characters
-        pos = i%26
-        eText += upperCase[alpha][pos]
-      
+        pos = i%column
+        eText += upperCase[text[i]][pos]
+        
         
     return eText
 
 
-def decrypt(etext):
+def decrypt(etext, start, column, size):
     dText = ""
-    key = 'A'
+    key = start 
     
     
     for i in range(len(etext)):
-        asci = ord(etext[i])
         
-        # handle lower case letters
-        if(asci >= 97 and asci <= 122):
-                alpha = chr(ord(etext[i]) - 32)   
-        elif (asci >= 65 and asci <= 90):
-            alpha = etext[i]
-        else: 
-            dText += chr((ord(etext[i])-5)%127)
-            continue
-                
-        for j in range(26):
-            pos = i%26
-            if upperCase[key][pos] == alpha:
+       
+        key = start     
+        for j in range(size):
+            pos = i%column
+            if upperCase[key][pos] == etext[i]:
                 dText += key
+                break
             
-            key = chr((ord(key)-65 + 1)%26+65)
+            key =  chr((ord(key) + 1)%127)
             
             
     return dText
         
 
 def main():
-    generateTable()
+    generateTable(start, length, column)
     data = input("Enter your text: ")
     
-    ecnryptedText = encrypt(data)  
+    ecnryptedText = encrypt(data, column)  
     print("Encrypted Text:", ecnryptedText)
      
-    decryptedText = decrypt(ecnryptedText)
+    decryptedText = decrypt(ecnryptedText,start,column,length)
     print("Decrypted Text:", decryptedText)
     
     
