@@ -13,14 +13,13 @@ int main()
 {
 
     // variable declaration
-    int sock_fd;                          // server and client file descriptors
-    struct sockaddr_in server_addr;                    // server address information
-    char buffer[MAXSIZE];                              // buffer for receiving and sending data
+    int sock_fd;                                             // server and client file descriptors
+    struct sockaddr_in server_addr;                          // server address information
+    char buffer[MAXSIZE] = {0};                              // buffer for receiving and sending data
     char message[] = "Client is sending message to server!"; // message to send to client
-    int x = 10, w;
 
     // socket creation
-     if ((sock_fd = socket(AF_INET, SOCK_STREAM, 0)) < 0)
+    if ((sock_fd = socket(AF_INET, SOCK_STREAM, 0)) < 0)
     {
         perror("ERROR opening socket");
         exit(1);
@@ -33,7 +32,7 @@ int main()
     // request connection
     if (connect(sock_fd, (struct sockaddr *)&server_addr, sizeof(server_addr)) < 0)
     {
-        printf("Connection Failed"); 
+        printf("Connection Failed");
         return -1;
     }
     printf("Client: Connected to server\n");
@@ -45,11 +44,15 @@ int main()
     //     exit(EXIT_FAILURE);
     // }
 
-    send(sock_fd, x, 4, 0);
+    char mymessage[MAXSIZE];
+    printf("Enter your message: ");
+    fgets(mymessage, MAXSIZE, stdin);
+
+    send(sock_fd, mymessage, sizeof(mymessage), 0);
     printf("Client: Message sent to server\n");
 
-    recv(sock_fd, w, MAXSIZE, 0);
-    printf("Client: Message received: %d\n", w);
+    recv(sock_fd, buffer, MAXSIZE, 0);
+    printf("Server: %s\n", buffer);
 
     // read from socket
     // if (read(sock_fd, buffer, MAXSIZE) < 0)
@@ -58,6 +61,6 @@ int main()
     //     exit(EXIT_FAILURE);
     // }
     // printf("Server: %s\n",buffer );
-    
+
     close(sock_fd);
 }

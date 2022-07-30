@@ -15,10 +15,9 @@ int main()
     // variable declaration
     int server_fd, client_fd;                         // server and client file descriptors
     struct sockaddr_in myaddr;                        // server address information
-    char buffer[MAXSIZE];                             // buffer for receiving and sending data
+    char buffer[MAXSIZE]= {0};                             // buffer for receiving and sending data
     char message[] = "Server has got clients message"; // message to send to client
     int opt = 1;
-    int y = 50, z;
 
     // socket creation
     if ((server_fd = socket(AF_INET, SOCK_STREAM, 0)) < 0)
@@ -61,7 +60,7 @@ int main()
     // printf("Server: connection accepted, %d\n", client_fd);
 
     int address_length = sizeof(struct sockaddr_in);
-    if ((accept(server_fd, (struct sockaddr *)&myaddr, &address_length)) < 0)
+    if ((client_fd = accept(server_fd, (struct sockaddr *)&myaddr, &address_length)) < 0)
     {
         perror("accept failed");
         exit(EXIT_FAILURE);
@@ -84,10 +83,12 @@ int main()
     // }
     // printf("Server: message sent\n");
 
-    recv(client_fd, z, MAXSIZE, 0);
-    printf("Client: %d\n", z);
+  
 
-    send(client_fd, y, 4, 0);
+    recv(client_fd, buffer, MAXSIZE, 0);
+    printf("Client: %s\n", buffer);
+
+    send(client_fd, message, sizeof(message), 0);
     printf("Server: message sent\n");
 
     // close socket
