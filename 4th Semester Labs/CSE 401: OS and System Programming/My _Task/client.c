@@ -1,0 +1,63 @@
+#include <unistd.h>
+#include <stdio.h>
+#include <sys/socket.h>
+#include <stdlib.h>
+#include <netinet/in.h> // for sockaddr_in
+#include <string.h>
+
+#define PORT 8080
+#define MAXSIZE 1024
+#define BACKLOG 10 // how many pending connections queue will hold
+
+int main()
+{
+
+    // variable declaration
+    int sock_fd;                          // server and client file descriptors
+    struct sockaddr_in server_addr;                    // server address information
+    char buffer[MAXSIZE];                              // buffer for receiving and sending data
+    char message[] = "Client is sending message to server!"; // message to send to client
+    int x = 10, w;
+
+    // socket creation
+     if ((sock_fd = socket(AF_INET, SOCK_STREAM, 0)) < 0)
+    {
+        perror("ERROR opening socket");
+        exit(1);
+    }
+
+    server_addr.sin_family = AF_INET;         // host byte order
+    server_addr.sin_port = htons(PORT);       // network byte order
+    server_addr.sin_addr.s_addr = INADDR_ANY; // automatically fill with my IP
+
+    // request connection
+    if (connect(sock_fd, (struct sockaddr *)&server_addr, sizeof(server_addr)) < 0)
+    {
+        printf("Connection Failed"); 
+        return -1;
+    }
+    printf("Client: Connected to server\n");
+
+    // write to socket
+    // if (send(sock_fd, message, strlen(message),0))
+    // {
+    //     perror("write failed");
+    //     exit(EXIT_FAILURE);
+    // }
+
+    send(sock_fd, x, 4, 0);
+    printf("Client: Message sent to server\n");
+
+    recv(sock_fd, w, MAXSIZE, 0);
+    printf("Client: Message received: %d\n", w);
+
+    // read from socket
+    // if (read(sock_fd, buffer, MAXSIZE) < 0)
+    // {
+    //     perror("read failed");
+    //     exit(EXIT_FAILURE);
+    // }
+    // printf("Server: %s\n",buffer );
+    
+    close(sock_fd);
+}
