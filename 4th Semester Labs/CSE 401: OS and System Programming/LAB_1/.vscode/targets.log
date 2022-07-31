@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sun Jul 31 15:47:10 2022
+# Make data base, printed on Sun Jul 31 14:00:15 2022
 
 # Variables
 
@@ -39,7 +39,7 @@ VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # default
 .VARIABLES := 
 # environment
-PWD = /home/ahmedfahad/Documents/IIT-LAB/4th Semester Labs/CSE 401: OS and System Programming
+PWD = /home/ahmedfahad/Documents/IIT-LAB/4th Semester Labs/CSE 401: OS and System Programming/LAB_1
 # automatic
 %D = $(patsubst %/,%,$(dir $%))
 # environment
@@ -53,7 +53,7 @@ VSCODE_CODE_CACHE_PATH = /home/ahmedfahad/.config/Code/CachedData/3b889b090b5ad5
 # environment
 LANG = C
 # environment
-XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.N8PFQ1
+XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.2OBIQ1
 # default
 .LOADED := 
 # default
@@ -61,7 +61,7 @@ XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.N8PFQ1
 # makefile
 MAKEFLAGS = pqrR
 # makefile
-CURDIR := /home/ahmedfahad/Documents/IIT-LAB/4th Semester Labs/CSE 401: OS and System Programming
+CURDIR := /home/ahmedfahad/Documents/IIT-LAB/4th Semester Labs/CSE 401: OS and System Programming/LAB_1
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
 # environment
@@ -82,14 +82,14 @@ XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 +D = $(patsubst %/,%,$(dir $+))
 # environment
 XDG_SESSION_DESKTOP = ubuntu
-# makefile
-MAKEFILE_LIST := 
+# makefile (from 'Makefile', line 1)
+MAKEFILE_LIST := Makefile
 # environment
 SNAP_REEXEC = 
 # automatic
 @F = $(notdir $@)
 # environment
-VSCODE_PID = 2959
+VSCODE_PID = 3093
 # environment
 XDG_SESSION_TYPE = wayland
 # automatic
@@ -97,7 +97,7 @@ XDG_SESSION_TYPE = wayland
 # environment
 BAMF_DESKTOP_FILE_HINT = /var/lib/snapd/desktop/applications/code_code.desktop
 # environment
-SESSION_MANAGER = local/dell-Inspiron-5505:@/tmp/.ICE-unix/1650,unix/dell-Inspiron-5505:/tmp/.ICE-unix/1650
+SESSION_MANAGER = local/dell-Inspiron-5505:@/tmp/.ICE-unix/1647,unix/dell-Inspiron-5505:/tmp/.ICE-unix/1647
 # automatic
 *F = $(notdir $*)
 # environment
@@ -122,6 +122,8 @@ XMODIFIERS = @im=ibus
 GJS_DEBUG_TOPICS = JS ERROR;JS LOG
 # environment
 SHLVL = 0
+# makefile (from 'Makefile', line 5)
+BINFILES = client server
 # environment
 MAKELEVEL := 0
 # environment
@@ -141,7 +143,7 @@ SNAP_USER_COMMON = /home/ahmedfahad/snap/code/common
 # environment
 SNAP = /snap/code/102
 # environment
-INVOCATION_ID = f90d2cf45b9c4dd581116fa05f1413a9
+INVOCATION_ID = 1487546adde24f5fb403583c9ab5169c
 # environment
 SNAP_REVISION = 102
 # environment
@@ -173,7 +175,7 @@ GIO_LAUNCHED_DESKTOP_FILE = /var/lib/snapd/desktop/applications/code_code.deskto
 # environment
 SNAP_ARCH = amd64
 # makefile
-.DEFAULT_GOAL := 
+.DEFAULT_GOAL := all
 # environment
 DISPLAY = :0
 # environment
@@ -189,9 +191,9 @@ SNAP_DATA = /var/snap/code/102
 # environment
 SNAP_CONTEXT = CYsl8mgEvAP9Cl6fS0_h4kUibDTxUjQyrE-akb8cc2Fl1qg2VJaV
 # environment
-MANAGERPID = 1496
+MANAGERPID = 1491
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 2900
+GIO_LAUNCHED_DESKTOP_FILE_PID = 3044
 # environment
 _ = /snap/code/102/usr/share/code/code
 # environment
@@ -199,7 +201,7 @@ XDG_RUNTIME_DIR = /run/user/1000
 # environment
 GDK_PIXBUF_MODULE_FILE = /home/ahmedfahad/snap/code/common/.cache/gdk-pixbuf-loaders.cache
 # environment
-JOURNAL_STREAM = 8:38237
+JOURNAL_STREAM = 8:35708
 # environment
 XDG_SESSION_CLASS = user
 # environment
@@ -243,7 +245,7 @@ GDMSESSION = ubuntu
 # environment
 SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd/void
 # variable set hash-table stats:
-# Load=116/1024=11%, Rehash=0, Collisions=3/143=2%
+# Load=117/1024=11%, Rehash=0, Collisions=3/151=2%
 
 # Pattern-specific Variable Values
 
@@ -251,9 +253,9 @@ SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd
 
 # Directories
 
-# . (device 66313, inode 2626922): 7 files, no impossibilities.
+# . (device 66313, inode 2626393): 8 files, no impossibilities.
 
-# 7 files, no impossibilities in 1 directories.
+# 8 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -261,12 +263,62 @@ SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd
 
 # Files
 
+client: client.c
+#  Implicit rule search has not been done.
+#  Last modified 2022-07-30 23:22:53.7534086
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 10):
+	gcc -o client client.c
+
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  File does not exist.
+#  Last modified 2022-07-30 22:56:57.920914245
 #  File has been updated.
-#  Failed to be updated.
+#  Successfully updated.
+
+clean:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 17):
+	-rm  $(BINFILES)
+
+# Not a target:
+server.c:
+#  Implicit rule search has been done.
+ 
+#  Last modified 2022-07-31 13:22:09.611440371
+#  File has been updated.
+#  Successfully updated.
+
+server: server.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: ''
+#  Last modified 2022-07-31 13:21:23.151995356
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := server
+# automatic
+# * := 
+# automatic
+# < := server.c
+# automatic
+# + := server.c
+# automatic
+# % := 
+# automatic
+# ^ := server.c
+# automatic
+# ? := server.c
+# automatic
+# | := 
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=1/11=9%
+#  recipe to execute (from 'Makefile', line 13):
+	gcc -o server server.c
 
 # Not a target:
 .DEFAULT:
@@ -275,43 +327,41 @@ Makefile:
 #  File has not been updated.
 
 # Not a target:
-all:
+client.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-30 23:17:35.993673746
+#  File has been updated.
+#  Successfully updated.
+
+all: client server
 #  Command line target.
 #  Implicit rule search has been done.
 #  File does not exist.
- 
-make: *** No rule to make target 'all'.  Stop.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/3=0%
 
+# Not a target:
+.SUFFIXES:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
 #  File has not been updated.
 
-# Not a target:
-makefile:
-#  Implicit rule search has been done.
-#  File does not exist.
-#  File has been updated.
-#  Failed to be updated.
-
-# Not a target:
-GNUmakefile:
-#  Implicit rule search has been done.
-#  File does not exist.
-#  File has been updated.
-#  Failed to be updated.
-
 # files hash-table stats:
-# Load=6/1024=1%, Rehash=0, Collisions=0/15=0%
+# Load=9/1024=1%, Rehash=0, Collisions=0/27=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 15 / storage = 124 B / avg = 8 B
-# current buf: size = 8162 B / used = 124 B / count = 15 / avg = 8 B
+# strcache buffers: 1 (0) / strings = 14 / storage = 115 B / avg = 8 B
+# current buf: size = 8162 B / used = 115 B / count = 14 / avg = 8 B
 
-# strcache performance: lookups = 18 / hit rate = 16%
+# strcache performance: lookups = 30 / hit rate = 53%
 # hash-table stats:
-# Load=15/8192=0%, Rehash=0, Collisions=0/18=0%
-# Finished Make data base on Sun Jul 31 15:47:10 2022
+# Load=14/8192=0%, Rehash=0, Collisions=0/30=0%
+# Finished Make data base on Sun Jul 31 14:00:15 2022
 
  

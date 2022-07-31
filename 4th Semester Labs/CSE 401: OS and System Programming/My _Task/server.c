@@ -15,8 +15,8 @@ int main()
     // variable declaration
     int server_fd, client_fd;                         // server and client file descriptors
     struct sockaddr_in myaddr;                        // server address information
-    char buffer[MAXSIZE]= {0};                             // buffer for receiving and sending data
-    char message[] = "Server has got clients message"; // message to send to client
+    char buffer[MAXSIZE]= {0};                        // buffer for receiving and sending data
+    char message[] = "Server has got clients message";// message to send to client
     int opt = 1;
 
     // socket creation
@@ -45,20 +45,6 @@ int main()
     }
     printf("Server is listening on port %d\n", PORT);
 
-    // accept connection
-    // if ((client_fd = accept(server_fd, (struct sockaddr *)&myaddr, (socklen_t *)&opt)) == 0)
-    // {
-    //     perror("accept failed");
-    //     exit(EXIT_FAILURE);
-    // }
-    printf("Waiting for connection...\n");
-    // if (client_fd = accept(server_fd, (struct sockaddr *)&myaddr,  sizeof(struct sockaddr_in)) < 0)
-    // {
-    //     perror("accept failed");
-    //     exit(EXIT_FAILURE);
-    // }
-    // printf("Server: connection accepted, %d\n", client_fd);
-
     int address_length = sizeof(struct sockaddr_in);
     if ((client_fd = accept(server_fd, (struct sockaddr *)&myaddr, &address_length)) < 0)
     {
@@ -67,26 +53,8 @@ int main()
     }
     printf("Server: connection accepted\n");
 
-    // read from socket
-    // if (read(client_fd, buffer, MAXSIZE - 1) < 0)
-    // {
-    //     perror("read failed");
-    //     exit(EXIT_FAILURE);
-    // }
-    // printf("Client: %s\n", buffer);
-
-    // // write to socket
-    // if (write(client_fd, message, sizeof(message)) < 0)
-    // {
-    //     perror("ERROR writing to socket");
-    //     exit(1);
-    // }
-    // printf("Server: message sent\n");
-
-  
-
     recv(client_fd, buffer, MAXSIZE, 0);
-    printf("Client: %s\n", buffer);
+    printf("Client: %s", buffer);
 
     send(client_fd, message, sizeof(message), 0);
     printf("Server: message sent\n");

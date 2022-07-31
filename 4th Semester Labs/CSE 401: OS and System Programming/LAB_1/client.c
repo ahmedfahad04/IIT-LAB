@@ -9,9 +9,8 @@
 #define MAXSIZE 1024
 #define BACKLOG 10 // how many pending connections queue will hold
 
-int main()
+void client()
 {
-
     // variable declaration
     int sock_fd;                                             // server and client file descriptors
     struct sockaddr_in server_addr;                          // server address information
@@ -36,16 +35,31 @@ int main()
         return -1;
     }
     printf("Client: Connected to server\n");
+ 
+    // Handling multple client-----------------------------------------------------------
+    // For keeping the connection open and sending messages to server
+    
+    while (1)
+    {
+        // message to send to server
+        char mymessage[MAXSIZE];
+        printf("\nEnter your message: ");
+        // fgets(mymessage, MAXSIZE, stdin);
+        scanf("%[^\n]", mymessage);
 
-    char mymessage[MAXSIZE];
-    printf("Enter your message: ");
-    fgets(mymessage, MAXSIZE, stdin);
+        // send message to server
+        send(sock_fd, mymessage, sizeof(mymessage), 0);
+        printf("Client: Message sent to server\n");
 
-    send(sock_fd, mymessage, sizeof(mymessage), 0);
-    printf("Client: Message sent to server\n");
-
-    recv(sock_fd, buffer, MAXSIZE, 0);
-    printf("Server: %s\n", buffer);
+        // receive message from server
+        recv(sock_fd, buffer, MAXSIZE, 0);
+        printf("Server: %s\n", buffer);
+    }
 
     close(sock_fd);
+}
+
+int main()
+{
+    client();
 }
