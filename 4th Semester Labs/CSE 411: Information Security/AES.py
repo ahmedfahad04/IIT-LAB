@@ -1,5 +1,7 @@
 
 data = "Thats my Kung Fu"
+print("\nDATA: ", data, end='\n\n')
+
 matrix = []
 state_matrix = []
 s_box = [
@@ -23,6 +25,7 @@ s_box = [
 ]
 
 
+# Function to generate the round keys
 letter = 0
 for row in range(1, 5, 1):
     cell = []
@@ -34,31 +37,48 @@ for row in range(1, 5, 1):
 
     matrix.append(cell)
     
-    
 
 print("INITIAL MATRIX....")
-for row in range(1, 5, 1):
+for row in range(0, 4, 1):
     cell = []
-    for col in range(1, 5, 1):
-        print(matrix[row-1][col-1], " ", end='')
+    for col in range(0, 4, 1):
+        
+        # swapping the rows and columns to implement transponse of input matrix
+        t = matrix[row][col]
+        matrix[row][col] = matrix[col][row]
+        matrix[col][row] = t
+            
+        # print(row,col, " ", end='')
+        # print(matrix[row][col], " ", end='')   
+
+    # print()
+
+
+# Print values of INPUT MATRIX
+for row in range(0, 4, 1):
+    for col in range(0, 4, 1):
+        print(matrix[row][col], " ", end='')
 
     print()
-
 
 
 print("\nSTATE MATRIX....")
 letter = 0
-for row in range(1, 5, 1):
+for row in range(0, 4, 1):
     cell = []
-    for col in range(1,5,1):
-        cell_value = matrix[row-1][col-1]
+    for col in range(0, 4, 1):
+        cell_value = matrix[row][col]
         char_value = bin(int(cell_value, 16))
-        nrow = int(char_value[2:5],2)
-        ncol = int(char_value[5:10],2)
+        
+        # retrieving the row and col valus from the INPUT MATRIX
+        nrow = int(char_value[2:5], 2)
+        ncol = int(char_value[5:10], 2)
+        
+        # access the following row and col value in S-box
         new_cell_value = hex(s_box[0][(nrow)*16+(ncol)])
 
-        print(new_cell_value, end=' ')
+        print(new_cell_value," ", end=' ')
 
     print()
 
-        # print(char_value, ">> ", nrow, 'and', ncol , end='---')
+    # print(char_value, ">> ", nrow, 'and', ncol , end='---')

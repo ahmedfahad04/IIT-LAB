@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sun Jul 31 15:47:10 2022
+# Make data base, printed on Tue Aug  9 09:18:54 2022
 
 # Variables
 
@@ -33,7 +33,7 @@ QT_ACCESSIBILITY = 1
 # environment
 SNAP_INSTANCE_NAME = code
 # environment
-GDK_PIXBUF_MODULEDIR = /snap/code/102/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
+GDK_PIXBUF_MODULEDIR = /snap/code/103/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
 # environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # default
@@ -49,11 +49,11 @@ XDG_DATA_DIRS = /usr/share/ubuntu:/home/ahmedfahad/.local/share/flatpak/exports/
 # automatic
 %F = $(notdir $%)
 # environment
-VSCODE_CODE_CACHE_PATH = /home/ahmedfahad/.config/Code/CachedData/3b889b090b5ad5793f524b5d1d39fda662b96a2a
+VSCODE_CODE_CACHE_PATH = /home/ahmedfahad/.config/Code/CachedData/da76f93349a72022ca4670c1b84860304616aaa2
 # environment
 LANG = C
 # environment
-XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.N8PFQ1
+XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.2KVPQ1
 # default
 .LOADED := 
 # default
@@ -89,7 +89,7 @@ SNAP_REEXEC =
 # automatic
 @F = $(notdir $@)
 # environment
-VSCODE_PID = 2959
+VSCODE_PID = 2527
 # environment
 XDG_SESSION_TYPE = wayland
 # automatic
@@ -97,7 +97,7 @@ XDG_SESSION_TYPE = wayland
 # environment
 BAMF_DESKTOP_FILE_HINT = /var/lib/snapd/desktop/applications/code_code.desktop
 # environment
-SESSION_MANAGER = local/dell-Inspiron-5505:@/tmp/.ICE-unix/1650,unix/dell-Inspiron-5505:/tmp/.ICE-unix/1650
+SESSION_MANAGER = local/dell-Inspiron-5505:@/tmp/.ICE-unix/1667,unix/dell-Inspiron-5505:/tmp/.ICE-unix/1667
 # automatic
 *F = $(notdir $*)
 # environment
@@ -139,11 +139,11 @@ MAKEFILES :=
 # environment
 SNAP_USER_COMMON = /home/ahmedfahad/snap/code/common
 # environment
-SNAP = /snap/code/102
+SNAP = /snap/code/103
 # environment
-INVOCATION_ID = f90d2cf45b9c4dd581116fa05f1413a9
+INVOCATION_ID = 0575859ab4534abea5be67a6b91e7465
 # environment
-SNAP_REVISION = 102
+SNAP_REVISION = 103
 # environment
 SNAP_REAL_HOME = /home/ahmedfahad
 # environment
@@ -185,21 +185,21 @@ MAKE_VERSION := 4.3
 # environment
 DISABLE_WAYLAND = 1
 # environment
-SNAP_DATA = /var/snap/code/102
+SNAP_DATA = /var/snap/code/103
 # environment
 SNAP_CONTEXT = CYsl8mgEvAP9Cl6fS0_h4kUibDTxUjQyrE-akb8cc2Fl1qg2VJaV
 # environment
-MANAGERPID = 1496
+MANAGERPID = 1513
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 2900
+GIO_LAUNCHED_DESKTOP_FILE_PID = 2482
 # environment
-_ = /snap/code/102/usr/share/code/code
+_ = /snap/code/103/usr/share/code/code
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
 GDK_PIXBUF_MODULE_FILE = /home/ahmedfahad/snap/code/common/.cache/gdk-pixbuf-loaders.cache
 # environment
-JOURNAL_STREAM = 8:38237
+JOURNAL_STREAM = 8:38189
 # environment
 XDG_SESSION_CLASS = user
 # environment
@@ -211,11 +211,11 @@ QT_IM_MODULE = ibus
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-VSCODE_IPC_HOOK = /run/user/1000/vscode-ea32e907-1.69.2-main.sock
+VSCODE_IPC_HOOK = /run/user/1000/vscode-ea32e907-1.70.0-main.sock
 # environment
 SNAP_NAME = code
 # environment
-GSETTINGS_SCHEMA_DIR = /snap/code/102/usr/share/glib-2.0/schemas
+GSETTINGS_SCHEMA_DIR = /snap/code/103/usr/share/glib-2.0/schemas
 # environment
 IM_CONFIG_PHASE = 1
 # default
@@ -223,7 +223,7 @@ IM_CONFIG_PHASE = 1
 # automatic
 <F = $(notdir $<)
 # environment
-SNAP_VERSION = 3b889b09
+SNAP_VERSION = da76f933
 # default
 SUFFIXES := 
 # environment
@@ -235,7 +235,7 @@ SNAP_COMMON = /var/snap/code/common
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync check-symlink load
 # environment
-SNAP_USER_DATA = /home/ahmedfahad/snap/code/102
+SNAP_USER_DATA = /home/ahmedfahad/snap/code/103
 # environment
 XDG_MENU_PREFIX = gnome-
 # environment
@@ -251,9 +251,9 @@ SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd
 
 # Directories
 
-# . (device 66313, inode 2626922): 7 files, no impossibilities.
+# . (device 66313, inode 2626922): 5 files, no impossibilities.
 
-# 7 files, no impossibilities in 1 directories.
+# 5 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -279,9 +279,6 @@ all:
 #  Command line target.
 #  Implicit rule search has been done.
 #  File does not exist.
- 
-make: *** No rule to make target 'all'.  Stop.
-
 #  File has not been updated.
 
 # Not a target:
@@ -294,6 +291,9 @@ makefile:
 # Not a target:
 GNUmakefile:
 #  Implicit rule search has been done.
+ 
+make: *** No rule to make target 'all'.  Stop.
+
 #  File does not exist.
 #  File has been updated.
 #  Failed to be updated.
@@ -306,12 +306,12 @@ GNUmakefile:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 15 / storage = 124 B / avg = 8 B
-# current buf: size = 8162 B / used = 124 B / count = 15 / avg = 8 B
+# strcache buffers: 1 (0) / strings = 13 / storage = 110 B / avg = 8 B
+# current buf: size = 8162 B / used = 110 B / count = 13 / avg = 8 B
 
-# strcache performance: lookups = 18 / hit rate = 16%
+# strcache performance: lookups = 16 / hit rate = 18%
 # hash-table stats:
-# Load=15/8192=0%, Rehash=0, Collisions=0/18=0%
-# Finished Make data base on Sun Jul 31 15:47:10 2022
+# Load=13/8192=0%, Rehash=0, Collisions=0/16=0%
+# Finished Make data base on Tue Aug  9 09:18:54 2022
 
  

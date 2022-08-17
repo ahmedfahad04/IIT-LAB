@@ -79,7 +79,7 @@ int main()
 
                 // send message to client
                 send(client_fd, message, sizeof(message), 0);
-                printf("Server: Message sent to client\n");
+                printf("Enter your message (\"Exit\"): \n\n");
                 printf("\n----------------------------------------------------\n");
             }
             close(client_fd);
