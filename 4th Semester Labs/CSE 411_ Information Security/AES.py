@@ -1,9 +1,5 @@
-from ast import main
-from imp import init_builtin
 import pprint
 
-data = "Hello people, I am Fahad from Gazipur"
-print("\nDATA: ", data, end='\n\n')
 
 s_box = [
     [0x63, 0x7c, 0x77, 0x7b, 0xf2, 0x6b, 0x6f, 0xc5, 0x30, 0x01, 0x67, 0x2b, 0xfe, 0xd7, 0xab, 0x76,
@@ -25,16 +21,16 @@ s_box = [
 
 ]
 
-
-def substitution_bytes():
+def substitution_bytes(data):
 
 
     input_matrix = [[]]
     matrix = []
-    state_matrix = []
-    final_matrix = []
+    state_matrix = [[]]
+    
 
     # Function to fill the matrix with the hex values of given data;
+    
     letter = 0
     initial_value = 0
     for i in range(0, len(data), 16):
@@ -65,6 +61,7 @@ def substitution_bytes():
 
     print("INITIAL MATRIX....")
 
+    # print initial input  matrix
     for i in range(1, len(input_matrix)):
         for row in range(0, 4, 1):
             for col in range(0, 4, 1):
@@ -77,12 +74,19 @@ def substitution_bytes():
 
 
     print("\nSTATE MATRIX....")
-    # letter = 0
-    for i in range(1, len(input_matrix)):
-        for row in range(0, 4, 1):
 
+    # calculate the final state matrix    
+    k = 1
+    for i in range(0, len(data), 16):
+        
+        for row in range(0, 4, 1):
+            cell = []
+            inital_value = i    # helps to create the 2nd list of the matrix
+            temp = i            # helps to insert element coloumn wise
+            
             for col in range(0, 4, 1):
-                cell_value = input_matrix[i][row][col]
+                
+                cell_value = input_matrix[k][row][col]
                 char_value = bin(int(cell_value, 16))
 
                 # retrieving the row and col valus from the INPUT MATRIX
@@ -91,18 +95,37 @@ def substitution_bytes():
 
                 # access the following row and col value in S-box
                 new_cell_value = hex(s_box[0][(nrow) * 16 + (ncol)])
-                final_matrix.append(new_cell_value)
-                
-                
+
+                # now adding the calculated value in state matrix, this is the 1st list
+                cell.append(new_cell_value)
                 print(new_cell_value, " ", end=' ')
-
+                
+                i += 4
+            
+            # this is 2nd list    
+            matrix.append(cell)
+            temp += 1
+            i = temp
             print()
-
+            
+        # this is the 3rd and final list
+        state_matrix.append(matrix)
+        matrix = []
+        i = inital_value
+        k += 1
         print()
-
-        # print(char_value, ">> ", nrow, 'and', ncol , end='---')
+        
+        
+    return state_matrix 
         
         
 if __name__ == '__main__':
-    substitution_bytes()
+    
+    text = "Hello people, I am Fahad from Gazipur"
+    print("\nDATA: ", text, end='\n\n')
+    
+    st_matrix = [[]]
+    
+    st_matrix = substitution_bytes(text)
+    pprint.pprint(st_matrix)
     
