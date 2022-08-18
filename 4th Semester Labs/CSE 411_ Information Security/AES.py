@@ -1,6 +1,5 @@
 import pprint
 
-
 s_box = [
     [0x63, 0x7c, 0x77, 0x7b, 0xf2, 0x6b, 0x6f, 0xc5, 0x30, 0x01, 0x67, 0x2b, 0xfe, 0xd7, 0xab, 0x76,
      0xca, 0x82, 0xc9, 0x7d, 0xfa, 0x59, 0x47, 0xf0, 0xad, 0xd4, 0xa2, 0xaf, 0x9c, 0xa4, 0x72, 0xc0,
@@ -17,28 +16,65 @@ s_box = [
      0xba, 0x78, 0x25, 0x2e, 0x1c, 0xa6, 0xb4, 0xc6, 0xe8, 0xdd, 0x74, 0x1f, 0x4b, 0xbd, 0x8b, 0x8a,
      0x70, 0x3e, 0xb5, 0x66, 0x48, 0x03, 0xf6, 0x0e, 0x61, 0x35, 0x57, 0xb9, 0x86, 0xc1, 0x1d, 0x9e,
      0xe1, 0xf8, 0x98, 0x11, 0x69, 0xd9, 0x8e, 0x94, 0x9b, 0x1e, 0x87, 0xe9, 0xce, 0x55, 0x28, 0xdf,
-     0x8c, 0xa1, 0x89, 0x0d, 0xbf, 0xe6, 0x42, 0x68, 0x41, 0x99, 0x2d, 0x0f, 0xb0, 0x54, 0xbb, 0x16]
-
+     0x8c, 0xa1, 0x89, 0x0d, 0xbf, 0xe6, 0x42, 0x68, 0x41, 0x99, 0x2d, 0x0f, 0xb0, 0x54, 0xbb, 0x16
+     ]
 ]
 
-def substitution_bytes(data):
+key = [
+    [
+        0x54, 0x4F, 0x4E, 0x20,
+        0x77, 0x6E, 0x69, 0x54,
+        0x6F, 0x65, 0x6E, 0x77,
+        0x20, 0x20, 0x65, 0x6F
+    ]
+]
 
+
+def add_round_key(input_matrix):
+
+    matrix = []
+    final_matrix = [[]]
+
+    letter = 0
+    initial_value = 0
+    k = 1
+    for i in range(0, (len(input_matrix)-1)*16, 16):
+        for row in range(0, 4, 1):
+            cell = []
+            inital_value = i    # helps to create the 2nd list of the matrix (repressents a single blocks of 16bits)
+
+            for col in range(0, 4, 1):
+
+                value = int(input_matrix[k][row][col][2:], 16) ^ key[0][(row) * 4 + (col)]
+                cell.append(hex(value))
+                i += 4
+
+            matrix.append(cell)
+            # print()
+
+        final_matrix.append(matrix)
+        matrix = []
+        k += 1
+        i = inital_value
+        # print()
+
+    return final_matrix
+
+
+def text_to_matrix_conversin(data):
 
     input_matrix = [[]]
     matrix = []
-    state_matrix = [[]]
-    
 
-    # Function to fill the matrix with the hex values of given data;
-    
     letter = 0
     initial_value = 0
+    temp = 0
     for i in range(0, len(data), 16):
         for row in range(0, 4, 1):
             cell = []
             inital_value = i    # helps to create the 2nd list of the matrix
             temp = i            # helps to insert element coloumn wise
-            
+
             for col in range(0, 4, 1):
 
                 if i < len(data):
@@ -46,19 +82,29 @@ def substitution_bytes(data):
                 else:
                     cell.append(hex(ord('Z')))
                 i += 4
-                
+
                 # print('[', row, ']', '[', col, '] = ', chr(int(cell[col],16)))
 
             matrix.append(cell)
             temp += 1
             i = temp
-            
+
         input_matrix.append(matrix)
         matrix = []
-        
-        i = inital_value
-        
 
+        i = inital_value
+
+    return input_matrix
+
+
+
+def substitution_bytes(input_matrix):
+    matrix = []
+    state_matrix = [[]]
+
+    # Function to fill the matrix with the hex values of given data;
+
+    letter = 0
     print("INITIAL MATRIX....")
 
     # print initial input  matrix
@@ -66,66 +112,66 @@ def substitution_bytes(data):
         for row in range(0, 4, 1):
             for col in range(0, 4, 1):
                 val = chr(int(input_matrix[i][row][col], 16))
-                print(val, " ", end='')
+                print(input_matrix[i][row][col], " ", end='')
 
             print()
         print()
 
-
-
     print("\nSTATE MATRIX....")
 
-    # calculate the final state matrix    
+    # calculate the final state matrix
     k = 1
-    for i in range(0, len(data), 16):
-        
+    for i in range(0, (len(input_matrix)-1)*16, 16):
         for row in range(0, 4, 1):
             cell = []
             inital_value = i    # helps to create the 2nd list of the matrix
             temp = i            # helps to insert element coloumn wise
-            
+
             for col in range(0, 4, 1):
-                
+
                 cell_value = input_matrix[k][row][col]
-                char_value = bin(int(cell_value, 16))
+
+                char_value = str(bin(int(cell_value, 16)))[2:]
+                char_value = char_value.rjust(8, '0')
 
                 # retrieving the row and col valus from the INPUT MATRIX
-                nrow = int(char_value[2:5], 2)
-                ncol = int(char_value[5:10], 2)
+                nrow = int(char_value[0:4], 2)
+
+                ncol = int(char_value[4:8], 2)
 
                 # access the following row and col value in S-box
                 new_cell_value = hex(s_box[0][(nrow) * 16 + (ncol)])
 
                 # now adding the calculated value in state matrix, this is the 1st list
                 cell.append(new_cell_value)
-                print(new_cell_value, " ", end=' ')
-                
+
                 i += 4
-            
-            # this is 2nd list    
+
+            # this is 2nd list
             matrix.append(cell)
             temp += 1
             i = temp
-            print()
-            
+
         # this is the 3rd and final list
         state_matrix.append(matrix)
         matrix = []
         i = inital_value
         k += 1
-        print()
-        
-        
-    return state_matrix 
-        
-        
+
+    return state_matrix
+
+
 if __name__ == '__main__':
-    
-    text = "Hello people, I am Fahad from Gazipur"
+
+    text = "Thats my Kung Fu"
     print("\nDATA: ", text, end='\n\n')
-    
+
     st_matrix = [[]]
-    
-    st_matrix = substitution_bytes(text)
+    initial_matrix = [[]]
+    round_key = [[]]
+
+    initial_matrix = text_to_matrix_conversin(text)
+    round_key = add_round_key(initial_matrix)
+    st_matrix = substitution_bytes(round_key)
+
     pprint.pprint(st_matrix)
-    
