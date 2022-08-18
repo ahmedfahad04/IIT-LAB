@@ -1,3 +1,4 @@
+from os import stat
 import pprint
 
 s_box = [
@@ -20,6 +21,9 @@ s_box = [
      ]
 ]
 
+
+# key expansion should be performed
+
 key = [
     [
         0x54, 0x4F, 0x4E, 0x20,
@@ -29,40 +33,16 @@ key = [
     ]
 ]
 
-
-def add_round_key(input_matrix):
-
-    matrix = []
-    final_matrix = [[]]
-
-    letter = 0
-    initial_value = 0
-    k = 1
-    for i in range(0, (len(input_matrix)-1)*16, 16):
-        for row in range(0, 4, 1):
-            cell = []
-            inital_value = i    # helps to create the 2nd list of the matrix (repressents a single blocks of 16bits)
-
-            for col in range(0, 4, 1):
-
-                value = int(input_matrix[k][row][col][2:], 16) ^ key[0][(row) * 4 + (col)]
-                cell.append(hex(value))
-                i += 4
-
-            matrix.append(cell)
-            # print()
-
-        final_matrix.append(matrix)
-        matrix = []
-        k += 1
-        i = inital_value
-        # print()
-
-    return final_matrix
+def swap (x,y):
+    t = x
+    x = y
+    y = t
+    
+    return x , y
 
 
 def text_to_matrix_conversin(data):
-
+    
     input_matrix = [[]]
     matrix = []
 
@@ -97,27 +77,66 @@ def text_to_matrix_conversin(data):
     return input_matrix
 
 
+def add_round_key(input_matrix):
+
+    matrix = []
+    final_matrix = [[]]
+
+    letter = 0
+    initial_value = 0
+    k = 1
+    for i in range(0, (len(input_matrix)-1)*16, 16):
+        for row in range(0, 4, 1):
+            cell = []
+            inital_value = i    # helps to create the 2nd list of the matrix (repressents a single blocks of 16bits)
+
+            for col in range(0, 4, 1):
+
+                value = int(input_matrix[k][row][col][2:], 16) ^ key[0][(row) * 4 + (col)]
+                cell.append(hex(value))
+                i += 4
+
+            matrix.append(cell)
+            # print()
+
+        final_matrix.append(matrix)
+        matrix = []
+        k += 1
+        i = inital_value
+        # print()
+
+    return final_matrix
+
+
+def shift_rows(state_matrix):
+    
+    for i in range(1, len(state_matrix),1):
+        for row in range(0,4,1):
+            for col in range(0,3,1):
+                
+                if row == 0: continue
+                
+                elif row == 1:
+                    a = state_matrix[i][row][col]
+                    b = state_matrix[i][row][col+1]
+                    state_matrix[i][row][col], state_matrix[i][row][col+1] = swap(a,b)
+                    
+                elif row == 2 and col < 2:
+                    a = state_matrix[i][row][col]
+                    b = state_matrix[i][row][col+2]
+                    state_matrix[i][row][col], state_matrix[i][row][col+2] = swap(a,b)
+                    
+                elif row == 3:
+                    a = state_matrix[i][row][col]
+                    b = state_matrix[i][row][3]
+                    state_matrix[i][row][col], state_matrix[i][row][3] = swap(a,b)
+                                
+    return state_matrix                
+    
 
 def substitution_bytes(input_matrix):
     matrix = []
     state_matrix = [[]]
-
-    # Function to fill the matrix with the hex values of given data;
-
-    letter = 0
-    print("INITIAL MATRIX....")
-
-    # print initial input  matrix
-    for i in range(1, len(input_matrix)):
-        for row in range(0, 4, 1):
-            for col in range(0, 4, 1):
-                val = chr(int(input_matrix[i][row][col], 16))
-                print(input_matrix[i][row][col], " ", end='')
-
-            print()
-        print()
-
-    print("\nSTATE MATRIX....")
 
     # calculate the final state matrix
     k = 1
@@ -162,16 +181,32 @@ def substitution_bytes(input_matrix):
 
 
 if __name__ == '__main__':
-
-    text = "Thats my Kung Fu"
-    print("\nDATA: ", text, end='\n\n')
-
+    
+    # list/array initialization
     st_matrix = [[]]
     initial_matrix = [[]]
     round_key = [[]]
 
-    initial_matrix = text_to_matrix_conversin(text)
-    round_key = add_round_key(initial_matrix)
-    st_matrix = substitution_bytes(round_key)
+    # plain text input
+    text = "Thats my Kung Fu"
+    print("\nDATA: ", text, end='\n\n')
 
+    
+    initial_matrix = text_to_matrix_conversin(text)
+    print("INITIAL MATRIX....")
+    pprint.pprint(initial_matrix)
+    
+    round_key = add_round_key(initial_matrix)
+    print("\nROUND KEY....")
+    pprint.pprint(round_key)
+        
+    st_matrix = substitution_bytes(round_key)
+    print("\nSUBSTITUTION BYTES....")
     pprint.pprint(st_matrix)
+    
+    st_matrix = shift_rows(st_matrix)
+    print("\nSHIFT ROWS....")
+    pprint.pprint(st_matrix)
+    
+
+    
