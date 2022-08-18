@@ -33,6 +33,16 @@ key = [
     ]
 ]
 
+table = [
+    [
+        2, 3, 1, 1,
+        1, 2, 3, 1,
+        1, 1, 2, 3,
+        3, 1, 1, 2
+    ]
+]
+
+
 def swap (x,y):
     t = x
     x = y
@@ -105,33 +115,7 @@ def add_round_key(input_matrix):
         i = inital_value
         # print()
 
-    return final_matrix
-
-
-def shift_rows(state_matrix):
-    
-    for i in range(1, len(state_matrix),1):
-        for row in range(0,4,1):
-            for col in range(0,3,1):
-                
-                if row == 0: continue
-                
-                elif row == 1:
-                    a = state_matrix[i][row][col]
-                    b = state_matrix[i][row][col+1]
-                    state_matrix[i][row][col], state_matrix[i][row][col+1] = swap(a,b)
-                    
-                elif row == 2 and col < 2:
-                    a = state_matrix[i][row][col]
-                    b = state_matrix[i][row][col+2]
-                    state_matrix[i][row][col], state_matrix[i][row][col+2] = swap(a,b)
-                    
-                elif row == 3:
-                    a = state_matrix[i][row][col]
-                    b = state_matrix[i][row][3]
-                    state_matrix[i][row][col], state_matrix[i][row][3] = swap(a,b)
-                                
-    return state_matrix                
+    return final_matrix              
     
 
 def substitution_bytes(input_matrix):
@@ -180,6 +164,68 @@ def substitution_bytes(input_matrix):
     return state_matrix
 
 
+def shift_rows(state_matrix):
+    
+    for i in range(1, len(state_matrix),1):
+        for row in range(0,4,1):
+            for col in range(0,3,1):
+                
+                if row == 0: continue
+                
+                elif row == 1:
+                    a = state_matrix[i][row][col]
+                    b = state_matrix[i][row][col+1]
+                    state_matrix[i][row][col], state_matrix[i][row][col+1] = swap(a,b)
+                    
+                elif row == 2 and col < 2:
+                    a = state_matrix[i][row][col]
+                    b = state_matrix[i][row][col+2]
+                    state_matrix[i][row][col], state_matrix[i][row][col+2] = swap(a,b)
+                    
+                elif row == 3:
+                    a = state_matrix[i][row][col]
+                    b = state_matrix[i][row][3]
+                    state_matrix[i][row][col], state_matrix[i][row][3] = swap(a,b)
+                                
+    return state_matrix
+
+
+def calculate_mix_col_value(matrix, r, c):
+    
+    ans = 0
+    for i in range(4):
+
+        a = matrix[1][i][c]     # ERROR: "unsupported format string passed to list.__format_" ==> means a is returning a list so we changed to matrix[1][i][c]
+        b = table[0][r*4+i]
+                
+        if b == 3:
+            temp = hex((int(a, 16) * (b-1))^int(a, 16))
+        else:
+            temp = hex(int(a, 16) * b)
+            
+        ans ^= int(temp, 16)
+
+    return hex(ans)
+                        
+# TODO: implement mix column
+def mix_column(matrix):
+    
+    final_matrix = matrix
+    
+    for i in range(1, len(matrix)):
+        for row in range(4):
+            for col in range(4):
+                
+                final_matrix[i][row][col] = calculate_mix_col_value(matrix, row, col)
+                # print(x, end=' ')
+                # print(row, "..", col, 'and', col, "--", row)
+                # print(row, "..", col, ">>", matrix[i][row][col], "--", table[0][(col) * 4 + (row)])
+            print()  
+        print()
+            
+    return final_matrix
+    
+    
 if __name__ == '__main__':
     
     # list/array initialization
@@ -208,5 +254,8 @@ if __name__ == '__main__':
     print("\nSHIFT ROWS....")
     pprint.pprint(st_matrix)
     
+    st_matrix = mix_column(st_matrix)
+    print("\nMIX COLUMN....")
+    pprint.pprint(st_matrix)
 
     
