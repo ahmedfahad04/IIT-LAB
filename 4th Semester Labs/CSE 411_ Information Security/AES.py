@@ -2,7 +2,7 @@ from os import stat
 import pprint
 
 s_box = [
-    [0x63, 0x7c, 0x77, 0x7b, 0xf2, 0x6b, 0x6f, 0xc5, 0x30, 0x01, 0x67, 0x2b, 0xfe, 0xd7, 0xab, 0x76,
+     0x63, 0x7c, 0x77, 0x7b, 0xf2, 0x6b, 0x6f, 0xc5, 0x30, 0x01, 0x67, 0x2b, 0xfe, 0xd7, 0xab, 0x76,
      0xca, 0x82, 0xc9, 0x7d, 0xfa, 0x59, 0x47, 0xf0, 0xad, 0xd4, 0xa2, 0xaf, 0x9c, 0xa4, 0x72, 0xc0,
      0xb7, 0xfd, 0x93, 0x26, 0x36, 0x3f, 0xf7, 0xcc, 0x34, 0xa5, 0xe5, 0xf1, 0x71, 0xd8, 0x31, 0x15,
      0x04, 0xc7, 0x23, 0xc3, 0x18, 0x96, 0x05, 0x9a, 0x07, 0x12, 0x80, 0xe2, 0xeb, 0x27, 0xb2, 0x75,
@@ -18,7 +18,7 @@ s_box = [
      0x70, 0x3e, 0xb5, 0x66, 0x48, 0x03, 0xf6, 0x0e, 0x61, 0x35, 0x57, 0xb9, 0x86, 0xc1, 0x1d, 0x9e,
      0xe1, 0xf8, 0x98, 0x11, 0x69, 0xd9, 0x8e, 0x94, 0x9b, 0x1e, 0x87, 0xe9, 0xce, 0x55, 0x28, 0xdf,
      0x8c, 0xa1, 0x89, 0x0d, 0xbf, 0xe6, 0x42, 0x68, 0x41, 0x99, 0x2d, 0x0f, 0xb0, 0x54, 0xbb, 0x16
-     ]
+     
 ]
 
 
@@ -42,17 +42,58 @@ table = [
     ]
 ]
 
+Rcon = (
+    0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80, 0x1b, 36,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 00, 
+)
 
-def swap (x,y):
+
+
+def swap(x, y):
     t = x
     x = y
     y = t
+
+    return x, y
+
+
+def g(word, round_no):
     
-    return x , y
+    # rotword   -   circular shift
+    for i in range(1,4):
+        a = word[i-1]
+        b = word[i]
+        
+        word[i-1], word[i] = swap(a,b)
+        
+    # sub-word  -   substitute each value using s-box
+    for i in range(4):
+        char_value = str( bin( int(format(word[i], '02x'), 16) ) )[2:]
+        char_value = char_value.rjust(8, '0')
+
+        # retrieving the row and col valus from the INPUT MATRIX
+        nrow = int(char_value[0:4], 2)
+        ncol = int(char_value[4:8], 2)
+
+        # access the following row and col value in S-box
+        new_cell_value = hex(s_box[(nrow) * 16 + (ncol)])
+        word[i] = new_cell_value
+    
+    # xor   -   xor with the round constant
+    for row in range(4):
+        word[row] = hex(word[row] ^ Rcon[row*10+round_no-1])
+    
+    return word
+            
+                        
+def key_expansion():
+    pass
 
 
 def text_to_matrix_conversin(data):
-    
+
     input_matrix = [[]]
     matrix = []
 
@@ -85,7 +126,7 @@ def text_to_matrix_conversin(data):
         i = inital_value
 
     return input_matrix
-
+ 
 
 def add_round_key(input_matrix):
 
@@ -98,11 +139,13 @@ def add_round_key(input_matrix):
     for i in range(0, (len(input_matrix)-1)*16, 16):
         for row in range(0, 4, 1):
             cell = []
-            inital_value = i    # helps to create the 2nd list of the matrix (repressents a single blocks of 16bits)
+            # helps to create the 2nd list of the matrix (repressents a single blocks of 16bits)
+            inital_value = i
 
             for col in range(0, 4, 1):
 
-                value = int(input_matrix[k][row][col][2:], 16) ^ key[0][(row) * 4 + (col)]
+                value = int(input_matrix[k][row][col]
+                            [2:], 16) ^ key[0][(row) * 4 + (col)]
                 cell.append(hex(value))
                 i += 4
 
@@ -115,8 +158,8 @@ def add_round_key(input_matrix):
         i = inital_value
         # print()
 
-    return final_matrix              
-    
+    return final_matrix
+
 
 def substitution_bytes(input_matrix):
     matrix = []
@@ -143,7 +186,7 @@ def substitution_bytes(input_matrix):
                 ncol = int(char_value[4:8], 2)
 
                 # access the following row and col value in S-box
-                new_cell_value = hex(s_box[0][(nrow) * 16 + (ncol)])
+                new_cell_value = hex(s_box[(nrow) * 16 + (ncol)])
 
                 # now adding the calculated value in state matrix, this is the 1st list
                 cell.append(new_cell_value)
@@ -165,69 +208,81 @@ def substitution_bytes(input_matrix):
 
 
 def shift_rows(state_matrix):
-    
-    for i in range(1, len(state_matrix),1):
-        for row in range(0,4,1):
-            for col in range(0,3,1):
-                
-                if row == 0: continue
-                
+
+    for i in range(1, len(state_matrix), 1):
+        for row in range(0, 4, 1):
+            for col in range(0, 3, 1):
+
+                if row == 0:
+                    continue
+
                 elif row == 1:
                     a = state_matrix[i][row][col]
                     b = state_matrix[i][row][col+1]
-                    state_matrix[i][row][col], state_matrix[i][row][col+1] = swap(a,b)
-                    
+                    state_matrix[i][row][col], state_matrix[i][row][col+1] = swap(a, b)
+
                 elif row == 2 and col < 2:
                     a = state_matrix[i][row][col]
                     b = state_matrix[i][row][col+2]
-                    state_matrix[i][row][col], state_matrix[i][row][col+2] = swap(a,b)
-                    
+                    state_matrix[i][row][col], state_matrix[i][row][col+2] = swap(a, b)
+
                 elif row == 3:
                     a = state_matrix[i][row][col]
                     b = state_matrix[i][row][3]
-                    state_matrix[i][row][col], state_matrix[i][row][3] = swap(a,b)
-                                
+                    state_matrix[i][row][col], state_matrix[i][row][3] = swap(
+                        a, b)
+
     return state_matrix
 
 
 def calculate_mix_col_value(matrix, r, c):
-    
+
     ans = 0
     for i in range(4):
 
-        a = matrix[1][i][c]     # ERROR: "unsupported format string passed to list.__format_" ==> means a is returning a list so we changed to matrix[1][i][c]
+        # ERROR: "unsupported format string passed to list.__format_" ==> means a is returning a list so we changed to matrix[1][i][c]
+        a = matrix[1][i][c]
         b = table[0][r*4+i]
-                
+
         if b == 3:
-            temp = hex((int(a, 16) * (b-1))^int(a, 16))
+            temp = hex((int(a, 16) * (b-1)) ^ int(a, 16))
         else:
             temp = hex(int(a, 16) * b)
-            
+
         ans ^= int(temp, 16)
 
-    return hex(ans)
-                        
+    if len(format(ans, '02x')) == 3:
+        return(hex(ans)[3:])
+    else:
+        return(hex(ans)[2:])
+
 # TODO: implement mix column
+
 def mix_column(matrix):
-    
-    final_matrix = matrix
-    
+
+    final_matrix = [[]]
+    temp_matrix = []
+
     for i in range(1, len(matrix)):
         for row in range(4):
+            cell = []
+
             for col in range(4):
-                
-                final_matrix[i][row][col] = calculate_mix_col_value(matrix, row, col)
-                # print(x, end=' ')
-                # print(row, "..", col, 'and', col, "--", row)
-                # print(row, "..", col, ">>", matrix[i][row][col], "--", table[0][(col) * 4 + (row)])
-            print()  
-        print()
-            
+
+                cell_value = calculate_mix_col_value(matrix, row, col)
+                cell.append(cell_value)
+                # print(cell_value, end=' ')
+            temp_matrix.append(cell)
+            # print()
+        final_matrix.append(temp_matrix)
+        # print()
+
     return final_matrix
-    
-    
+
+
+
 if __name__ == '__main__':
-    
+
     # list/array initialization
     st_matrix = [[]]
     initial_matrix = [[]]
@@ -237,25 +292,22 @@ if __name__ == '__main__':
     text = "Thats my Kung Fu"
     print("\nDATA: ", text, end='\n\n')
 
-    
     initial_matrix = text_to_matrix_conversin(text)
     print("INITIAL MATRIX....")
     pprint.pprint(initial_matrix)
-    
+
     round_key = add_round_key(initial_matrix)
     print("\nROUND KEY....")
     pprint.pprint(round_key)
-        
+
     st_matrix = substitution_bytes(round_key)
     print("\nSUBSTITUTION BYTES....")
     pprint.pprint(st_matrix)
-    
+
     st_matrix = shift_rows(st_matrix)
     print("\nSHIFT ROWS....")
     pprint.pprint(st_matrix)
-    
+
     st_matrix = mix_column(st_matrix)
     print("\nMIX COLUMN....")
     pprint.pprint(st_matrix)
-
-    
