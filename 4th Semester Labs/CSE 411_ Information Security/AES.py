@@ -61,12 +61,16 @@ def swap(x, y):
 
 def g(word, round_no):
     
+    # print("\nINSIDE: ", word)
+    
     # rotword   -   circular shift
     for i in range(1,4):
         a = word[i-1]
         b = word[i]
         
         word[i-1], word[i] = swap(a,b)
+        
+    # print("ROTWORD: ", word)
         
     # sub-word  -   substitute each value using s-box
     for i in range(4):
@@ -81,16 +85,56 @@ def g(word, round_no):
         new_cell_value = hex(s_box[(nrow) * 16 + (ncol)])
         word[i] = new_cell_value
     
+    # print("SUB-WORD: ", word)
+    
     # xor   -   xor with the round constant
     for row in range(4):
-        word[row] = hex(word[row] ^ Rcon[row*10+round_no-1])
-    
+        # print("RCON: ",  Rcon[row*10+round_no])
+        word[row] = hex( int(word[row],16) ^ Rcon[row*10+round_no])
+        
     return word
-            
-                        
-def key_expansion():
-    pass
 
+def key_expansion():
+    round_key = [0]*176
+    
+    for word_no in range(40):
+        # print("ROUND:", word_no//4, end = '--> ')
+        
+        if word_no%4 == 0:
+            for row in range(4):
+                for col in range(4):
+                        round_key[row*44+col] = (key[0][row*4+col])
+                    
+            # CONTINUE
+            
+            x = g([round_key[(r*44+word_no)+3] for r in range(4)], word_no//4)
+            # print("SPECTITAL")
+            for row in range(4):
+                round_key[(row*44+word_no)+4] = int(x[row], 16) ^ round_key[row*44+word_no]
+                print(hex(round_key[(row*44+word_no)+4]), end=' ')
+        else:
+
+            for row in range(4):
+                round_key[(row*44+word_no)+4] = round_key[row*44+word_no] ^ round_key[(row*44+word_no)+3]
+                print(hex(round_key[(row*44+word_no)+4]), end=' ')
+        # print()
+        
+                        
+                
+            
+    print("1.")
+    # pprint.pprint(round_key)
+    # print(len(round_key))
+    
+    
+    # for i in range(176):
+    #     print(hex(round_key[i]))
+        # if i %3 == 0: print(end=' ')
+        # if i%43 == 0 and i > 43: print()
+   
+    return round_key
+
+            
 
 def text_to_matrix_conversin(data):
 

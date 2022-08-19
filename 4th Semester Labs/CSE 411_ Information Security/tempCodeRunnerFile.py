@@ -74,14 +74,43 @@ s_box = [
 ]
 
 Rcon = (
-    0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80, 0x1b, 36,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 00, 
+    0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80, 0x1b, 0x36,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
 )
 
+# key = [
+#     [
+#         0x73, 0x73, 0x69, 0x72,
+#         0x61, 0x68, 0x73, 0x69,
+#         0x74, 0x63, 0x62, 0x6e,
+#         0x69, 0x6a, 0x6f, 0x67
+#     ]
+# ]
 
 
+# key = [
+#     [
+#         0x54, 0x68, 0x61, 0x74,
+#         0x73, 0x20, 0x6D, 0x79,
+#         0x20, 0x4B, 0x75, 0x6e,
+#         0x67, 0x20, 0x46, 0x75
+#     ]
+# ]
+
+# milte milte v
+key = [
+    [
+        0x54, 0x73, 0x20, 0x67,
+        0x68, 0x20, 0x4b, 0x20,
+        0x61, 0x6d, 0x75, 0x46,
+        0x74, 0x79, 0x6e, 0x75
+    ]
+]
+
+
+import pprint 
 def swap(x, y):
     t = x
     x = y
@@ -91,10 +120,80 @@ def swap(x, y):
 
 def g(word, round_no):
     
+    # print("\nINSIDE: ", word)
+    
+    # rotword   -   circular shift
+    for i in range(1,4):
+        a = word[i-1]
+        b = word[i]
+        
+        word[i-1], word[i] = swap(a,b)
+        
+    # print("ROTWORD: ", word)
+        
+    # sub-word  -   substitute each value using s-box
+    for i in range(4):
+        char_value = str( bin( int(format(word[i], '02x'), 16) ) )[2:]
+        char_value = char_value.rjust(8, '0')
+
+        # retrieving the row and col valus from the INPUT MATRIX
+        nrow = int(char_value[0:4], 2)
+        ncol = int(char_value[4:8], 2)
+
+        # access the following row and col value in S-box
+        new_cell_value = hex(s_box[(nrow) * 16 + (ncol)])
+        word[i] = new_cell_value
+    
+    # print("SUB-WORD: ", word)
+    
+    # xor   -   xor with the round constant
     for row in range(4):
-        word[row] = hex(word[row] ^ Rcon[row*10+round_no-1])
-        print(Rcon[row*10+round_no-1])
+        # print("RCON: ",  Rcon[row*10+round_no])
+        word[row] = hex( int(word[row],16) ^ Rcon[row*10+round_no])
+        
     return word
 
+def kp():
+    round_key = [0]*176
+    
+    for word_no in range(40):
+        # print("ROUND:", word_no//4, end = '--> ')
+        
+        if word_no%4 == 0:
+            for row in range(4):
+                for col in range(4):
+                        round_key[row*44+col] = (key[0][row*4+col])
+                    
+            # CONTINUE
+            
+            x = g([round_key[(r*44+word_no)+3] for r in range(4)], word_no//4)
+            # print("SPECTITAL")
+            for row in range(4):
+                round_key[(row*44+word_no)+4] = int(x[row], 16) ^ round_key[row*44+word_no]
+                print(hex(round_key[(row*44+word_no)+4]), end=' ')
+        else:
 
-print(g([0x69,0x6e,0x67,0x72], 1))
+            for row in range(4):
+                round_key[(row*44+word_no)+4] = round_key[row*44+word_no] ^ round_key[(row*44+word_no)+3]
+                print(hex(round_key[(row*44+word_no)+4]), end=' ')
+        # print()
+        
+                        
+                
+            
+    print("1.")
+    # pprint.pprint(round_key)
+    # print(len(round_key))
+    
+    
+    # for i in range(176):
+    #     print(hex(round_key[i]))
+        # if i %3 == 0: print(end=' ')
+        # if i%43 == 0 and i > 43: print()
+   
+    return round_key
+
+kp()
+print(Rcon[0])
+# print(Rcon[0])
+# print([( round_key[(j*44+8)+3)] for j in range(4)])
