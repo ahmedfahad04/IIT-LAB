@@ -90,16 +90,16 @@ Rcon = (
 # ]
 
 
-# key = [
-#     [
-#         0x54, 0x68, 0x61, 0x74,
-#         0x73, 0x20, 0x6D, 0x79,
-#         0x20, 0x4B, 0x75, 0x6e,
-#         0x67, 0x20, 0x46, 0x75
-#     ]
-# ]
+key = [
+    [
+        0x54, 0x68, 0x61, 0x74,
+        0x73, 0x20, 0x6D, 0x79,
+        0x20, 0x4B, 0x75, 0x6e,
+        0x67, 0x20, 0x46, 0x75
+    ]
+]
 
-# milte milte v
+# # milte milte v
 key = [
     [
         0x54, 0x73, 0x20, 0x67,
@@ -109,6 +109,15 @@ key = [
     ]
 ]
 
+
+key = [
+    [
+        0x0f, 0x47, 0x0c, 0xaf,
+        0x15, 0xd9, 0xb7, 0x7f,
+        0x71, 0xe8, 0xad, 0x67,
+        0xc9, 0x59, 0xd6, 0x98
+    ]
+]
 
 import pprint 
 def swap(x, y):
@@ -129,7 +138,7 @@ def g(word, round_no):
         
         word[i-1], word[i] = swap(a,b)
         
-    # print("ROTWORD: ", word)
+    print("ROTWORD: ", word)
         
     # sub-word  -   substitute each value using s-box
     for i in range(4):
@@ -144,11 +153,11 @@ def g(word, round_no):
         new_cell_value = hex(s_box[(nrow) * 16 + (ncol)])
         word[i] = new_cell_value
     
-    # print("SUB-WORD: ", word)
+    print("SUB-WORD: ", word)
     
     # xor   -   xor with the round constant
     for row in range(4):
-        # print("RCON: ",  Rcon[row*10+round_no])
+        print("RCON: ",  Rcon[row*10+round_no])
         word[row] = hex( int(word[row],16) ^ Rcon[row*10+round_no])
         
     return word
@@ -157,7 +166,7 @@ def kp():
     round_key = [0]*176
     
     for word_no in range(40):
-        # print("ROUND:", word_no//4, end = '--> ')
+        if word_no%4 == 0: print("ROUND:", (word_no//4)+1)
         
         if word_no%4 == 0:
             for row in range(4):
@@ -170,18 +179,18 @@ def kp():
             # print("SPECTITAL")
             for row in range(4):
                 round_key[(row*44+word_no)+4] = int(x[row], 16) ^ round_key[row*44+word_no]
-                print(hex(round_key[(row*44+word_no)+4]), end=' ')
+                print( '[', (row*44+word_no)+4, ']', "=", hex(round_key[(row*44+word_no)+4]), end=', ')
         else:
 
             for row in range(4):
                 round_key[(row*44+word_no)+4] = round_key[row*44+word_no] ^ round_key[(row*44+word_no)+3]
-                print(hex(round_key[(row*44+word_no)+4]), end=' ')
-        # print()
+                print( '[', (row*44+word_no)+4, ']', "=", hex(round_key[(row*44+word_no)+4]), end=', ')
+        print()
         
                         
                 
             
-    print("1.")
+    # print("1.")
     # pprint.pprint(round_key)
     # print(len(round_key))
     
