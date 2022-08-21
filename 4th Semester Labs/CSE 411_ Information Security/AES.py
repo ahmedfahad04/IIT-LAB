@@ -23,14 +23,14 @@ s_box = [
 
 # key expansion should be performed
 
-key = [
-    [
-        0x73, 0x73, 0x69, 0x72,
-        0x61, 0x68, 0x73, 0x69,
-        0x74, 0x63, 0x62, 0x6e,
-        0x69, 0x6a, 0x6f, 0x67
-    ]
-]
+# key = [
+#     [
+#         0x73, 0x73, 0x69, 0x72,
+#         0x61, 0x68, 0x73, 0x69,
+#         0x74, 0x63, 0x62, 0x6e,
+#         0x69, 0x6a, 0x6f, 0x67
+#     ]
+# ]
 
 # key = [
 #     [
@@ -41,14 +41,14 @@ key = [
 #     ]
 # ]
 
-# key = [
-#     [
-#         0x54, 0x68, 0x61, 0x74,
-#         0x73, 0x20, 0x6D, 0x79,
-#         0x20, 0x4B, 0x75, 0x6e,
-#         0x67, 0x20, 0x46, 0x75
-#     ]
-# ]
+key = [
+    [
+        0x54, 0x73, 0x20, 0x67,
+        0x68, 0x20, 0x4b, 0x20,
+        0x61, 0x6d, 0x75, 0x46,
+        0x74, 0x79, 0x6e, 0x75
+    ]
+]
 
 
 table = [
@@ -116,7 +116,7 @@ def key_expansion():
     round_key = [0]*176
     
     for word_no in range(40):
-        if word_no%4 == 0: print("ROUND:", (word_no//4)+1)
+        # if word_no%4 == 0: print("ROUND:",    (word_no//4)+1)
         
         if word_no%4 == 0:
             for row in range(4):
@@ -129,13 +129,13 @@ def key_expansion():
             # print("SPECTITAL")
             for row in range(4):
                 round_key[(row*44+word_no)+4] = int(x[row], 16) ^ round_key[row*44+word_no]
-                print( '[', (row*44+word_no)+4, ']', "=", hex(round_key[(row*44+word_no)+4]), end=', ')
+                # print( '[', (row*44+word_no)+4, ']', "=", hex(round_key[(row*44+word_no)+4]), end=', ')
         else:
 
             for row in range(4):
                 round_key[(row*44+word_no)+4] = round_key[row*44+word_no] ^ round_key[(row*44+word_no)+3]
-                print( '[', (row*44+word_no)+4, ']', "=", hex(round_key[(row*44+word_no)+4]), end=', ')
-        print()
+                # print( '[', (row*44+word_no)+4, ']', "=", hex(round_key[(row*44+word_no)+4]), end=', ')
+        # print()
         
                         
                 
@@ -172,7 +172,7 @@ def text_to_matrix_conversin(data):
                 if i < len(data):
                     cell.append(hex(ord(data[i])))
                 else:
-                    cell.append(hex(ord('Z')))
+                    cell.append(hex(ord('0')))
                 i += 4
 
                 # print('[', row, ']', '[', col, '] = ', chr(int(cell[col],16)))
@@ -206,6 +206,7 @@ def add_round_key(input_matrix, round_no, round_key):
             for col in range(0, 4, 1):
 
                 value = int(input_matrix[k][row][col][2:], 16) ^ round_key[(col+44*row)+4*round_no]
+                # print((int(input_matrix[k][row][col][2:], 16)), "XOR", (round_key[(col+44*row)+4*round_no]), "=", value)
                 cell.append(hex(value))
                 i += 4
 
@@ -297,53 +298,74 @@ def shift_rows(state_matrix):
     return state_matrix
 
 
+def threesMultiplication(value):
+     
+    value = int(towsMultiplication(value),16) ^ int(value,16)
+    
+    # print(int(towsMultiplication(value),16), '^' ,int(value,16), '=', value)
+    
+    return hex(value)
+
+
+def towsMultiplication(value):
+    value = int(value, 16)
+    
+    if value & 128:        # if the most significant bit is 1
+        value = ((value << 1) ^ 0x1b) & 0xff    # check the size if 8 bit or not. if longer then & with ff with reduce the length to 8 bit
+    else:
+        value = value << 1
+        
+    return hex(value)
+
 def calculate_mix_col_value(matrix, r, c):
 
     ans = 0
     for i in range(4):
 
         # ERROR: "unsupported format string passed to list.__format_" ==> means a is returning a list so we changed to matrix[1][i][c]
-        a = matrix[1][i][c]
+        a = matrix[i][c]
         b = table[0][r*4+i]
 
         if b == 3:
-            temp = hex((int(a, 16) * (b-1)) ^ int(a, 16))
+            temp = threesMultiplication(a)
+        elif b == 2:
+            temp = towsMultiplication(a)
+            
         else:
-            temp = hex(int(a, 16) * b)
+            temp = a
 
-        ans ^= int(temp, 16)
+        ans ^= (int(temp, 16))
 
-    if len(format(ans, '02x')) == 3:
-        return(hex(ans)[3:])
-    else:
-        return(hex(ans)[2:])
+    return hex(ans)
 
-# TODO: solve mix column issue and loop through four states for 10 times.
+# TODO: matrix to text converter, refactor code and fix bugs of executing multiple blocks
 
 def mix_column(matrix):
 
     final_matrix = [[]]
-    temp_matrix = []
 
     for i in range(1, len(matrix)):
+        temp_matrix = []
+        
         for row in range(4):
+            print("ROW...", row)
             cell = []
 
             for col in range(4):
-
-                cell_value = calculate_mix_col_value(matrix, row, col)
+                print("COL..", col)
+                cell_value = calculate_mix_col_value(matrix[i], row, col)
                 cell.append(cell_value)
                 # print(cell_value, end=' ')
             temp_matrix.append(cell)
+            print(temp_matrix)
             # print()
         final_matrix.append(temp_matrix)
         # print()
 
     return final_matrix
 
-
-if __name__ == '__main__':
-
+def encryption():
+    
     # list/array initialization
     st_matrix = [[]]
     initial_matrix = [[]]
@@ -353,7 +375,8 @@ if __name__ == '__main__':
 
     # plain text input
     # text = "Thats my kung Fu"
-    text = "secretmessagenow"
+    # text = "Two One Nine Two Three"
+    text = "Two One Nine Two Sifat"
     print("\nDATA: ", text, end='\n\n')
 
     # hex version of plain text
@@ -365,7 +388,30 @@ if __name__ == '__main__':
     st_matrix = add_round_key(initial_matrix,0,round_key)
     print("\nADD ROUND KEY....")
     pprint.pprint(st_matrix)
+    
+    for i in range(1, 10):
+        
+        print("ROUND#", i)
+        # substitution bytes with round no N
+        st_matrix = substitution_bytes(st_matrix)
+        print("\nSUBSTITUTION BYTES....")
+        pprint.pprint(st_matrix)
 
+        # shift rows with round no N
+        st_matrix = shift_rows(st_matrix)
+        print("\nSHIFT ROWS....")
+        pprint.pprint(st_matrix)
+
+        # mix column with round no N
+        st_matrix = mix_column(st_matrix)
+        print("\nMIX COLUMN....")
+        pprint.pprint(st_matrix)
+
+        # add round key with round no N
+        st_matrix = add_round_key(st_matrix,i,round_key)
+        print("\nROUND KEY....")
+        pprint.pprint(st_matrix)
+        
     # substitution bytes with round no N
     st_matrix = substitution_bytes(st_matrix)
     print("\nSUBSTITUTION BYTES....")
@@ -376,12 +422,14 @@ if __name__ == '__main__':
     print("\nSHIFT ROWS....")
     pprint.pprint(st_matrix)
 
-    # mix column with round no N
-    st_matrix = mix_column(st_matrix)
-    print("\nMIX COLUMN....")
+    # add round key with round no N
+    st_matrix = add_round_key(st_matrix,10,round_key)
+    
+    
+    print("\nCIPHER TEXT ==========================")
     pprint.pprint(st_matrix)
 
-    # # add round key with round no N
-    # st_matrix = add_round_key(st_matrix,0,round_key)
-    # print("\nROUND KEY....")
-    # pprint.pprint(st_matrix)
+
+if __name__ == '__main__':
+
+    encryption()
