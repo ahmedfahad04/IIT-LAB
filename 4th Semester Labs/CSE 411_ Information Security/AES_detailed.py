@@ -410,7 +410,7 @@ def calculate_mix_col_value(matrix, r, c, mode):
 
     return hex(result)
 
-# TODO: matrix to text converter, refactor code and fix bugs of executing multiple blocks
+# TODO: matrix to text converter, refactor code
 
 def mix_column(matrix, mode):
 
@@ -436,6 +436,14 @@ def mix_column(matrix, mode):
 
     return final_matrix
 
+def hex_to_text(hex_matrix): 
+    text = ''
+    for i in range(1,len(hex_matrix)):
+        for col in range(4):
+            for row in range(4):
+                value = hex_matrix[i][row][col]
+                text += chr(int(value, 16))
+    return text[:]
 
 def encryption():
     
@@ -448,7 +456,7 @@ def encryption():
     # plain text input
     # text = "Thats my kung Fu"
     # text = "Two One Nine Two Three"
-    text = "Two One Nine Two Sifat"
+    text = "Two One Nine Two"
     print("\nDATA: ", text, end='\n\n')
 
     # hex version of plain text
@@ -501,6 +509,10 @@ def encryption():
     print("\nCIPHER TEXT ==========================")
     pprint.pprint(st_matrix)
     
+    with open("output.txt", "w+") as f:
+        f.write(hex_to_text(st_matrix))
+    
+    f.close()
     return st_matrix
 
 
@@ -536,7 +548,11 @@ def decryption(cipherText):
     plain_text_matrix = add_round_key(st_matrix,0,round_key)
     
     print("\nPLAIN TEXT =========================")
-    pprint.pprint(plain_text_matrix)
+    pprint.pprint( hex_to_text(plain_text_matrix))
+    with open("output.txt", "a+") as f:
+        f.write("\n"+hex_to_text(plain_text_matrix))
+    
+    f.close()
 
 if __name__ == '__main__':
 
