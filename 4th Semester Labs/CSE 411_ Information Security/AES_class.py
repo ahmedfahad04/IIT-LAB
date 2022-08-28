@@ -1,5 +1,4 @@
 import pprint
-import time
 
 sbox = [
     0x63, 0x7c, 0x77, 0x7b, 0xf2, 0x6b, 0x6f, 0xc5, 0x30, 0x01, 0x67, 0x2b, 0xfe, 0xd7, 0xab, 0x76,
@@ -61,16 +60,6 @@ d_table = [     # table for decryption
 ]
 
 
-key = [
-    [
-        0x54, 0x73, 0x20, 0x67,
-        0x68, 0x20, 0x4b, 0x20,
-        0x61, 0x6d, 0x75, 0x46,
-        0x74, 0x79, 0x6e, 0x75
-    ]
-]
-
-
 Rcon = (
     0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80, 0x1b, 0x36,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -86,10 +75,9 @@ def swap(x, y):
 
     return x, y
 
+
 def g(word, round_no):
-
-    # print("\nINSIDE: ", word)
-
+    
     # rotword   -   circular shift
     for i in range(1, 4):
         a = word[i-1]
@@ -97,57 +85,63 @@ def g(word, round_no):
 
         word[i-1], word[i] = swap(a, b)
 
-    # print("ROTWORD: ", word)
-
     # sub-word  -   substitute each value using s-box
-    for i in range(4):
-        char_value = str(bin(int(format(word[i], '02x'), 16)))[2:]
-        char_value = char_value.rjust(8, '0')
-
-        # retrieving the row and col valus from the INPUT MATRIX
-        nrow = int(char_value[0:4], 2)
-        ncol = int(char_value[4:8], 2)
+    word = [word[i][2:] for i in range(4)]
+    print("\nAFTER: ", word)
+    j = 0
+    for i in word:
+        if len(i) == 1:
+            nrow = 0
+            ncol = int(i[0:1], 16)
+        else:
+            nrow = int(i[0:1], 16)
+            ncol = int(i[1:], 16)
 
         # access the following row and col value in S-box
         new_cell_value = hex(sbox[(nrow) * 16 + (ncol)])
-        word[i] = new_cell_value
-
-    # print("SUB-WORD: ", word)
+        word[j] = new_cell_value
+        j += 1
 
     # xor   -   xor with the round constant
     for row in range(4):
-        # print("RCON: ",  Rcon[row*10+round_no])
         word[row] = hex(int(word[row], 16) ^ Rcon[row*10+round_no])
 
     return word
 
-def key_expansion():
+
+def key_expansion(key):
     round_key = [0]*176
     
     for word_no in range(40):
-        # if word_no%4 == 0: print("ROUND:",    (word_no//4)+1)
         
         if word_no%4 == 0:
             for row in range(4):
                 for col in range(4):
-                        round_key[row*44+col] = (key[0][row*4+col])
+                        round_key[row*44+col] = (key[row*4+col])
                     
-            # CONTINUE
-            
             x = g([round_key[(r*44+word_no)+3] for r in range(4)], word_no//4)
-            # print("SPECTITAL")
+
             for row in range(4):
-                round_key[(row*44+word_no)+4] = int(x[row], 16) ^ round_key[row*44+word_no]
-                # print( '[', (row*44+word_no)+4, ']', "=", hex(round_key[(row*44+word_no)+4]), end=', ')
+                round_key[(row*44+word_no)+4] = hex(int(x[row], 16) ^ int(round_key[row*44+word_no], 16))
+                print(round_key[(row*44+word_no)+4], "  ", type(round_key[(row*44+word_no)+4]))
         else:
 
             for row in range(4):
-                round_key[(row*44+word_no)+4] = round_key[row*44+word_no] ^ round_key[(row*44+word_no)+3]
-     
+                round_key[(row*44+word_no)+4] = hex(int(round_key[row*44+word_no], 16) ^ int(round_key[(row*44+word_no)+3], 16))
+                
     return round_key
 
 
-
+def key_text_to_matrix_conversion(data):
+    
+    result = []
+    
+    for i in range(len(data)):
+        # print(hex(ord(data[i])), end=' ')
+        result.append(hex(ord(data[i])))
+        
+    return result
+        
 
 def text_to_matrix_conversin(data):
 
@@ -194,13 +188,12 @@ def add_round_key(input_matrix, round_no, round_key):
     for i in range(0, (len(input_matrix)-1)*16, 16):
         for row in range(0, 4, 1):
             cell = []
-            
             # helps to create the 2nd list of the matrix (repressents a single blocks of 16bits)
             inital_value = i
 
             for col in range(0, 4, 1):
 
-                value = int(input_matrix[k][row][col][2:], 16) ^ round_key[(col+44*row)+4*round_no]
+                value = int(input_matrix[k][row][col][2:], 16) ^ int(round_key[(col+44*row)+4*round_no], 16)
                 cell.append(hex(value))
                 i += 4
 
@@ -235,7 +228,6 @@ def substitution_bytes(input_matrix, mode):
 
                 # retrieving the row and col valus from the INPUT MATRIX
                 nrow = int(char_value[0:4], 2)
-
                 ncol = int(char_value[4:8], 2)
 
                 # access the following row and col value in S-box
@@ -367,7 +359,6 @@ def calculate_mix_col_value(matrix, r, c, mode):
 
     return hex(result)
 
-# TODO: matrix to text converter, refactor code
 
 def mix_column(matrix, mode):
 
@@ -402,6 +393,7 @@ def hex_to_text(hex_matrix):
                 text += chr(int(value, 16))
     return text
 
+
 def text_hex_key_conversion(data):
     
     res = []
@@ -411,19 +403,13 @@ def text_hex_key_conversion(data):
     return [res]
 
 
-def encryption(plain_text):
+def encryption(plain_text, round_key):
     
     # list/array initialization
     st_matrix = [[]]
     initial_matrix = [[]]
     
-    # plain text as input
-    key_text = "Thats my kung Fu"
-    
-    # hex version(in matrix form) of plain text
     initial_matrix = text_to_matrix_conversin(plain_text)
-
-    round_key = key_expansion()
     
     # add round key with round no 0
     st_matrix = add_round_key(initial_matrix,0,round_key)
@@ -451,9 +437,7 @@ def encryption(plain_text):
     return st_matrix
 
 
-def decryption(cipherText):
-    
-    round_key = key_expansion()
+def decryption(cipherText, round_key):
         
     st_matrix = add_round_key(cipherText,10,round_key)   
     
@@ -463,7 +447,6 @@ def decryption(cipherText):
         st_matrix = add_round_key(st_matrix,i,round_key)        
         st_matrix = mix_column(st_matrix, 'd')
                   
-        
     st_matrix = shift_rows(st_matrix, 'd')
     st_matrix = substitution_bytes(st_matrix, 'd')
     plain_text_matrix = add_round_key(st_matrix,0,round_key)
@@ -477,8 +460,17 @@ def decryption(cipherText):
     
     f.close()
 
+
 if __name__ == '__main__':
 
-    text = "Two One Nine Two"
-    cipherText = encryption(text)
-    decryption(cipherText)
+    # plain text as input
+    text = "Two One Nine Two Three Four"
+    key = []
+    
+    # generate the round key  
+    key_text = "Thats my kung Fu"
+    key = key_text_to_matrix_conversion(key_text)
+    round_key = key_expansion(key)
+    
+    cipherText = encryption(text, round_key)
+    decryption(cipherText, round_key)

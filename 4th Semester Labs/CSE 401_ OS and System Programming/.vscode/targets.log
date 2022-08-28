@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Wed Aug 24 11:11:03 2022
+# Make data base, printed on Thu Aug 25 10:05:50 2022
 
 # Variables
 
@@ -55,7 +55,7 @@ VSCODE_CODE_CACHE_PATH = /home/ahmedfahad/.config/Code/CachedData/e4503b30fc7820
 # environment
 LANG = C
 # environment
-XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.L3HIR1
+XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.SE5MR1
 # default
 .LOADED := 
 # default
@@ -91,7 +91,7 @@ SNAP_REEXEC =
 # automatic
 @F = $(notdir $@)
 # environment
-VSCODE_PID = 3559
+VSCODE_PID = 3698
 # environment
 XDG_SESSION_TYPE = wayland
 # automatic
@@ -99,7 +99,7 @@ XDG_SESSION_TYPE = wayland
 # environment
 BAMF_DESKTOP_FILE_HINT = /var/lib/snapd/desktop/applications/code_code.desktop
 # environment
-SESSION_MANAGER = local/dell-Inspiron-5505:@/tmp/.ICE-unix/1653,unix/dell-Inspiron-5505:/tmp/.ICE-unix/1653
+SESSION_MANAGER = local/dell-Inspiron-5505:@/tmp/.ICE-unix/1656,unix/dell-Inspiron-5505:/tmp/.ICE-unix/1656
 # automatic
 *F = $(notdir $*)
 # environment
@@ -143,7 +143,7 @@ SNAP_USER_COMMON = /home/ahmedfahad/snap/code/common
 # environment
 SNAP = /snap/code/105
 # environment
-INVOCATION_ID = 7e15c44956b94e3e8d55f32c98e616e7
+INVOCATION_ID = fc595c38961d4b88a8eb020d6e0cc9ef
 # environment
 SNAP_REVISION = 105
 # environment
@@ -191,9 +191,9 @@ SNAP_DATA = /var/snap/code/105
 # environment
 SNAP_CONTEXT = CYsl8mgEvAP9Cl6fS0_h4kUibDTxUjQyrE-akb8cc2Fl1qg2VJaV
 # environment
-MANAGERPID = 1499
+MANAGERPID = 1502
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 3509
+GIO_LAUNCHED_DESKTOP_FILE_PID = 3650
 # environment
 _ = /snap/code/105/usr/share/code/code
 # environment
@@ -201,7 +201,7 @@ XDG_RUNTIME_DIR = /run/user/1000
 # environment
 GDK_PIXBUF_MODULE_FILE = /home/ahmedfahad/snap/code/common/.cache/gdk-pixbuf-loaders.cache
 # environment
-JOURNAL_STREAM = 8:34647
+JOURNAL_STREAM = 8:34514
 # environment
 XDG_SESSION_CLASS = user
 # environment
@@ -253,9 +253,9 @@ SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd
 
 # Directories
 
-# . (device 66313, inode 3150991): 9 files, no impossibilities.
+# . (device 66313, inode 3150991): 13 files, no impossibilities.
 
-# 9 files, no impossibilities in 1 directories.
+# 13 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -285,10 +285,10 @@ all:
 
 # Not a target:
 makefile:
- 
 #  Implicit rule search has been done.
 #  File does not exist.
 #  File has been updated.
+ 
 #  Failed to be updated.
 
 # Not a target:
@@ -306,12 +306,12 @@ GNUmakefile:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 17 / storage = 143 B / avg = 8 B
-# current buf: size = 8162 B / used = 143 B / count = 17 / avg = 8 B
+# strcache buffers: 1 (0) / strings = 21 / storage = 197 B / avg = 9 B
+# current buf: size = 8162 B / used = 197 B / count = 21 / avg = 9 B
 
-# strcache performance: lookups = 20 / hit rate = 15%
+# strcache performance: lookups = 24 / hit rate = 12%
 # hash-table stats:
-# Load=17/8192=0%, Rehash=0, Collisions=0/20=0%
-# Finished Make data base on Wed Aug 24 11:11:03 2022
+# Load=21/8192=0%, Rehash=0, Collisions=0/24=0%
+# Finished Make data base on Thu Aug 25 10:05:50 2022
 
  

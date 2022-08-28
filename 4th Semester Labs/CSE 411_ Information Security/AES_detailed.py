@@ -167,10 +167,7 @@ def key_expansion():
                 round_key[(row*44+word_no)+4] = round_key[row*44+word_no] ^ round_key[(row*44+word_no)+3]
                 # print( '[', (row*44+word_no)+4, ']', "=", hex(round_key[(row*44+word_no)+4]), end=', ')
         # print()
-        
-                        
-                
-            
+             
     # print("1.")
     # pprint.pprint(round_key)
     # print(len(round_key))
@@ -451,7 +448,7 @@ def encryption():
     st_matrix = [[]]
     initial_matrix = [[]]
     round_key = key_expansion()
-    
+    # print("Round Key: ", round_key)
 
     # plain text input
     # text = "Thats my kung Fu"
