@@ -25,11 +25,14 @@ void print_matrix(double matrix[5][5])
     }
 }
 
-void initialize(double mat[5][5]){
-    
-    for(int i=0; i<size; i++){
-        for(int j=0; j<size; j++){
-            mat[i][j] = i+j;
+void initialize(double mat[5][5], int a)
+{
+
+    for (int i = 0; i < size; i++)
+    {
+        for (int j = 0; j < size; j++)
+        {
+            mat[i][j] = a;
         }
     }
 }
@@ -51,7 +54,6 @@ void *worker(void *arg)
         for (j = 0; j < size; ++j)
         {
             t += matrix1[tid][j] * matrix2[j][i];
-            // printf("%lf, ", matrix3[tid][i]);
         }
         matrix3[tid][i] = t;
     }
@@ -63,20 +65,19 @@ int main()
     double sum = 0;
     struct timeval tstart, tend;
     double exectime;
-    pthread_t threads[num_threads+1];
+    pthread_t threads[num_threads + 1];
 
-
-    initialize(matrix1);
-    initialize(matrix2);
-    initialize(matrix3);
-
+    initialize(matrix1, 1);
+    initialize(matrix2, 2);
+    initialize(matrix3, 0);
 
     // gettimeofday(&tstart, NULL);
     int k = 0;
-    int *tid = &k;
-    
+
     for (int i = 0; i < num_threads; ++i)
     {
+        int *tid;
+        tid = (int *)malloc(sizeof(int));
         *tid = i;
         pthread_create(&threads[i], NULL, worker, (void *)tid);
     }

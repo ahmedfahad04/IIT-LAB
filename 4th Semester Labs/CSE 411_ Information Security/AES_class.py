@@ -110,6 +110,7 @@ def g(word, round_no):
 
 
 def key_expansion(key):
+
     round_key = [0]*176
     
     for word_no in range(40):
