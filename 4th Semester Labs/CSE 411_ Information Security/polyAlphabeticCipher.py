@@ -1,7 +1,4 @@
 # generate table
-from ctypes.wintypes import PINT
-from gettext import lngettext
-
 
 upperCase = dict()
 lowerCase = dict()

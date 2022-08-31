@@ -87,7 +87,7 @@ def g(word, round_no):
 
     # sub-word  -   substitute each value using s-box
     word = [word[i][2:] for i in range(4)]
-    print("\nAFTER: ", word)
+    # print("\nAFTER: ", word)
     j = 0
     for i in word:
         if len(i) == 1:
@@ -124,7 +124,6 @@ def key_expansion(key):
 
             for row in range(4):
                 round_key[(row*44+word_no)+4] = hex(int(x[row], 16) ^ int(round_key[row*44+word_no], 16))
-                print(round_key[(row*44+word_no)+4], "  ", type(round_key[(row*44+word_no)+4]))
         else:
 
             for row in range(4):

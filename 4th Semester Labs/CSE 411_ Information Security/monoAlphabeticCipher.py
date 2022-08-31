@@ -2,17 +2,11 @@ def encrypt(text, key):
     modifiedText = ""
     
     for i in range(len(text)):
-        asci = ord(text[i])
-        
-        if(asci >= 65 and asci <= 90):
-            modifiedText += chr((asci - 65 + key) % 26 + 65) 
-            
-        elif (asci >= 97 and asci <= 122):
-            modifiedText += chr((asci - 97 + key) % 26 + 97) 
-            
-        elif (asci >= 32 and asci <= 47):
-            modifiedText += chr((asci - 32 + key) % 16 + 32) 
-            
+        if i%2 == 0:
+            modifiedText += chr((ord(text[i]) + key)%127)
+        else: 
+            modifiedText += chr((ord(text[i]) + key + 12)%127)
+                    
     return modifiedText  
         
 
@@ -20,16 +14,13 @@ def decrypt(modifiedText, key):
     plainText = ""
     
     for i in range(len(modifiedText)):
-        asci = ord(modifiedText[i])
-        
-        if(asci >= 65 and asci <= 90):
-            plainText += chr((asci - 65 - key)%26 + 65)
+        if i%2 == 0:
+            plainText += chr((ord(modifiedText[i]) - key)%127)
+            # plainText += chr((ord(modifiedText[i]) + 63 - key)%127)
+        else: 
+            plainText += chr((ord(modifiedText[i]) - key - 12)%127)
+            # plainText += chr((ord(modifiedText[i]) + 63 - key - 12)%95+32)
             
-        elif (asci >= 97 and asci <= 122):
-            plainText += chr((asci - 97 - key)%26 + 97)
-            
-        elif (asci >= 32 and asci <= 47):
-            plainText += chr((asci - 32 - key)%16 + 32)
             
     return plainText  
     
