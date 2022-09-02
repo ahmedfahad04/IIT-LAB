@@ -77,8 +77,8 @@ for i in range(0, len(binary_content), 4):
 # adding length of msg in binary
 hex_content += format(msg_len, '032x')
 
-print("Message Length:",len(hex_content)*4)
-# print(hex_content)
+print(len(hex_content)*4)
+print(hex_content)
 
 # splitting hex content into blocks of 1024 bits
 id = 0
@@ -145,4 +145,4 @@ ig = hex(ig)[2:]
 ih = hex(ih)[2:]
 
 message_digest = ((ia) + (ib) + (ic) + (id) + (ie) + (if_) + (ig) + (ih))
-print("Hex Value:",message_digest)
+print(message_digest)
