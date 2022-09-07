@@ -1,9 +1,10 @@
-ror=lambda x,y :((x >> y) | (x << (64-y))) % 2**64
-def shr(n, d): return n >> d
+ror=lambda x,y :((x >> y) | (x << (64-y))) & 0xffffffffffffffff
+def shr(n, d): return n >> d 
 
 def sigma_0(x) -> int: return ror(x, 1) ^ ror(x, 8) ^ shr(x, 7)
 def sigma_1(x) -> int: return ror(x, 19) ^ ror(x, 61) ^ shr(x, 6)
 def sigma_a(x) -> int: return ror(x, 28) ^ ror(x, 34) ^ ror(x, 39)
+def sigma_b(x) -> int: return ror(x, 14) ^ ror(x, 18) ^ ror(x, 41)
 
 def ch(x, y, z) -> int: return (x & y) ^ ((~x) & z)
 def maj(x, y, z) -> int: return (x & y) ^ (x & z) ^ (y & z)
@@ -14,7 +15,7 @@ m_blocks = []
 ia = a = 0x6a09e667f3bcc908
 ib = b = 0xbb67ae8584caa73b
 ic = c = 0x3c6ef372fe94f82b
-id = d = 0xa54ff53a5f1d36f1
+id_ = d = 0xa54ff53a5f1d36f1
 ie = e = 0x510e527fade682d1
 if_ = f = 0x9b05688c2b3e6c1f
 ig = g = 0x1f83d9abfb41bd6b
@@ -75,11 +76,11 @@ def pad_message():
     # print("Message Length (in bits):",len(hex_content)*4)
 
     # splitting hex content into blocks of 1024 bits
-    id = 0
+    id_ = 0
     tmp_size = len(hex_content)*4
 
     while True:
-        m_blocks.append(hex_content[id*1024:(id+1)*1024])
+        m_blocks.append(hex_content[id_*1024:(id_+1)*1024])
         tmp_size -= 1024
 
         if tmp_size <= 0:
@@ -94,18 +95,18 @@ def split_into_words(block, word):
             word[i]= (int((block[i*16:(i+1)*16]), base=16) % 2**64) 
             
         else:
-            value = ((sigma_0(word[i-15]) + word[i-16] + sigma_1(word[i-2]) + word[i-7]) % 2**64)
+            value = ((sigma_0(word[i-15]) + word[i-16] + sigma_1(word[i-2]) + word[i-7]) & 0xffffffffffffffff)
             word[i] = (value)     
     
 def round_calculations(word):
     
     global a, b, c, d, e, f, g, h
-    global ia, ib, ic, id, ie, if_, ig, ih
+    global ia, ib, ic, id_, ie, if_, ig, ih
     
     # round calculations
     for i in range(80):
 
-        T1 = h + ch(e, f, g) + word[i]+ k[i]
+        T1 = h + sigma_b(e) +ch(e, f, g) + word[i]+ k[i]
         T2 = sigma_a(e) + maj(a, b, c)
                 
         a = ((T1 + T2) % 2**64 )
@@ -118,15 +119,15 @@ def round_calculations(word):
         h = g
         
     # finally add the newly derived vectors with inital vectors
-    ia = (b+ia) % 2**64 
-    ib = (b+ib) % 2**64 
-    ic = (c+ic) % 2**64
-    ia = (a+ia) % 2**64 
-    id = (d+id) % 2**64
-    ie = (e+ie) % 2**64
-    if_ = (f+if_) % 2**64
-    ig = (g+ig) % 2**64
-    ih = (h+ih) % 2**64
+    ia = (b+ia) & 0xffffffffffffffff 
+    ib = (b+ib) & 0xffffffffffffffff 
+    ic = (c+ic) & 0xffffffffffffffff
+    ia = (a+ia) & 0xffffffffffffffff 
+    id_ = (d+id_) & 0xffffffffffffffff
+    ie = (e+ie) & 0xffffffffffffffff
+    if_ = (f+if_) & 0xffffffffffffffff
+    ig = (g+ig) & 0xffffffffffffffff
+    ih = (h+ih) & 0xffffffffffffffff
     
 def calculate_f_block():
 
@@ -140,18 +141,18 @@ def calculate_f_block():
 def message_digest():
     
     global a, b, c, d, e, f, g, h
-    global ia, ib, ic, id, ie, if_, ig, ih 
+    global ia, ib, ic, id_, ie, if_, ig, ih 
     
     ia = hex(ia)[2:]
     ib = hex(ib)[2:]
     ic = hex(ic)[2:]
-    id = hex(id)[2:]
+    id_ = hex(id_)[2:]
     ie = hex(ie)[2:]
     if_ = hex(if_)[2:]
     ig = hex(ig)[2:]
     ih = hex(ih)[2:]
 
-    message_digest = str((ia) + (ib) + (ic) + (id) + (ie) + (if_) + (ig) + (ih))
+    message_digest = str((ia) + (ib) + (ic) + (id_) + (ie) + (if_) + (ig) + (ih))
 
     return message_digest
 

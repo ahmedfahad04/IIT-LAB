@@ -1,21 +1,22 @@
 ror=lambda x,y :((x >> y) | (x << (64-y))) % 2**64
 def shr(n, d): return n >> d
 
-def sigma_0(x) -> int: return ror(x, 1) ^ ror(x, 8) ^ shr(x, 7)
-def sigma_1(x) -> int: return ror(x, 19) ^ ror(x, 61) ^ shr(x, 6)
-def sigma_a(x) -> int: return ror(x, 28) ^ ror(x, 34) ^ ror(x, 39)
+def sigma_0(x) -> int: return ror(x, 1) ^ ror(x, 8) ^ shr(x, 7)  & 0xFFFFFFFFFFFFFFFF
+def sigma_1(x) -> int: return ror(x, 19) ^ ror(x, 61) ^ shr(x, 6) & 0xFFFFFFFFFFFFFFFF
+def sigma_a(x) -> int: return ror(x, 28) ^ ror(x, 34) ^ ror(x, 39) & 0xFFFFFFFFFFFFFFFF
+def sigma_b(x) -> int: return ror(x, 14) ^ ror(x, 18) ^ ror(x, 41) & 0xFFFFFFFFFFFFFFFF
 
-def ch(x, y, z) -> int: return (x & y) ^ ((~x) & z)
-def maj(x, y, z) -> int: return (x & y) ^ (x & z) ^ (y & z)
+def ch(x, y, z): return (x & y) ^ ((~x) & z) & 0xFFFFFFFFFFFFFFFF
+def maj(x, y, z): return (x & y) ^ (x & z) ^ (y & z) & 0xFFFFFFFFFFFFFFFF
 
 # =======================================================
 # ===================== VARIABLES =======================
 # =======================================================
 
-msg = ""
-with open("input.txt", 'r') as f:
-    msg = f.read()
-f.close()
+msg = "abc"
+# with open("input.txt", 'r') as f:
+#     msg = f.read()
+# f.close()
 
 msg_len = 0
 binary_content = ""
@@ -107,22 +108,33 @@ for block in m_blocks:
             
         else:
             value = ((sigma_0(w[i-15]) + w[i-16] + sigma_1(w[i-2]) + w[i-7]) % 2**64)
-            w[i] = (value)            
-
+            w[i] = (value)    
+            
+        # print('W[' + str(i) + ']: ' + hex(w[i]))
+                
     # round calculations
     for i in range(80):
 
-        T1 = h + ch(e, f, g) + w[i]+ k[i]
-        T2 = sigma_a(e) + maj(a, b, c)
+        # T1 = h + sigma_b(e) + ch(e, f, g) + w[i]+ k[i]
+        T1 = (h + sigma_b(e) + ch(e,f,g) + k[i] + w[i]) & 0xFFFFFFFFFFFFFFFF
+        T2 = sigma_a(a) + maj(a, b, c) & 0xFFFFFFFFFFFFFFFF
+        
+        print("T1:", h, sigma_b(e), ch(e, f, g), k[i], w[i], T1)
+        print("T2:", sigma_a(a), maj(a, b, c), T2)
+        
+        # print("H:", hex(k[i]))
                 
-        a = ((T1 + T2) % 2**64 )
+        a = ((T1 + T2)) & 0xFFFFFFFFFFFFFFFF
         b = a
         c = b
         d = c
-        e = ((d + T1) % 2**64) 
+        e = ((d + T1)) & 0xFFFFFFFFFFFFFFFF
         f = e
         g = f
         h = g
+    
+        print(i+1, ":", hex(a), hex(b), hex(c), hex(d), hex(e), hex(f), hex(g), hex(h))
+
         
     # finally add the newly derived vectors with inital vectors
     ia = (b+ia) % 2**64 
