@@ -13,7 +13,7 @@ def maj(x, y, z): return (x & y) ^ (x & z) ^ (y & z) & 0xFFFFFFFFFFFFFFFF
 # ===================== VARIABLES =======================
 # =======================================================
 
-msg = "abc"
+msg = "I'd highly recommend downloading virtualbox then getting an vunerable webserver like metasploitable to run on it. That way you can scan until your hearts content and also futher research what exploits etc are possible. "
 # with open("input.txt", 'r') as f:
 #     msg = f.read()
 # f.close()
@@ -30,7 +30,7 @@ m_blocks = []
 ia = a = 0x6a09e667f3bcc908
 ib = b = 0xbb67ae8584caa73b
 ic = c = 0x3c6ef372fe94f82b
-id = d = 0xa54ff53a5f1d36f1
+id_ = d = 0xa54ff53a5f1d36f1
 ie = e = 0x510e527fade682d1
 if_ = f = 0x9b05688c2b3e6c1f
 ig = g = 0x1f83d9abfb41bd6b
@@ -63,41 +63,57 @@ for i in msg:
     msg_len += len(binary)
     binary_content += (binary)
 
+# print("LEN1: ", msg_len)
 # calculating padding and adding 1
 needed_msg_len = 896 - (msg_len % 1024)
 binary_content += "1"
 
+# print("LEN2: ", (needed_msg_len))
+
 # adding padding using 0's
 for i in range(needed_msg_len-1):
     binary_content += "0"
+    
+# print("ORIGINAL MESSAGE: ", len(binary) , "bits")
+# print("BINSRY SIZE: ", len(binary_content))
 
 # converting binary to hex
 for i in range(0, len(binary_content), 4):
     hex_content += hex(int(binary_content[i:i+4], 2))[2:]
+    
 
 # adding length of msg in binary
 hex_content += format(msg_len, '032x')
 
-print("Message Length:",len(hex_content)*4)
+# print("HEX SIZE: ", len(hex_content)/16)
+# print("Message Length:",len(hex_content)*4)
 # print(hex_content)
 
 # splitting hex content into blocks of 1024 bits
 id = 0
-tmp_size = len(hex_content)*4
-
-while True:
-    m_blocks.append(hex_content[id*1024:(id+1)*1024])
-    tmp_size -= 1024
-
-    if tmp_size <= 0:
-        break
+tmp_size = len(hex_content)
+    
+for i in range(0, tmp_size, 256):
+    m_blocks.append(hex_content[i:i+256])
 
 # ==================================================================
-# ======================= INSIDE F BLOCK ===========================
+# ======================= INSIDE F BLOCK ======for i in range(0, tmp_size, 256):
 # ==================================================================
 
 # working on each block of 1024 bits
+turn = 0
 for block in m_blocks:
+    a, b, c, d, e, f, g, h = ia, ib, ic, id_, ie, if_, ig, ih
+    turn += 1
+    print("INITIAL: ",ia, ib, ic, id_, ie, if_, ig, ih)
+    
+    # print("\nBLOCK: ", block, "SIZE: ", len(block))
+    
+    #=============================
+    # for i in range(1,len(block),1):
+    #     bb = block[i-1]+block[i]
+    #     print(int(bin(int(bb,16)),2), end=' ')
+    #=============================
     w = [0]*80
 
     # splitting block into 80 words of 64 bits
@@ -115,38 +131,30 @@ for block in m_blocks:
     # round calculations
     for i in range(80):
 
-        # T1 = h + sigma_b(e) + ch(e, f, g) + w[i]+ k[i]
         T1 = (h + sigma_b(e) + ch(e,f,g) + k[i] + w[i]) & 0xFFFFFFFFFFFFFFFF
-        T2 = sigma_a(a) + maj(a, b, c) & 0xFFFFFFFFFFFFFFFF
-        
-        print("T1:", h, sigma_b(e), ch(e, f, g), k[i], w[i], T1)
-        print("T2:", sigma_a(a), maj(a, b, c), T2)
+        T2 = (sigma_a(a) + maj(a, b, c)) & 0xFFFFFFFFFFFFFFFF #BREAKPOINT (sigma_a(a) istead of sigma_a(e))
         
         # print("H:", hex(k[i]))
+        a,b,c,d,e,f,g,h = (T1 + T2) & 0xFFFFFFFFFFFFFFFF, a, b, c, (d + T1) & 0xFFFFFFFFFFFFFFFF, e, f, g # BREAKPOINT
                 
-        a = ((T1 + T2)) & 0xFFFFFFFFFFFFFFFF
-        b = a
-        c = b
-        d = c
-        e = ((d + T1)) & 0xFFFFFFFFFFFFFFFF
-        f = e
-        g = f
-        h = g
-    
-        print(i+1, ":", hex(a), hex(b), hex(c), hex(d), hex(e), hex(f), hex(g), hex(h))
+        # if(turn == 2):
+            # print("T1: ", h, sigma_b(e), ch(e,f,g), k[i], w[i], T1)
+            # print("T2: ", sigma_a(a), maj(a, b, c), T2)
+        
+            # print(i+1, ":", hex(a), hex(b), hex(c), hex(d), hex(e), hex(f), hex(g), hex(h))
 
         
     # finally add the newly derived vectors with inital vectors
-    ia = (b+ia) % 2**64 
-    ib = (b+ib) % 2**64 
-    ic = (c+ic) % 2**64
-    ia = (a+ia) % 2**64 
-    id = (d+id) % 2**64
-    ie = (e+ie) % 2**64
-    if_ = (f+if_) % 2**64
-    ig = (g+ig) % 2**64
-    ih = (h+ih) % 2**64
-
+    ia = (a+ia) & 0xFFFFFFFFFFFFFFFF 
+    ib = (b+ib) & 0xFFFFFFFFFFFFFFFF 
+    ic = (c+ic) & 0xFFFFFFFFFFFFFFFF
+    id_ = (d+id_) & 0xFFFFFFFFFFFFFFFF
+    ie = (e+ie) & 0xFFFFFFFFFFFFFFFF
+    if_ = (f+if_) & 0xFFFFFFFFFFFFFFFF
+    ig = (g+ig) & 0xFFFFFFFFFFFFFFFF
+    ih = (h+ih) & 0xFFFFFFFFFFFFFFFF
+    print("FINAL: ",ia, ib, ic, id_, ie, if_, ig, ih)
+    
 ia = hex(ia)[2:]
 ib = hex(ib)[2:]
 ic = hex(ic)[2:]

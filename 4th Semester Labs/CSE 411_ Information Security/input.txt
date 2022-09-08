@@ -1,1 +1,1 @@
-The quick brown fox jumps over the lazy dog
+I'd highly recommend downloading virtualbox then getting an vunerable webserver like metasploitable to run on it. That way you can scan until your hearts content and also futher research what exploits etc are possible. 

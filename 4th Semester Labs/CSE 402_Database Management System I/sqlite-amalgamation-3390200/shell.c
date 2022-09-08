@@ -14412,9 +14412,11 @@ static char *quoted_column(sqlite3_stmt *pStmt, int i){
       return sqlite3_mprintf("NULL");
     }
     case SQLITE_INTEGER:
+
     case SQLITE_FLOAT: {
       return sqlite3_mprintf("%s",sqlite3_column_text(pStmt,i));
     }
+
     case SQLITE_TEXT: {
       return sqlite3_mprintf("%Q",sqlite3_column_text(pStmt,i));
     }
@@ -14422,11 +14424,14 @@ static char *quoted_column(sqlite3_stmt *pStmt, int i){
       int j;
       sqlite3_str *pStr = sqlite3_str_new(0);
       const unsigned char *a = sqlite3_column_blob(pStmt,i);
+
       int n = sqlite3_column_bytes(pStmt,i);
       sqlite3_str_append(pStr, "x'", 2);
+
       for(j=0; j<n; j++){
         sqlite3_str_appendf(pStr, "%02x", a[j]);
       }
+      
       sqlite3_str_append(pStr, "'", 1);
       return sqlite3_str_finish(pStr);
     }

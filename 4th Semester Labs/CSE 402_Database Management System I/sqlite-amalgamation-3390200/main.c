@@ -15,11 +15,12 @@ int main(){
     sqlite3_str_appendf(str, "%s", ch); 
 
     // 3. the string value can be achieved from sqlite3_str_value()
-    char *updated_sqlite3_str = sqlite3_str_value(str);          
-    printf("%s\n", updated_sqlite3_str);
+    printf("%s\n", sqlite3_str_value(str));
 
     // 4. *** Now using sqlite3_str_append function we can append string to specific bytes
-    sqlite3_str_append(str, "Yes, I am.", -1);
-    printf("%s\n", updated_sqlite3_str);
-    
+    sqlite3_str_append(str, "Yes, sure.", 9);
+    printf("%s\n", sqlite3_str_value(str));
+
+    // 5. Destroy the sqlite3_str after it's operation is completed
+    sqlite3_str_finish(str);
 }

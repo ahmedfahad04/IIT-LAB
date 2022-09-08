@@ -20,8 +20,7 @@ int main(){
     int num = 10;
     pthread_t threads[num + 1];
 
-    sem_init(&s, 0, 2);
-
+    sem_init(&s, 0, 3);
 
     for(int i=0; i<num; i++){
         int *t = malloc(sizeof(int));

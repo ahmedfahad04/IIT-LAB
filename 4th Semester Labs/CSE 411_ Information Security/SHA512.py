@@ -1,16 +1,20 @@
-ror=lambda x,y :((x >> y) | (x << (64-y))) & 0xffffffffffffffff
-def shr(n, d): return n >> d 
+def ror(x, y): return ((x >> y) | (x << (64-y))) & 0xffffffffffffffff
+def shr(n, d): return n >> d
+
 
 def sigma_0(x) -> int: return ror(x, 1) ^ ror(x, 8) ^ shr(x, 7)
 def sigma_1(x) -> int: return ror(x, 19) ^ ror(x, 61) ^ shr(x, 6)
 def sigma_a(x) -> int: return ror(x, 28) ^ ror(x, 34) ^ ror(x, 39)
 def sigma_b(x) -> int: return ror(x, 14) ^ ror(x, 18) ^ ror(x, 41)
 
+
 def ch(x, y, z) -> int: return (x & y) ^ ((~x) & z)
 def maj(x, y, z) -> int: return (x & y) ^ (x & z) ^ (y & z)
 
+
 msg = ""
 m_blocks = []
+
 
 ia = a = 0x6a09e667f3bcc908
 ib = b = 0xbb67ae8584caa73b
@@ -20,6 +24,7 @@ ie = e = 0x510e527fade682d1
 if_ = f = 0x9b05688c2b3e6c1f
 ig = g = 0x1f83d9abfb41bd6b
 ih = h = 0x5be0cd19137e2179
+
 
 k = [0x428a2f98d728ae22, 0x7137449123ef65cd, 0xb5c0fbcfec4d3b2f, 0xe9b5dba58189dbbc, 0x3956c25bf348b538,
      0x59f111f1b605d019, 0x923f82a4af194f9b, 0xab1c5ed5da6d8118, 0xd807aa98a3030242, 0x12835b0145706fbe,
@@ -38,31 +43,35 @@ k = [0x428a2f98d728ae22, 0x7137449123ef65cd, 0xb5c0fbcfec4d3b2f, 0xe9b5dba58189d
      0x113f9804bef90dae, 0x1b710b35131c471b, 0x28db77f523047d84, 0x32caab7b40c72493, 0x3c9ebe0a15c9bebc,
      0x431d67c49c100d4c, 0x4cc5d4becb3e42b6, 0x597f299cfc657e2a, 0x5fcb6fab3ad6faec, 0x6c44198c4a475817]
 
+
 def take_input():
     global msg
+
+    msg = input("Enter Text: ")
     
-    with open("input.txt", 'r') as f:
-        msg = f.read()
-    f.close()
+    # with open("input.txt", 'r') as f:
+    #     msg = f.read()
+    # f.close()
+
 
 def pad_message():
-    
+
     msg_len = 0
     binary_content = ""
     hex_content = ""
 
-    # converting msg to string representation and calculating msg length
+    # converting msg to binary representation and calculating msg length
     for i in msg:
         binary = format(ord(i), '08b')
         msg_len += len(binary)
         binary_content += (binary)
 
-    # calculating pad_message and adding 1
-    needed_msg_len = 896 - (msg_len % 1024)
+    # calculating padded message length and adding 1 to the end of the message
+    padded_message_length = 896 - (msg_len % 1024)
     binary_content += "1"
 
-    # adding pad_message using 0's
-    for i in range(needed_msg_len-1):
+    # adding (padded message length-1) 0's to the end of the message
+    for i in range(padded_message_length-1):
         binary_content += "0"
 
     # converting binary to hex
@@ -72,77 +81,75 @@ def pad_message():
     # adding length of msg in binary
     hex_content += format(msg_len, '032x')
 
-    print("Message: " + msg)
-    # print("Message Length (in bits):",len(hex_content)*4)
-
     # splitting hex content into blocks of 1024 bits
-    id_ = 0
-    tmp_size = len(hex_content)*4
+    id = 0
+    tmp_size = len(hex_content)
+        
+    # BREAKPOINT (block size would be 256 as we converted it into hex codes. 1024/4 = 256 because
+    # each 4 binay bits = 1 hex bits. Therefore, 256 hex bits = 1024 binary bits)
+    for i in range(0, tmp_size, 256):   
+        m_blocks.append(hex_content[i:i+256])
 
-    while True:
-        m_blocks.append(hex_content[id_*1024:(id_+1)*1024])
-        tmp_size -= 1024
-
-        if tmp_size <= 0:
-            break
 
 def split_into_words(block, word):
-    
+
     # splitting block into 80 words of 64 bits
     for i in range(80):
 
         if i < 16:
-            word[i]= (int((block[i*16:(i+1)*16]), base=16) % 2**64) 
-            
+            word[i] = (int((block[i*16:(i+1)*16]), base=16) % 2**64)
+
         else:
-            value = ((sigma_0(word[i-15]) + word[i-16] + sigma_1(word[i-2]) + word[i-7]) & 0xffffffffffffffff)
-            word[i] = (value)     
-    
+            # BREAKPOINT (summation should be mod of 2^64)
+            value = ((sigma_0(word[i-15]) + word[i-16] +
+                     sigma_1(word[i-2]) + word[i-7]) % 2**64)
+            word[i] = (value)
+
+
 def round_calculations(word):
-    
+
     global a, b, c, d, e, f, g, h
     global ia, ib, ic, id_, ie, if_, ig, ih
-    
+    #BREAKPOINT (a,b .. value should be equal to new ia, ib .. in each block)
+    a, b, c, d, e, f, g, h = ia, ib, ic, id_, ie, if_, ig, ih   
+
     # round calculations
     for i in range(80):
 
-        T1 = h + sigma_b(e) +ch(e, f, g) + word[i]+ k[i]
-        T2 = sigma_a(e) + maj(a, b, c)
-                
-        a = ((T1 + T2) % 2**64 )
-        b = a
-        c = b
-        d = c
-        e = ((d + T1) % 2**64) 
-        f = e
-        g = f
-        h = g
+        T1 = (h + sigma_b(e) + ch(e, f, g) +
+              k[i] + word[i]) & 0xFFFFFFFFFFFFFFFF
         
+        # BREAKPOINT (sigma_a(a) istead of sigma_a(e))
+        T2 = sigma_a(a) + maj(a, b, c) & 0xFFFFFFFFFFFFFFFF
+
+        a, b, c, d, e, f, g, h = (T1 + T2) & 0xFFFFFFFFFFFFFFFF, a, b, c, (d + T1) & 0xFFFFFFFFFFFFFFFF, e, f, g  # BREAKPOINT
+
     # finally add the newly derived vectors with inital vectors
-    ia = (b+ia) & 0xffffffffffffffff 
-    ib = (b+ib) & 0xffffffffffffffff 
-    ic = (c+ic) & 0xffffffffffffffff
-    ia = (a+ia) & 0xffffffffffffffff 
-    id_ = (d+id_) & 0xffffffffffffffff
-    ie = (e+ie) & 0xffffffffffffffff
-    if_ = (f+if_) & 0xffffffffffffffff
-    ig = (g+ig) & 0xffffffffffffffff
-    ih = (h+ih) & 0xffffffffffffffff
-    
+    ia = (a+ia) & 0xFFFFFFFFFFFFFFFF
+    ib = (b+ib) & 0xFFFFFFFFFFFFFFFF
+    ic = (c+ic) & 0xFFFFFFFFFFFFFFFF
+    id_ = (d+id_) & 0xFFFFFFFFFFFFFFFF
+    ie = (e+ie) & 0xFFFFFFFFFFFFFFFF
+    if_ = (f+if_) & 0xFFFFFFFFFFFFFFFF
+    ig = (g+ig) & 0xFFFFFFFFFFFFFFFF
+    ih = (h+ih) & 0xFFFFFFFFFFFFFFFF
+
+
 def calculate_f_block():
 
-    # working on each block of 1024 bits
+    # working on each block of 1024 binary bits or 256 hex bits
     for block in m_blocks:
         w = [0]*80
 
         split_into_words(block, w)
         round_calculations(w)
-        
+
+
 def message_digest():
-    
+
     global a, b, c, d, e, f, g, h
-    global ia, ib, ic, id_, ie, if_, ig, ih 
-    
+    global ia, ib, ic, id_, ie, if_, ig, ih
+
     ia = hex(ia)[2:]
     ib = hex(ib)[2:]
     ic = hex(ic)[2:]
@@ -152,9 +159,11 @@ def message_digest():
     ig = hex(ig)[2:]
     ih = hex(ih)[2:]
 
-    message_digest = str((ia) + (ib) + (ic) + (id_) + (ie) + (if_) + (ig) + (ih))
+    message_digest = str((ia) + (ib) + (ic) + (id_) +
+                         (ie) + (if_) + (ig) + (ih))
 
     return message_digest
+
 
 if __name__ == '__main__':
 
@@ -162,7 +171,5 @@ if __name__ == '__main__':
     pad_message()
     calculate_f_block()
     hash_value = message_digest()
-    
-    print("Hex Value:", hash_value)
-    
-    
+
+    print("\nHASH VALUE:", hash_value)

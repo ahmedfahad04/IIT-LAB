@@ -60,7 +60,7 @@ void *worker(void *arg)
 
     for (int j = 0; j < size; j++)
     {
-        if (matrix1[i][j] = 1)
+        if (matrix1[i][j] == 1)
             functionC_s();
     }
 }

@@ -1,4 +1,5 @@
 from ast import main
+import chunk
 import hashlib
 
 
@@ -86,9 +87,14 @@ class SHA512():
         assert len(data) % 128 == 0, "Error in padding"
         # 2. Computations
         # Process the message in successive 1024-bit = 128-bytes chunks:
+        turn = 0
         for offset in range(0, len(data), 128):
+            turn += 1
             # 2.a. 1024-bits = 128-bytes chunks
             chunks = data[offset: offset + 128]
+            
+            # print("BLOCK (",offset+1,"):", chunks)
+            
             w = [0 for i in range(80)]
             # 2.b. Break chunk into sixteen 128-bit = 8-bytes words w[i], 0 ≤ i ≤ 15
             for i in range(16):
@@ -108,28 +114,34 @@ class SHA512():
             # 2.d. Initialize hash value for this chunk
             a, b, c, d, e, f, g, h = h0, h1, h2, h3, h4, h5, h6, h7
             # 2.e. Main loop, cf. https://tools.ietf.org/html/rfc6234
+            print(h0, h1, h2, h3, h4, h5, h6, h7)
+            
             for i in range(80):
+            
                 S1 = (rightrotate_64(e, 14) ^ rightrotate_64(e, 18)
                       ^ rightrotate_64(e, 41)) & 0xFFFFFFFFFFFFFFFF
                 
                 ch = ((e & f) ^ ((~e) & g)) & 0xFFFFFFFFFFFFFFFF
                 
                 temp1 = (h + S1 + ch + self.k[i] + w[i]) & 0xFFFFFFFFFFFFFFFF
-                print("T1:", h, S1, ch, self.k[i], w[i], temp1)
                                 
                 S0 = (rightrotate_64(a, 28) ^ rightrotate_64(a, 34) ^ rightrotate_64(a, 39)) & 0xFFFFFFFFFFFFFFFF
                 
                 maj = ((a & b) ^ (a & c) ^ (b & c)) & 0xFFFFFFFFFFFFFFFF
                 temp2 = (S0 + maj) & 0xFFFFFFFFFFFFFFFF
-                print("T2:", S0, maj, temp2)
-                # print('T2: ' + hex(temp2))
 
                 new_a = (temp1 + temp2) & 0xFFFFFFFFFFFFFFFF
                 new_e = (d + temp1) & 0xFFFFFFFFFFFFFFFF
                 # print('H: ' + hex(self.k[i]))
                 # Rotate the 8 variables
                 a, b, c, d, e, f, g, h = new_a, a, b, c, new_e, e, f, g
-                print(i+1, ":", hex(a), hex(b), hex(c), hex(d), hex(e), hex(f), hex(g), hex(h))
+                
+                # if turn == 2:
+                #     # print("T1:", h, S1, ch, self.k[i], w[i], temp1)
+                #     # print("T2:", S0, maj, temp2)
+                #     print(i+1, ":", hex(a), hex(b), hex(c), hex(d), hex(e), hex(f), hex(g), hex(h))
+                
+            
             # Add this chunk's hash to result so far:
             h0 = (h0 + a) & 0xFFFFFFFFFFFFFFFF
             h1 = (h1 + b) & 0xFFFFFFFFFFFFFFFF
@@ -139,9 +151,12 @@ class SHA512():
             h5 = (h5 + f) & 0xFFFFFFFFFFFFFFFF
             h6 = (h6 + g) & 0xFFFFFFFFFFFFFFFF
             h7 = (h7 + h) & 0xFFFFFFFFFFFFFFFF
+            # print(self.hash_pieces)
+            print("FINAL: ", h0, h1, h2, h3, h4, h5, h6, h7)
+            
+            
 
         # 3. Conclusion
-        self.hash_pieces = [h0, h1, h2, h3, h4, h5, h6, h7]
         # print("HASH PIECE: ", self.hash_pieces)
 
     def digest(self):
@@ -173,6 +188,6 @@ def true_hash_SHA512(data):
     return h.hexdigest()
 
 
-ans = hash_SHA512("abc")
+ans = hash_SHA512("Hellow world")
 print(ans)
 # assert hash_SHA512("The quick brown fox jumps over the lazy dog") == true_hash_SHA512("The quick brown fox jumps over the lazy dog")
