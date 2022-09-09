@@ -10,13 +10,20 @@ def ch(x, y, z): return (x & y) ^ ((~x) & z) & 0xFFFFFFFFFFFFFFFF
 def maj(x, y, z): return (x & y) ^ (x & z) ^ (y & z) & 0xFFFFFFFFFFFFFFFF
 
 # =======================================================
-# ===================== VARIABLES =======================
+# ===================== INPUT/OUTPUT ====================
 # =======================================================
 
-msg = "I'd highly recommend downloading virtualbox then getting an vunerable webserver like metasploitable to run on it. That way you can scan until your hearts content and also futher research what exploits etc are possible. "
-# with open("input.txt", 'r') as f:
-#     msg = f.read()
-# f.close()
+msg = ""
+
+with open("input.txt", 'r') as f:
+    msg = f.read()
+f.close()
+
+fwrite = open("output.txt", 'w')
+
+# =======================================================
+# ===================== VARIABLES =======================
+# =======================================================
 
 msg_len = 0
 binary_content = ""
@@ -63,60 +70,61 @@ for i in msg:
     msg_len += len(binary)
     binary_content += (binary)
 
-# print("LEN1: ", msg_len)
+
+fwrite.write("\nORIGINAL MESSAGE: " + msg)
+fwrite.write("\n\nORIGINAL MESSAGE LENGTH: "+ str(len(msg)))
+fwrite.write("\nORIGINAL MESSAGE LENGTH IN BINARY: " + str(len(msg)*8) + " bits")
+
 # calculating padding and adding 1
 needed_msg_len = 896 - (msg_len % 1024)
 binary_content += "1"
 
-# print("LEN2: ", (needed_msg_len))
+fwrite.write("\nLENGTH TO BE PADDED IN BINARY: " + str(needed_msg_len) + " bits")
 
 # adding padding using 0's
 for i in range(needed_msg_len-1):
     binary_content += "0"
     
-# print("ORIGINAL MESSAGE: ", len(binary) , "bits")
-# print("BINSRY SIZE: ", len(binary_content))
+fwrite.write("\nAFTER PADDING ORIGINAL MESSAGE LENGTH IN BINARY: " + str(len(binary_content)) + " bits")
 
 # converting binary to hex
 for i in range(0, len(binary_content), 4):
     hex_content += hex(int(binary_content[i:i+4], 2))[2:]
-    
+   
+fwrite.write("\nAFTER PADDING ORIGINAL MESSAGE LENGHT IN HEX: " + str(len(hex_content)))
 
 # adding length of msg in binary
 hex_content += format(msg_len, '032x')
 
-# print("HEX SIZE: ", len(hex_content)/16)
-# print("Message Length:",len(hex_content)*4)
-# print(hex_content)
+fwrite.write("\nAFTER ADDING THE 128 bits LENGTH OF THE ORIGINAL MESSAGE, FINAL MESSAGE LENGTH IN HEX: " + str(len(hex_content)))
 
-# splitting hex content into blocks of 1024 bits
+# splitting hex content into blocks of 1024 bits or 256 bytes
 id = 0
 tmp_size = len(hex_content)
     
 for i in range(0, tmp_size, 256):
     m_blocks.append(hex_content[i:i+256])
+    
+fwrite.write("\nNUMBER OF BLOCKS: " + str(len(m_blocks)))
 
 # ==================================================================
-# ======================= INSIDE F BLOCK ======for i in range(0, tmp_size, 256):
+# ======================= INSIDE F BLOCK ===========================
 # ==================================================================
 
+fwrite.write("\n\n============================== F BLOCK ==============================\n")
 # working on each block of 1024 bits
 turn = 0
 for block in m_blocks:
     a, b, c, d, e, f, g, h = ia, ib, ic, id_, ie, if_, ig, ih
+    
     turn += 1
-    print("INITIAL: ",ia, ib, ic, id_, ie, if_, ig, ih)
     
-    # print("\nBLOCK: ", block, "SIZE: ", len(block))
+    fwrite.write("\n\n-> BLOCK " + str(turn-1) + ": " + block + " SIZE: " + str(len(block)))
     
-    #=============================
-    # for i in range(1,len(block),1):
-    #     bb = block[i-1]+block[i]
-    #     print(int(bin(int(bb,16)),2), end=' ')
-    #=============================
     w = [0]*80
 
     # splitting block into 80 words of 64 bits
+    fwrite.write("\n\n>>>>>>>>>>>>>>>> SPLITTING BLOCK INTO 80 WORDS OF 64 BITS <<<<<<<<<<<<<<<<<<<\n")
     for i in range(80):
 
         if i < 16:
@@ -126,22 +134,18 @@ for block in m_blocks:
             value = ((sigma_0(w[i-15]) + w[i-16] + sigma_1(w[i-2]) + w[i-7]) % 2**64)
             w[i] = (value)    
             
-        # print('W[' + str(i) + ']: ' + hex(w[i]))
+        fwrite.write('\nW[' + str(i) + ']: ' + hex(w[i]))
                 
     # round calculations
+    fwrite.write("\n\n>>>>>>>>>>>>>>>> Value of a,b,c,d,e,f,g,h <<<<<<<<<<<<<<<<<<<\n")
     for i in range(80):
 
         T1 = (h + sigma_b(e) + ch(e,f,g) + k[i] + w[i]) & 0xFFFFFFFFFFFFFFFF
         T2 = (sigma_a(a) + maj(a, b, c)) & 0xFFFFFFFFFFFFFFFF #BREAKPOINT (sigma_a(a) istead of sigma_a(e))
         
-        # print("H:", hex(k[i]))
         a,b,c,d,e,f,g,h = (T1 + T2) & 0xFFFFFFFFFFFFFFFF, a, b, c, (d + T1) & 0xFFFFFFFFFFFFFFFF, e, f, g # BREAKPOINT
-                
-        # if(turn == 2):
-            # print("T1: ", h, sigma_b(e), ch(e,f,g), k[i], w[i], T1)
-            # print("T2: ", sigma_a(a), maj(a, b, c), T2)
         
-            # print(i+1, ":", hex(a), hex(b), hex(c), hex(d), hex(e), hex(f), hex(g), hex(h))
+        fwrite.write("\nRound " + str(i+1) + ": " + hex(a) + " " + hex(b) + " " + hex(c) + " " + hex(d) + " " + hex(e) + " " + hex(f) +" " +hex(g) + " " +hex(h))
 
         
     # finally add the newly derived vectors with inital vectors
@@ -153,7 +157,9 @@ for block in m_blocks:
     if_ = (f+if_) & 0xFFFFFFFFFFFFFFFF
     ig = (g+ig) & 0xFFFFFFFFFFFFFFFF
     ih = (h+ih) & 0xFFFFFFFFFFFFFFFF
-    print("FINAL: ",ia, ib, ic, id_, ie, if_, ig, ih)
+    
+    fwrite.write("\n\n>>>>>>>>>>>>>>>> INITIAL VECTOR <<<<<<<<<<<<<<<<<<<\n")
+    fwrite.write("\nH " + str(turn-1) + ": " + hex(a) + " " + hex(b) + " " + hex(c) + " " + hex(d) + " " + hex(e) + " " + hex(f) +" " +hex(g) + " " +hex(h))
     
 ia = hex(ia)[2:]
 ib = hex(ib)[2:]
@@ -165,4 +171,6 @@ ig = hex(ig)[2:]
 ih = hex(ih)[2:]
 
 message_digest = ((ia) + (ib) + (ic) + (id) + (ie) + (if_) + (ig) + (ih))
-print("Hex Value:",message_digest)
+fwrite.write("\n\n*** HASH Value:" + message_digest)
+
+fwrite.close()
