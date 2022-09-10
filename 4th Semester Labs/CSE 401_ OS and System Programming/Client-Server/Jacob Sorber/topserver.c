@@ -6,26 +6,26 @@
 #include <sys/time.h>
 #include <string.h>
 
-#define SERVER_PORT 8080
 #define MAXLINE 4096
 #define BACKLOG 10
 #define SA struct sockaddr
 
-char * serverActivity (int);
+void serverActivity(int fd, char respns[], char ip[], int port);
 
 int main(int argc, char **argv)
 {
 
-    int listenfd, connfd, n;
+    int listenfd, connfd, n, SERVER_PORT;
     struct sockaddr_in servaddr;
     struct sockaddr_in their_addr;
-   
 
     // create socket
     if ((listenfd = socket(AF_INET, SOCK_STREAM, 0)) < 0)
     {
         printf("Error while creating the socket!");
     }
+
+    SERVER_PORT = atoi(argv[1]);
 
     // set server address
     bzero(&servaddr, sizeof(servaddr));
@@ -45,51 +45,50 @@ int main(int argc, char **argv)
         printf("Listen Error");
     }
 
+    printf("Server is listening on port %d\n", SERVER_PORT);
+
     while (1)
     {
 
         struct sockaddr_in addr;
         socklen_t addr_len;
         char client_addr[MAXLINE + 1];
+        char response[MAXLINE] = {0};
+        char exitcode[MAXLINE] = {0};
         int client_port;
-
-        printf("Waiting for a connection on port %d\n", SERVER_PORT);
-        fflush(stdout);
+        pid_t pid;
 
         // accept connection
         connfd = accept(listenfd, (SA *)&addr, &addr_len);
         inet_ntop(AF_INET, &(addr.sin_addr), client_addr, MAXLINE);
-        printf("[Client %s:%d connected]\n", client_addr, addr.sin_port);
+        printf("\n===========>[Client %s:%d connected]<===========\n", client_addr, addr.sin_port);
 
-
-        // pid_t pid = fork();
-        
-        // if(pid < 0){
-        //     printf("CHILD PROCESS NOT CREATED");
-        //     exit(1);
-        // }
-        // if(pid == 0){
+        if ((pid = fork()) == 0)
+        {
+            close(listenfd);
             while (1)
             {
-                // if(pid == 0){
-                    char response[MAXLINE];
-                    printf("===> %s", serverActivity(connfd));
-                    if(response == "exit") printf("Client %s:%d disconnected", client_addr, addr.sin_port);
+                serverActivity(connfd, response, client_addr, addr.sin_port);
 
-                    // exit(0);
-                // }
-            // }
+                if (!strcmp(response, "exit\r\n"))
+                {
+                    printf("\n[Client %s:%d disconnected]\n", client_addr, addr.sin_port);
+                    break;
+                }
             }
+            close(connfd);
+            exit(0);
+        }
 
-        // else{
-        //     printf("Parent Process");
-        // }
+        // parent process
+        else
+        {
+            close(connfd);
+        }
     }
-
-    close(connfd);
 }
 
-char *serverActivity(int fd)
+void serverActivity(int fd, char respns[], char ip[], int port)
 {
 
     char buff[MAXLINE + 1];
@@ -101,7 +100,7 @@ char *serverActivity(int fd)
     // read message from client
     while ((n = read(fd, recvline, MAXLINE - 1)) > 0)
     {
-        fprintf(stdout, "\n%s", recvline);
+        fprintf(stdout, "\n[%s:%d] => %s", ip, port, recvline);
 
         if (recvline[n - 1] == '\n')
         {
@@ -111,14 +110,15 @@ char *serverActivity(int fd)
         memset(recvline, 0, MAXLINE);
     }
 
+    // write to client
+    sprintf((char *)buff, "Server Responded");
+    write(fd, (char *)buff, strlen((char *)buff));
+
     // if n is negative then error
     if (n < 0)
     {
         printf("Read error");
     }
 
-    sprintf((char *)buff, ">>");
-    write(fd, (char *)buff, strlen((char *)buff));
-
-    return buff;
+    strcpy(respns, recvline);
 }

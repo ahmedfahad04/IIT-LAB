@@ -7,7 +7,7 @@
 #include <string.h>
 
 
-#define SERVER_PORT 18000
+#define SERVER_PORT 8080
 #define MAXLINE 4096
 #define SA struct sockaddr
 
@@ -44,27 +44,31 @@ int main(int argc, char **argv){
         printf("Connection Failed!");
     }    
 
-    // copy message to sendline
-    sprintf(sendline, "GET / HTTP/1.1\r\n\r\n");
-    sendbytes = strlen(sendline);
+    while(1){
+        
+        // copy message to sendline
+        // fgets(sendline, MAXLINE, stdin);
+        sprintf(sendline, "GET / HTTP/1.1\r\n\r\n");
+        sendbytes = strlen(sendline);
 
-    // send message to server
-    if (write(sockfd, sendline, sendbytes) !=  sendbytes) {
-        printf("Write Error");
+        // send message to server
+        if (write(sockfd, sendline, sendbytes) !=  sendbytes) {
+            printf("Write Error");
+        }
+
+        // make recvline initialized to 0
+        memset (recvline, 0, MAXLINE);
+
+        // read message from server
+        while ( (n = read(sockfd, recvline, MAXLINE-1) ) > 0){
+            printf("%s", recvline);
+        }
+
+        // if n is negative then error
+        if (n < 0) {
+            printf("Read error");
+        }
+
+        exit(0);
     }
-
-    // make recvline initialized to 0
-    memset (recvline, 0, MAXLINE);
-
-    // read message from server
-    while ( (n = read(sockfd, recvline, MAXLINE-1)) > 0){
-        printf("%s", recvline);
-    }
-
-    // if n is negative then error
-    if (n < 0) {
-        printf("Read error");
-    }
-
-    exit(0);
 }
