@@ -27,9 +27,10 @@
 #include <arpa/inet.h>
 #include <pthread.h>
 
-#define MYPORT 5050     // the port users will be connecting to
+#define MYPORT 8082     // the port users will be connecting to
 #define BACKLOG 10      // how many pending connections queue will hold
-#define MAXDATASIZE 256 // max number of bytes we can get at once
+#define MAXLINE 256 // max number of bytes we can get at once
+#define SA struct sockaddr
 
 void *dostuff(void *); // the thread function
 
@@ -41,11 +42,14 @@ int main(void)
     int sin_size;
     pthread_t thread_id;
 
-    if ((sockfd = socket(AF_INET, SOCK_STREAM, 0)) < 0)
+    if ((sockfd = socket(AF_INET, SOCK_STREAM , 0)) < 0)
     {
         perror("ERROR opening socket");
         exit(1);
     }
+
+    int enable = 1;
+    setsockopt(sockfd, SOL_SOCKET, SO_BROADCAST, &enable, sizeof(enable));
 
     bzero((char *)&my_addr, sizeof(my_addr)); // zero the rest of the struct
 
@@ -69,12 +73,21 @@ int main(void)
 
     while (1)
     {
+        struct sockaddr_in addr;
+        socklen_t addr_len;
+        char client_addr[MAXLINE + 1];
+        int client_port, connfd;
+        pid_t pid;
+
         if ((new_sockfd = accept(sockfd, (struct sockaddr *)&their_addr, &sin_size)) < 0)
         {
             perror("ERROR on accept");
             exit(1);
         }
-        printf("server: got connection from %s\n", inet_ntoa(their_addr.sin_addr));
+        
+        connfd = accept(new_sockfd, (SA *)&addr, &addr_len);
+        inet_ntop(AF_INET, &(addr.sin_addr), client_addr, MAXLINE);
+        printf("\n===========>[Client %s:%d connected]<===========\n", client_addr, addr.sin_port);
 
         // start child thread
         if (pthread_create(&thread_id, NULL, dostuff, (void *)&new_sockfd) < 0)
@@ -94,7 +107,7 @@ int main(void)
 void *dostuff(void *socket_desc)
 {
     int n;
-    char *str, buffer[MAXDATASIZE];
+    char *str, buffer[MAXLINE];
     // Get the socket descriptor
     int sock = *(int *)socket_desc;
 
@@ -105,8 +118,8 @@ void *dostuff(void *socket_desc)
         exit(1);
     }
 
-    bzero(buffer, MAXDATASIZE);
-    if (read(sock, buffer, MAXDATASIZE - 1) < 0)
+    bzero(buffer, MAXLINE);
+    if (read(sock, buffer, MAXLINE - 1) < 0)
     {
         perror("ERROR reading from socket");
         exit(1);

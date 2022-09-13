@@ -23,7 +23,7 @@ int main(int argc, char **argv)
     // check for ip address
     if (argc != 3)
     {
-        printf("usage: %s <server address> <port>", argv[0]);
+        printf("usage: ./c <server address> <port>");
     }
 
     // create socket
@@ -37,7 +37,6 @@ int main(int argc, char **argv)
     // set server address
     bzero(&servaddr, sizeof(servaddr));
     servaddr.sin_family = AF_INET;
-    // servaddr.sin_addr.s_addr = htonl(INADDR_ANY);
     servaddr.sin_port = htons(SERVER_PORT); /* chat server */
 
     // convert ip address to binary
@@ -54,35 +53,9 @@ int main(int argc, char **argv)
 
     while (1)
     {
-
-        // // copy message to sendline
-        // // fgets(sendline, MAXLINE, stdin);
-        // sprintf(sendline, "GET / HTTP/1.1\r\n\r\n");
-        // sendbytes = strlen(sendline);
-
-        // // send message to server
-        // if (write(sockfd, sendline, sendbytes) !=  sendbytes) {
-        //     printf("Write Error");
-        // }
-
-        // // make recvline initialized to 0
-        // memset (recvline, 0, MAXLINE);
-
-        // // read message from server
-        // while ( (n = read(sockfd, recvline, MAXLINE-1) ) > 0){
-        //     printf("%s", recvline);
-        // }
-
-        // // if n is negative then error
-        // if (n < 0) {
-        //     printf("Read error");
-        // }
-
         int flag = serverActivity(sockfd, argv[1], SERVER_PORT);
         if (flag == 0)
             break;
-
-        // exit(0);
     }
 }
 
@@ -120,9 +93,7 @@ int serverActivity(int fd, char ip[], int port)
 
     if (!strcmp(recvline, "exit\n") || !strcmp(recvline, "exit\r\n"))
     {
-        printf("\n[Client %s:%d disconnected]\n", ip, port);
+        // printf("\n[Client %s:%d disconnected]\n", ip, port);
         return 0;
     }
-
-    // strcpy(respns, recvline);
 }
