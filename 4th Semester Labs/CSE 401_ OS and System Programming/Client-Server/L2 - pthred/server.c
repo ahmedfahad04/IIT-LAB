@@ -66,6 +66,8 @@ int main(void)
     }
 
     sin_size = sizeof(struct sockaddr_in);
+    printf("Server is listening on port %d\n", MYPORT);
+
 
     while (1)
     {

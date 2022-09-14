@@ -10,13 +10,25 @@
 #define BACKLOG 10
 #define SA struct sockaddr
 
-int serverActivity(int fd, char respns[], char ip[], int port);
+int serverActivity(int fd, char ip[], int port);
 int total_connection = 0;
+
+int clients[BACKLOG];
+
+void showClientInfo()
+{
+
+    for (int i = 1; i <= total_connection; i++)
+    {
+        printf("\nCLIENT %d - ", i);
+        printf("ID: %d", clients[i]);
+    }
+}
 
 int main(int argc, char **argv)
 {
 
-    int listenfd, connfd, n, SERVER_PORT, enable = 1;
+    int listenfd, connfd = 0, n, SERVER_PORT, enable = 1;
     struct sockaddr_in servaddr;
     struct sockaddr_in their_addr;
 
@@ -61,31 +73,33 @@ int main(int argc, char **argv)
         struct sockaddr_in addr;
         socklen_t addr_len;
         char client_addr[MAXLINE + 1];
-        char response[MAXLINE] = {0};
-        char exitcode[MAXLINE] = {0};
         int client_port;
         pid_t pid;
 
         // accept connection
         connfd = accept(listenfd, (SA *)&addr, &addr_len);
-        total_connection++;
+        printf("CONN: %d\n", connfd);
 
+        total_connection++;
         inet_ntop(AF_INET, &(addr.sin_addr), client_addr, MAXLINE);
+       
         printf("\n===========>[Client %d - %s:%d connected]<===========\n", total_connection, client_addr, addr.sin_port);
 
         if ((pid = fork()) == 0)
         {
             close(listenfd);
+
             while (1)
             {
-                int flag = serverActivity(connfd, response, client_addr, addr.sin_port);
-
+                int flag = serverActivity(connfd, client_addr, addr.sin_port);
                 if (flag == 0)
                     break;
+
+                // showClientInfo();                
             }
             close(connfd);
             exit(0);
-        }
+        } 
 
         // parent process
         else
@@ -95,8 +109,10 @@ int main(int argc, char **argv)
     }
 }
 
-int serverActivity(int fd, char respns[], char ip[], int port)
+int serverActivity(int fd, char ip[], int port)
 {
+
+    // printf("FD: %d\n", fd);
 
     char buff[MAXLINE + 1];
     char recvline[MAXLINE + 1];
@@ -113,8 +129,6 @@ int serverActivity(int fd, char respns[], char ip[], int port)
         {
             break;
         }
-
-        strcpy(respns, recvline);
     }
 
     // if n is negative then error
@@ -123,7 +137,7 @@ int serverActivity(int fd, char respns[], char ip[], int port)
         printf("Read error");
     }
 
-    if (!strcmp(recvline, "exit\n") )
+    if (!strcmp(recvline, "exit\n"))
     {
         // write to client
         sprintf((char *)buff, "exit\n");
@@ -136,6 +150,7 @@ int serverActivity(int fd, char respns[], char ip[], int port)
     {
         // write to client
         sprintf((char *)buff, "exit\r\n");
+
         write(fd, (char *)buff, strlen((char *)buff));
 
         printf("\n[Client %s:%d disconnected]\n", ip, port);
@@ -144,7 +159,7 @@ int serverActivity(int fd, char respns[], char ip[], int port)
     else
     {
         // write to client
-        sprintf((char *)buff, "Server Responded\n");
+        sprintf((char *)buff, (char *)recvline);
         write(fd, (char *)buff, strlen((char *)buff));
     }
 }

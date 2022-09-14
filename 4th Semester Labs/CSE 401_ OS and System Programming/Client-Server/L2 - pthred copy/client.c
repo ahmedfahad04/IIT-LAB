@@ -1,94 +1,83 @@
-/*
- * client.c -- a stream socket client demo
- */
-
-/*
- * The steps involved in establishing a socket on the client side are as follows:
- *  1. Create a socket with the socket() system call
- *  2. Connect the socket to the address of the server using the connect() system call
- *  3. Send and receive data. There are a number of ways to do this, but the simplest
- *     is to use the read() and write() system calls.
- */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <arpa/inet.h>
+#include <stdarg.h>
+#include <sys/time.h>
 #include <string.h>
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <netdb.h>
 
-// #define PORT 5050       // the port client will be connecting to
-#define MAXDATASIZE 256 // max number of bytes we can get at once
+#define MAXLINE 4096
+#define SA struct sockaddr
 
-int main(int argc, char *argv[])
+int serverActivity(int fd, char ip[], int port);
+
+int main(int argc, char **argv)
 {
-    int sockfd, numbytes, PORT;
-    char buf[MAXDATASIZE];
-    struct hostent *server;
-    struct sockaddr_in server_addr; // connector's address information
 
+    int sockfd, n, SERVER_PORT;
+    int sendbytes;
+    struct sockaddr_in servaddr;
+    char sendline[MAXLINE];
+    char recvline[MAXLINE];
+
+    // check for ip address
     if (argc != 3)
     {
-        printf("usage: client hostname port\n");
-        exit(1);
+        printf("usage: ./c <server address> <port>");
     }
 
-    if ((server = gethostbyname(argv[1])) == NULL)
-    { // get the host info
-        printf("ERROR, no such host\n");
-        exit(0);
-    }
-
-    PORT = atoi(argv[2]);
-
+    // create socket
     if ((sockfd = socket(AF_INET, SOCK_STREAM, 0)) < 0)
     {
-        perror("ERROR opening socket");
-        exit(0);
+        printf("Error while creating the socket!");
     }
 
-    bzero((char *)&server_addr, sizeof(server_addr)); // zero the rest of the struct
-    server_addr.sin_family = AF_INET;                 // host byte order
-    server_addr.sin_port = htons(PORT);               // short, network byte order
-    server_addr.sin_addr = *((struct in_addr *)server->h_addr);
+    // set server address
+    bzero(&servaddr, sizeof(servaddr));
+    SERVER_PORT = atoi(argv[2]);
+    servaddr.sin_family = AF_INET;
+    servaddr.sin_port = htons(SERVER_PORT); /* chat server */
 
-    if (connect(sockfd, (struct sockaddr *)&server_addr, sizeof(struct sockaddr)) < 0)
+    // convert ip address to binary
+    if (inet_pton(AF_INET, argv[1], &servaddr.sin_addr) <= 0)
     {
-        perror("ERROR connecting");
-        exit(0);
+        printf("inet_pton error for %s ", argv[1]);
     }
 
-    bzero(buf, MAXDATASIZE);
-    if ((numbytes = read(sockfd, buf, MAXDATASIZE - 1)) < 0)
+    // connect to server
+    if (connect(sockfd, (SA *)&servaddr, sizeof(servaddr)) < 0)
     {
-        perror("ERROR reading from socket");
-        exit(0);
+        printf("Connection Failed!");
     }
-    printf("%s", buf);
-
-    bzero(buf, MAXDATASIZE);
-    fgets(buf, MAXDATASIZE - 1, stdin);
-
-    if (write(sockfd, buf, strlen(buf)) < 0)
+    
+    while (1)
     {
-        perror("ERROR writing to socket");
-        exit(0);
+        int flag = serverActivity(sockfd, argv[1], SERVER_PORT);
+        if (flag == 0)
+            break;
     }
+    printf("LEAVING BRO ...");
+}
 
-    bzero(buf, MAXDATASIZE);
-    if ((numbytes = read(sockfd, buf, MAXDATASIZE - 1)) < 0)
+int serverActivity(int fd, char ip[], int port)
+{
+
+    char sendline[MAXLINE + 1];
+    char recvline[MAXLINE + 1];
+    int n;
+
+    n = read(fd, recvline, MAXLINE - 1);
+    printf("%s", recvline);
+
+    // write to server
+    fgets(sendline, MAXLINE, stdin);
+    write(fd, (char *)sendline, strlen((char *)sendline));
+
+    if (!strcmp(recvline, "exit\n") || !strcmp(recvline, "exit\r\n"))
     {
-        perror("ERROR reading from socket");
-        exit(0);
+        // printf("\n[Client %s:%d disconnected]\n", ip, port);
+        return 0;
     }
 
-    buf[numbytes] = '\0';
-
-    printf("Received: %s", buf);
-
-    close(sockfd);
-
-    return 0;
+    return 1;
 }

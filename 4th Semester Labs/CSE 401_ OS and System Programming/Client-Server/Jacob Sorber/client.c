@@ -32,10 +32,10 @@ int main(int argc, char **argv)
         printf("Error while creating the socket!");
     }
 
-    SERVER_PORT = atoi(argv[2]);
 
     // set server address
     bzero(&servaddr, sizeof(servaddr));
+    SERVER_PORT = atoi(argv[2]);
     servaddr.sin_family = AF_INET;
     servaddr.sin_port = htons(SERVER_PORT); /* chat server */
 
