@@ -1,0 +1,16 @@
+The bounded-buffer problems (aka the producer-consumer problem) 
+is a classic example of concurrent access to a shared resource.
+A bounded buffer lets multiple producers and multiple consumers 
+share a single buffer. Producers write data to the buffer and 
+consumers read data from the buffer.
+
+In this deirectory I tried to focus on different cases sequentially where
+I'd need to use semaphores to solve the problems arose on those steps.
+
+Questions:
+1. What if I use sleep in both producer and consumer while having semaphroes?
+2. What if I use sleep in both producer and consumer while not having semaphroes?
+3. What if I removed the mutex and just use semaphores?
+4. What if I use sleep in both producer and consumer while having semaphroes and not having mutex?
+
+

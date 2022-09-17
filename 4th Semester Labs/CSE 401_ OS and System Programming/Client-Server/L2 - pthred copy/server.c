@@ -12,9 +12,12 @@
 #define BACKLOG 10  // how many pending connections queue will hold
 #define MAXLINE 256 // max number of bytes we can get at once
 
-struct client_info {
+struct client_info
+{
     int *id;
     int *sockfd;
+    char *username;
+
 } clients[BACKLOG];
 
 void *dostuff(void *); // the thread function
@@ -23,12 +26,13 @@ int count = 0, loopcontrol = 0;
 
 int main(int argc, char **argv)
 {
-    
+
     int sockfd, new_sockfd, MYPORT, enable = 1; // listen on sockfd, new connection on new_sockfd
     struct sockaddr_in my_addr;                 // my address information
     struct sockaddr_in their_addr;              // connector's address information
     int sin_size;
     pthread_t thread_id;
+    char *buffer;
 
     if ((sockfd = socket(AF_INET, SOCK_STREAM, 0)) < 0)
     {
@@ -59,7 +63,7 @@ int main(int argc, char **argv)
     sin_size = sizeof(struct sockaddr_in);
     printf("Server is listening on port %d\n", MYPORT);
 
-    for(int i=0; i<BACKLOG; i++)
+    for (int i = 0; i < BACKLOG; i++)
     {
 
         if ((new_sockfd = accept(sockfd, (struct sockaddr *)&their_addr, &sin_size)) < 0)
@@ -67,10 +71,13 @@ int main(int argc, char **argv)
             perror("ERROR on accept");
             exit(1);
         }
+
         printf("server: got connection from %s\n", inet_ntoa(their_addr.sin_addr));
-        clients[i].id = (int*) malloc(sizeof(int));
-        *clients[i].id = i;
-        clients[i].sockfd = &new_sockfd; 
+        read(sockfd, buffer, MAXLINE - 1);
+        clients[i].username = &buffer;
+        clients[i].id = &i;
+        clients[i].sockfd = &new_sockfd;
+
 
         // start child thread
         if (pthread_create(&thread_id, NULL, dostuff, (void *)&clients) < 0)
@@ -78,10 +85,10 @@ int main(int argc, char **argv)
             perror("ERROR create thread");
             exit(1);
         }
-
     }
     /* end of while */
-    for(int i=0; i<BACKLOG; i++) pthread_join(*clients[i].id, NULL);
+    for (int i = 0; i < BACKLOG; i++)
+        pthread_join(*clients[i].id, NULL);
 
     close(sockfd);
     return 0;
@@ -92,11 +99,12 @@ void *dostuff(void *socket_struct)
     int n;
     char *str, buffer[MAXLINE];
     // Get the socket descriptor
-    struct client_info *client = (struct client_info*) socket_struct;
+    struct client_info *client = (struct client_info *)socket_struct;
     int sock = *client->sockfd;
-    // int sock = *(int *)socket_struct;
+    // int sock = *(int *)socket_struc
 
-    printf("[Client %d connected] & sockfd = %d\n", clients->id, sock);
+    printf("[Client %d (%s) connected] & sockfd = %d\n", *clients->id, clients->username, sock);
+
 
     while (1)
     {

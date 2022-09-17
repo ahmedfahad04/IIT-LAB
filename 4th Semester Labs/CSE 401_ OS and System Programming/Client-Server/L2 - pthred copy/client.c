@@ -19,11 +19,12 @@ int main(int argc, char **argv)
     struct sockaddr_in servaddr;
     char sendline[MAXLINE];
     char recvline[MAXLINE];
+    char *username;
 
     // check for ip address
-    if (argc != 3)
+    if (argc != 4)
     {
-        printf("usage: ./c <server address> <port>");
+        printf("usage: ./c <server address> <port> <username>");
     }
 
     // create socket
@@ -31,6 +32,8 @@ int main(int argc, char **argv)
     {
         printf("Error while creating the socket!");
     }
+
+    username = argv[3];
 
     // set server address
     bzero(&servaddr, sizeof(servaddr));
@@ -52,7 +55,10 @@ int main(int argc, char **argv)
     
     while (1)
     {
+        write(sockfd, username, strlen(username));
+
         int flag = serverActivity(sockfd, argv[1], SERVER_PORT);
+        printf("F: %d\n", flag);
         if (flag == 0)
             break;
     }
@@ -67,7 +73,7 @@ int serverActivity(int fd, char ip[], int port)
     int n;
 
     n = read(fd, recvline, MAXLINE - 1);
-    printf("%s", recvline);
+    printf("--%s and %ld", recvline, strlen(recvline));
 
     // write to server
     fgets(sendline, MAXLINE, stdin);
@@ -78,6 +84,5 @@ int serverActivity(int fd, char ip[], int port)
         // printf("\n[Client %s:%d disconnected]\n", ip, port);
         return 0;
     }
-
     return 1;
 }
