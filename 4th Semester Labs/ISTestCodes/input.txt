@@ -1,0 +1,5 @@
+Telnet can be used to check whether or not a port on the Voyager server is open to you.
+
+To use it, you need to know the IP address or hostname (typically using IP address is preferred in this situation) of your Voyager server.
+
+You also need to know which port you want to check (see this Article: Network ports used by Voyager )

@@ -1,0 +1,6 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/ahmedfahad/Documents/IIT-LAB/4th Semester Labs/CSE 401: OS and System Programming/LAB_1'
+gcc -o client client.c
+gcc -o server server.c
+make: Leaving directory '/home/ahmedfahad/Documents/IIT-LAB/4th Semester Labs/CSE 401: OS and System Programming/LAB_1'
+ 
