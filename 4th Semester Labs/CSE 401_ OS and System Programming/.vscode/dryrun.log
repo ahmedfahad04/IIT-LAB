@@ -1,6 +1,0 @@
-make --dry-run --always-make --keep-going --print-directory
-make: Entering directory '/home/ahmedfahad/Documents/IIT-LAB/4th Semester Labs/CSE 401_ OS and System Programming'
-make: Leaving directory '/home/ahmedfahad/Documents/IIT-LAB/4th Semester Labs/CSE 401_ OS and System Programming'
- 
-make: *** No targets specified and no makefile found.  Stop.
-
