@@ -30,7 +30,8 @@ void sendall(int fd, char *user);
 void showActiveStatus(int fd, char *str);
 int sendingformat(char *msg);
 void sendtoUser(int fd, char *sendermsg);
-char * formattedmessage(char *msg, char *user);
+char *formattedmessage(char *msg, char *user);
+int errmsg(int response, char *msg);
 
 int count = 0, loopcontrol = 0;
 char singleuser[MAXLINE];
@@ -40,55 +41,43 @@ char multiusermsg[MAXLINE];
 int main(int argc, char **argv)
 {
 
-    int sockfd, new_sockfd, enable = 1; // listen on sockfd, new connection on new_sockfd
-    struct sockaddr_in my_addr;                 // my address information
-    struct sockaddr_in their_addr;              // connector's address information
+    int sockfd, new_sockfd, enable = 1;
+    struct sockaddr_in my_addr;    // my address information
+    struct sockaddr_in their_addr; // connector's address information
     int sin_size;
     pthread_t thread_id;
     char uname[MAXLINE + 1];
 
+    // mutex initialization
     pthread_mutex_init(&mutexClient, NULL);
 
-    if ((sockfd = socket(AF_INET, SOCK_STREAM, 0)) < 0)
-    {
-        perror("ERROR opening socket");
-        exit(1);
-    }
+    // create socket
+    errmsg((sockfd = socket(AF_INET, SOCK_STREAM, 0)), "ERROR opening socket");
 
+    // set socket options
     setsockopt(sockfd, SOL_SOCKET, SO_REUSEADDR, &enable, sizeof(enable));
 
     bzero((char *)&my_addr, sizeof(my_addr)); // zero the rest of the struct
-    my_addr.sin_family = AF_INET;         // host byte order
-    my_addr.sin_addr.s_addr = INADDR_ANY; // automatically fill with my IP
-    my_addr.sin_port = htons(MYPORT);     // short, network byte order
+    my_addr.sin_family = AF_INET;             // host byte order
+    my_addr.sin_addr.s_addr = INADDR_ANY;     // automatically fill with my IP
+    my_addr.sin_port = htons(MYPORT);         // short, network byte order
 
-    if (bind(sockfd, (struct sockaddr *)&my_addr, sizeof(struct sockaddr)) < 0)
-    {
-        perror("ERROR on binding");
-        exit(1);
-    }
+    // bind socket
+    errmsg(bind(sockfd, (struct sockaddr *)&my_addr, sizeof(struct sockaddr)), "ERROR on binding");
 
-    if (listen(sockfd, BACKLOG) < 0)
-    {
-        perror("ERROR on listen");
-        exit(1);
-    }
-
-    sin_size = sizeof(struct sockaddr_in);
+    // listen
+    errmsg(listen(sockfd, BACKLOG), "ERROR on listen");
     printf("Server is listening on port %d\n", MYPORT);
 
     for (int i = 0; i < BACKLOG; i++)
     {
-
-        if ((new_sockfd = accept(sockfd, (struct sockaddr *)&their_addr, &sin_size)) < 0)
-        {
-            perror("ERROR on accept");
-            exit(1);
-        }
+        // accept new connection
+        sin_size = sizeof(struct sockaddr_in);
+        errmsg((new_sockfd = accept(sockfd, (struct sockaddr *)&their_addr, &sin_size)), "ERROR on accept");
 
         printf("\nserver: got connection from %s:%d\n", inet_ntoa(their_addr.sin_addr), their_addr.sin_port);
 
-        // start child thread
+        // define client info
         count++;
         clients[count].id = i + 1;
         clients[count].sockfd = new_sockfd;
@@ -96,11 +85,7 @@ int main(int argc, char **argv)
         clients[count].activestatus = 1;
 
         // start child thread
-        if (pthread_create(&thread_id, NULL, serverhandle, (void *)&clients[count]) < 0)
-        {
-            perror("ERROR create thread");
-            exit(1);
-        }
+        errmsg(pthread_create(&thread_id, NULL, serverhandle, (void *)&clients[count]), "ERROR create thread");
     }
 
     /* end of while */
@@ -110,7 +95,17 @@ int main(int argc, char **argv)
     pthread_mutex_destroy(&mutexClient);
 }
 
-char * formattedmessage(char *msg, char *user)
+int errmsg(int rval, char *msg)
+{
+    if (rval < 0)
+    {
+        perror(msg);
+        exit(1);
+    }
+    return rval;
+}
+
+char *formattedmessage(char *msg, char *user)
 {
     char *msgformat = malloc(500);
     strcat(msgformat, "[");
@@ -185,11 +180,8 @@ void sendall(int fd, char *user)
     {
         if (clients[i].sockfd != fd && clients[i].activestatus && clients[i].sockfd != -1)
         {
-            if (write(clients[i].sockfd, message, strlen(message)) < 0)
-            {
-                perror("ERROR writing to socket");
-                exit(1);
-            }
+            // send message
+            errmsg(write(clients[i].sockfd, message, strlen(message)), "ERROR writing to socket");
         }
     }
     pthread_mutex_unlock(&mutexClient);
@@ -198,7 +190,7 @@ void sendall(int fd, char *user)
 void sendtoUser(int senderfd, char *sendername)
 {
     printf("SINGLE WRITER...\n");
-    int byte=0, i;
+    int byte = 0, i;
 
     // formatted the message
     char *message = formattedmessage(singleusermsg, sendername);
@@ -221,7 +213,8 @@ void sendtoUser(int senderfd, char *sendername)
         }
     }
 
-    if(byte == 0) {
+    if (byte == 0)
+    {
         printf("INVALID USER \"%s\"\n", singleuser);
         strcat(singleuser, " is not a valid user\n");
         write(senderfd, singleuser, strlen(singleuser));
