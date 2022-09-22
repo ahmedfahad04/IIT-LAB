@@ -9,7 +9,7 @@
 #include <arpa/inet.h>
 #include <pthread.h>
 
-#define BACKLOG 10  // how many pending connections queue will hold
+#define MYPORT 8080
 #define BACKLOG 10  // how many pending connections queue will hold
 #define MAXLINE 256 // max number of bytes we can get at once
 
@@ -24,20 +24,23 @@ struct client_info
 
 } clients[BACKLOG];
 
-void *dostuff(void *); // the thread function
+void *serverhandle(void *); // the thread function
 void *serverActivity(void *sockfd);
-void sendall(int fd, char *str);
+void sendall(int fd, char *user);
 void showActiveStatus(int fd, char *str);
-int processSenderName(char *msg);
-void sendtoUser(char *user, char *msg);
+int sendingformat(char *msg);
+void sendtoUser(int fd, char *sendermsg);
+char * formattedmessage(char *msg, char *user);
 
 int count = 0, loopcontrol = 0;
-char *singleuser;
+char singleuser[MAXLINE];
+char singleusermsg[MAXLINE];
+char multiusermsg[MAXLINE];
 
 int main(int argc, char **argv)
 {
 
-    int sockfd, new_sockfd, MYPORT, enable = 1; // listen on sockfd, new connection on new_sockfd
+    int sockfd, new_sockfd, enable = 1; // listen on sockfd, new connection on new_sockfd
     struct sockaddr_in my_addr;                 // my address information
     struct sockaddr_in their_addr;              // connector's address information
     int sin_size;
@@ -55,7 +58,6 @@ int main(int argc, char **argv)
     setsockopt(sockfd, SOL_SOCKET, SO_REUSEADDR, &enable, sizeof(enable));
 
     bzero((char *)&my_addr, sizeof(my_addr)); // zero the rest of the struct
-    MYPORT = atoi(argv[1]);
     my_addr.sin_family = AF_INET;         // host byte order
     my_addr.sin_addr.s_addr = INADDR_ANY; // automatically fill with my IP
     my_addr.sin_port = htons(MYPORT);     // short, network byte order
@@ -84,7 +86,7 @@ int main(int argc, char **argv)
             exit(1);
         }
 
-        printf("server: got connection from %s\n", inet_ntoa(their_addr.sin_addr));
+        printf("\nserver: got connection from %s:%d\n", inet_ntoa(their_addr.sin_addr), their_addr.sin_port);
 
         // start child thread
         count++;
@@ -94,7 +96,7 @@ int main(int argc, char **argv)
         clients[count].activestatus = 1;
 
         // start child thread
-        if (pthread_create(&thread_id, NULL, dostuff, (void *)&clients[count]) < 0)
+        if (pthread_create(&thread_id, NULL, serverhandle, (void *)&clients[count]) < 0)
         {
             perror("ERROR create thread");
             exit(1);
@@ -106,17 +108,63 @@ int main(int argc, char **argv)
 
     close(sockfd);
     pthread_mutex_destroy(&mutexClient);
-    return 0;
 }
 
-int processSenderName(char *msg)
+char * formattedmessage(char *msg, char *user)
 {
+    char *msgformat = malloc(500);
+    strcat(msgformat, "[");
+    strcat(msgformat, user);
+    strcat(msgformat, "] => ");
+    strcat(msgformat, msg);
+    strcat(msgformat, "\n");
 
+    return msgformat;
+}
+
+int sendingformat(char *msg)
+{
     if (msg[0] == '@')
     {
-        char *token = strtok(msg, " ");
-        singleuser = strtok(token, "@");
-        return 1;
+        int i, j, k;
+        int len = strlen(msg);
+
+        bzero(singleuser, MAXLINE);
+        bzero(singleusermsg, MAXLINE);
+
+        // extract particular user name
+        for (i = 1; i < len; i++)
+        {
+            if (msg[i] == ' ')
+                break;
+            singleuser[i - 1] = msg[i];
+        }
+        singleuser[i] = '\0';
+
+        // extract message
+        j = i + 1;
+        for (k = 0; k < len; k++)
+        {
+            singleusermsg[k] = msg[j];
+            j++;
+        }
+        singleusermsg[k] = '\0';
+
+        // for server status only
+        printf("NAME: %s\n", singleuser);
+        printf("MSG: %s\n", singleusermsg);
+
+        if (!strcmp(singleuser, "all"))
+        {
+            bzero(multiusermsg, MAXLINE);
+            strcpy(multiusermsg, singleusermsg);
+            printf("UPDATED MSG: %s\n", multiusermsg);
+            return 0;
+        }
+        else
+        {
+            return 1;
+        }
     }
     else
     {
@@ -124,41 +172,20 @@ int processSenderName(char *msg)
     }
 }
 
-// TODO: NEED to resolve
-void showActiveStatus(int fd, char *str)
-{
-    printf("INSIDE 1..\n");
-    char *status = malloc(100);
-
-    pthread_mutex_lock(&mutexClient);
-    for (int i = 1; i <= count; i++)
-    {
-        if (clients[i].sockfd == fd)
-        {
-            printf("ACTUAL INSIDE...\n");
-
-            for (int i = 1; i <= count; i++)
-            {
-                printf("---Running %d---\n", i);
-                sprintf(status, "%d %s %d", clients[i].id, clients[i].username, clients[i].activestatus);
-                write(clients[i].sockfd, status, strlen(status));
-                // printf("Client %d, Socket %d, Name %s -> %d\n", clients[i].id, clients[i].sockfd, clients[i].username, clients[i].activestatus);
-            }
-        }
-    }
-    pthread_mutex_unlock(&mutexClient);
-}
-
-void sendall(int fd, char *str)
+void sendall(int fd, char *user)
 {
     printf("BULK WRITER...\n");
 
+    // formatted message
+    char *message = formattedmessage(multiusermsg, user);
+
+    // send to all
     pthread_mutex_lock(&mutexClient);
     for (int i = 1; i <= count; i++)
     {
         if (clients[i].sockfd != fd && clients[i].activestatus && clients[i].sockfd != -1)
         {
-            if (write(clients[i].sockfd, str, strlen(str)) < 0)
+            if (write(clients[i].sockfd, message, strlen(message)) < 0)
             {
                 perror("ERROR writing to socket");
                 exit(1);
@@ -168,42 +195,69 @@ void sendall(int fd, char *str)
     pthread_mutex_unlock(&mutexClient);
 }
 
-void sendtoUser(char *user, char *msg)
+void sendtoUser(int senderfd, char *sendername)
 {
+    printf("SINGLE WRITER...\n");
+    int byte=0, i;
 
-    int fd = 0;
-    printf("USER: %s\n", user);
-    // find fd of the user
-    for (int i = 1; i <= count; i++)
+    // formatted the message
+    char *message = formattedmessage(singleusermsg, sendername);
+
+    // send msg to particular user based on fd
+    pthread_mutex_lock(&mutexClient);
+    for (i = 1; i <= count; i++)
     {
-        if (!strcmp(user, clients[i].username))
+        if (!strcmp(singleuser, clients[i].username))
         {
-            fd = clients[i].sockfd;
-            printf("SENDING MESSAGE...\n");
-            pthread_mutex_lock(&mutexClient);
-            if (write(clients[i].sockfd, msg, strlen(msg)) < 0)
+            printf("SENDING MESSAGE TO FD %d\n", clients[i].sockfd);
+            byte = write(clients[i].sockfd, message, strlen(message));
+            printf("TOTAL BYTE SEND...%d\n", byte);
+
+            if (byte < 0)
             {
                 perror("ERROR writing to socket");
                 exit(1);
             }
-            pthread_mutex_unlock(&mutexClient);
-            bzero(msg, MAXLINE + 1);
-            break;
         }
     }
-    printf("NEW FD: %d\n", fd);
+
+    if(byte == 0) {
+        printf("INVALID USER \"%s\"\n", singleuser);
+        strcat(singleuser, " is not a valid user\n");
+        write(senderfd, singleuser, strlen(singleuser));
+    }
+    pthread_mutex_unlock(&mutexClient);
 }
-void *dostuff(void *socket_struct)
+
+void sendmessage(int fd, char *msg, char *user)
+{
+    bzero(multiusermsg, MAXLINE);
+    strcpy(multiusermsg, msg);
+    int rvalue = sendingformat(msg);
+
+    if (rvalue == 1)
+    {
+        printf("SENDING TO USER...\n");
+        sendtoUser(fd, user);
+    }
+    else
+    {
+        printf("SENDING TO ALL...\n");
+        sendall(fd, user);
+    }
+}
+
+void *serverhandle(void *socket_struct)
 {
     int n;
     char *str, buffer[MAXLINE], buffer2[MAXLINE], *buffer3;
-    char *newmsg;
 
     // Get the socket descriptor
     struct client_info *client = (struct client_info *)socket_struct;
     int sock = client->sockfd;
     int clno = client->id;
 
+    // read the client name
     bzero(buffer, MAXLINE);
     if (read(sock, buffer, MAXLINE - 1) < 0)
     {
@@ -211,14 +265,14 @@ void *dostuff(void *socket_struct)
         exit(1);
     }
 
+    // save username to the client struct
     printf("USER: %s\n", buffer);
     clients[clno].username = buffer;
-
     printf("[Client %d connected] & sockfd = %d\n", clno, sock);
 
     while (1)
     {
-        // printf("S-Read\n");
+        printf("\nWAITING FOR CLIENTS RESPONSE...\n");
         bzero(buffer2, MAXLINE);
         if (read(sock, buffer2, MAXLINE - 1) < 0)
         {
@@ -243,6 +297,8 @@ void *dostuff(void *socket_struct)
                 }
             }
 
+            printf("Client %d: %s disconnected...\n", clients[clno].id, clients[clno].username);
+
             // send exit status to client
             write(sock, buffer2, strlen(buffer2));
 
@@ -251,47 +307,12 @@ void *dostuff(void *socket_struct)
             read(sock, buffer2, MAXLINE - 1);
         }
 
-        // if (!strcmp(buffer2, "LIST"))
-        // {
-        //     showActiveStatus(sock, buffer2);
-        //     for (int i = 1; i <= count; i++)
-        //     {
-        //         printf("Client %d, Socket %d, Name %s -> %d\n", clients[i].id, clients[i].sockfd, clients[i].username, clients[i].activestatus);
-        //     }
-        // }
-        // else
-        // {
-        // printf("Send all user");
-        // }
-
         /* if we jump in between of read and write, then your server buffer might wait for next input
         so very be careful...*/
 
-        // TODO: FIX SINGLE USER ISSUE
-        int flag = 0;
-        if (buffer2[0] == '@')
-        {
-            char *token = strtok(buffer2, " ");
-            singleuser = strtok(token, "@");
-            strcat(singleuser, "\0");
-            printf("Single user: %s\n", singleuser);
-            flag = 1;
-        }
-
-
-
-        if (flag == 1)
-        {
-            sendtoUser(singleuser, buffer2);
-            bzero(buffer2, MAXLINE);
-        }
-        else
-        {
-            strcat(buffer2, "---");
-            strcat(buffer2, clients[clno].username);
-            strcat(buffer2, "\n");
-            sendall(sock, buffer2);
-        }
+        printf("START SENDING...\n");
+        sendmessage(sock, buffer2, clients[clno].username);
+        printf("FINISH SENDING...\n");
     }
 
     close(sock);

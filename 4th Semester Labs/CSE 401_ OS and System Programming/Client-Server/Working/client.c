@@ -7,6 +7,7 @@
 #include <string.h>
 #include <pthread.h>
 
+#define SERVER_PORT 8080
 #define MAXLINE 4096
 #define SA struct sockaddr
 
@@ -24,7 +25,7 @@ void *readServer(void *);
 int main(int argc, char **argv)
 {
 
-    int sockfd, n, SERVER_PORT;
+    int sockfd, n;
     int sendbytes;
     struct sockaddr_in servaddr;
     char sendline[MAXLINE];
@@ -34,9 +35,9 @@ int main(int argc, char **argv)
 
 
     // check for ip address
-    if (argc != 4)
+    if (argc != 3)
     {
-        printf("usage: ./c <server address> <port>");
+        printf("usage: ./c <server address> <username>\n");
         exit(0);
     }
 
@@ -48,7 +49,6 @@ int main(int argc, char **argv)
 
     // set server address
     bzero(&servaddr, sizeof(servaddr));
-    SERVER_PORT = atoi(argv[2]);
     servaddr.sin_family = AF_INET;
     servaddr.sin_port = htons(SERVER_PORT); /* chat server */
 
@@ -67,10 +67,10 @@ int main(int argc, char **argv)
     client.sockfd = sockfd;
     client.ip = (argv[1]);
     client.port = SERVER_PORT;
-    client.username = argv[3];
+    client.username = argv[2];
 
     // pass user name to server    
-    write(sockfd, argv[3], strlen(argv[3]));
+    write(sockfd, argv[2], strlen(argv[2]));
 
     // always running listen mode
     if (pthread_create(&thread_id, NULL, readServer, (void *)&client) < 0)
@@ -115,7 +115,7 @@ void *readServer(void *socket_struct)
 
         if (!strcmp(recvline, "exit") || !strcmp(recvline, "exit\r\n"))
         {
-            sprintf(sendline, "%s has left the chat", name);
+            sprintf(sendline, "----%s has left the chat----", name);
             write(fd, (char *)sendline, strlen((char *)sendline));
 
             // printf("\n[%s disconnected...]\n", name);
