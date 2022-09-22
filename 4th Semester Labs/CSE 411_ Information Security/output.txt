@@ -1,2 +1,2 @@
-CIPHER TEXT: 4VÓ.Q­§ÑöõýWP¿gb4½ZÁyÈ*û©
-PLAIN TEXT: Two One Nine Two Three Four
+29 c3 50 5f 57 14 20 f6 40 22 99 b3 1a 2 d7 3a 
+Two One Nine Two

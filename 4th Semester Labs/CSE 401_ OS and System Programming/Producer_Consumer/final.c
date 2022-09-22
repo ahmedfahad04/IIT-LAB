@@ -3,7 +3,7 @@
 #include <pthread.h>
 #include <semaphore.h>
 
-#define Thread_Count 3
+#define Thread_Count 5
 #define BUFFER_SIZE 10
 
 pthread_mutex_t mutex;
@@ -18,7 +18,7 @@ void *producer()
     {
         // produce
         int x = rand() % 100;
-
+        sleep(1);
         /* Here we solved the "MANY CASES ARE IGNORE AS BUFFER IS FULL"
         problem by using SEMAPHORES. When we try to put element of 
         buffer we check through semaphore is actually any empty slots

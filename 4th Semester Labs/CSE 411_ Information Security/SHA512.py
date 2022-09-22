@@ -4,15 +4,15 @@ def shr(n, d): return n >> d
 
 def sigma_0(x) -> int: return ror(x, 1) ^ ror(x, 8) ^ shr(x, 7)
 def sigma_1(x) -> int: return ror(x, 19) ^ ror(x, 61) ^ shr(x, 6)
-def sigma_a(x) -> int: return ror(x, 28) ^ ror(x, 34) ^ ror(x, 39)
-def sigma_b(x) -> int: return ror(x, 14) ^ ror(x, 18) ^ ror(x, 41)
+def sum_a(x) -> int: return ror(x, 28) ^ ror(x, 34) ^ ror(x, 39)
+def sum_b(x) -> int: return ror(x, 14) ^ ror(x, 18) ^ ror(x, 41)
 
 
 def ch(x, y, z) -> int: return (x & y) ^ ((~x) & z)
 def maj(x, y, z) -> int: return (x & y) ^ (x & z) ^ (y & z)
 
 
-msg = ""
+msg = "Here, we try to search key 15 from the array 3,6,8,11,15, and 18, which is already in sorted order. If you do a normal search, then it will take five units of time to search since the element is in the fifth position. But in the binary search, it will take only three searches. If we apply this binary search to all of the elements in the array, then it would be as follows."
 m_blocks = []
 
 
@@ -47,28 +47,35 @@ k = [0x428a2f98d728ae22, 0x7137449123ef65cd, 0xb5c0fbcfec4d3b2f, 0xe9b5dba58189d
 def take_input():
     global msg
 
-    msg = input("Enter Text: ")
+    # msg = input("Enter Text: ")
     
-    # with open("input.txt", 'r') as f:
-    #     msg = f.read()
-    # f.close()
+    with open("input.txt", 'r') as f:
+        msg = f.read()
+    f.close()
 
 
 def pad_message():
 
+    global msg
+    msg = msg.encode('utf-8')   #encoding must
     msg_len = 0
     binary_content = ""
     hex_content = ""
 
     # converting msg to binary representation and calculating msg length
+    
     for i in msg:
-        binary = format(ord(i), '08b')
+        binary = format(i, '08b')
         msg_len += len(binary)
-        binary_content += (binary)
+        binary_content += binary
 
     # calculating padded message length and adding 1 to the end of the message
     padded_message_length = 896 - (msg_len % 1024)
     binary_content += "1"
+    
+    
+    if padded_message_length < 0:
+        padded_message_length = 1024+padded_message_length
 
     # adding (padded message length-1) 0's to the end of the message
     for i in range(padded_message_length-1):
@@ -76,53 +83,55 @@ def pad_message():
 
     # converting binary to hex
     for i in range(0, len(binary_content), 4):
-        hex_content += hex(int(binary_content[i:i+4], 2))[2:]
+        hex_content += hex( int(binary_content[i:i+4], 2) )[2:]
 
-    # adding length of msg in binary
+    # adding length of msg in binary, 128/4 = 32 bit, here we divided 128 with 4 as 4 bits of binary makes a 1 hex
     hex_content += format(msg_len, '032x')
 
     # splitting hex content into blocks of 1024 bits
-    id = 0
     tmp_size = len(hex_content)
         
     # BREAKPOINT (block size would be 256 as we converted it into hex codes. 1024/4 = 256 because
-    # each 4 binay bits = 1 hex bits. Therefore, 256 hex bits = 1024 binary bits)
+    # each 4 binary bits = 1 hex bits. Therefore, 256 hex bits = 1024 binary bits)
     for i in range(0, tmp_size, 256):   
         m_blocks.append(hex_content[i:i+256])
 
-
+    print("BLOCKS: ", len(m_blocks))
+    print("SIZE: ", len(hex_content), 'bytes(hex)')
+    
 def split_into_words(block, word):
 
     # splitting block into 80 words of 64 bits
     for i in range(80):
 
         if i < 16:
-            word[i] = (int((block[i*16:(i+1)*16]), base=16) % 2**64)
-
+            word[i] = ( int( (block[ i*16 : (i+1)*16] ), base=16 ))
+            
         else:
             # BREAKPOINT (summation should be mod of 2^64)
             value = ((sigma_0(word[i-15]) + word[i-16] +
                      sigma_1(word[i-2]) + word[i-7]) % 2**64)
-            word[i] = (value)
+            word[i] = value
 
 
 def round_calculations(word):
 
     global a, b, c, d, e, f, g, h
     global ia, ib, ic, id_, ie, if_, ig, ih
-    #BREAKPOINT (a,b .. value should be equal to new ia, ib .. in each block)
+    
+    #BREAKPOINT (a,b .. ) value should be equal to new ia, ib .. in each block)
     a, b, c, d, e, f, g, h = ia, ib, ic, id_, ie, if_, ig, ih   
 
     # round calculations
     for i in range(80):
 
-        T1 = (h + sigma_b(e) + ch(e, f, g) +
+        T1 = (h + sum_b(e) + ch(e, f, g) +
               k[i] + word[i]) & 0xFFFFFFFFFFFFFFFF
         
-        # BREAKPOINT (sigma_a(a) istead of sigma_a(e))
-        T2 = sigma_a(a) + maj(a, b, c) & 0xFFFFFFFFFFFFFFFF
+        # BREAKPOINT (sum_a(a) instead of sum_a(e))
+        T2 = sum_a(a) + maj(a, b, c) & 0xFFFFFFFFFFFFFFFF
 
-        a, b, c, d, e, f, g, h = (T1 + T2) & 0xFFFFFFFFFFFFFFFF, a, b, c, (d + T1) & 0xFFFFFFFFFFFFFFFF, e, f, g  # BREAKPOINT
+        a, b, c, d, e, f, g, h = ((T1 + T2) & 0xFFFFFFFFFFFFFFFF), a, b, c, ((d + T1) & 0xFFFFFFFFFFFFFFFF), e, f, g  # BREAKPOINT
 
     # finally add the newly derived vectors with inital vectors
     ia = (a+ia) & 0xFFFFFFFFFFFFFFFF
@@ -159,9 +168,7 @@ def message_digest():
     ig = hex(ig)[2:]
     ih = hex(ih)[2:]
 
-    message_digest = str((ia) + (ib) + (ic) + (id_) +
-                         (ie) + (if_) + (ig) + (ih))
-
+    message_digest = str((ia) + (ib) + (ic) + (id_) + (ie) + (if_) + (ig) + (ih))
     return message_digest
 
 

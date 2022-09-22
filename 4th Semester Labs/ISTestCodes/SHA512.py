@@ -1,4 +1,4 @@
-ror=lambda x,y :((x >> y) | (x << (64-y))) % 2**64
+def ror(x,y) : return ((x >> y) | (x << (64-y))) % 2**64
 def shr(n, d): return n >> d
 
 def sigma_0(x) -> int: return ror(x, 1) ^ ror(x, 8) ^ shr(x, 7)  & 0xFFFFFFFFFFFFFFFF
@@ -77,6 +77,10 @@ fwrite.write("\nORIGINAL MESSAGE LENGTH IN BINARY: " + str(len(msg)*8) + " bits"
 
 # calculating padding and adding 1
 needed_msg_len = 896 - (msg_len % 1024)
+
+if needed_msg_len < 0:
+    needed_msg_len = 1024+needed_msg_len
+    
 binary_content += "1"
 
 fwrite.write("\nLENGTH TO BE PADDED IN BINARY: " + str(needed_msg_len) + " bits")
@@ -95,6 +99,7 @@ fwrite.write("\nAFTER PADDING ORIGINAL MESSAGE LENGHT IN HEX: " + str(len(hex_co
 
 # adding length of msg in binary
 hex_content += format(msg_len, '032x')
+print("HEX: ", len(hex_content))
 
 fwrite.write("\nAFTER ADDING THE 128 bits LENGTH OF THE ORIGINAL MESSAGE, FINAL MESSAGE LENGTH IN HEX: " + str(len(hex_content)))
 
@@ -128,13 +133,14 @@ for block in m_blocks:
     for i in range(80):
 
         if i < 16:
-            w[i]= (int((block[i*16:(i+1)*16]), base=16) % 2**64) 
+            w[i]= (int((block[i*16:i*16+16]), base=16)) 
+            
             
         else:
             value = ((sigma_0(w[i-15]) + w[i-16] + sigma_1(w[i-2]) + w[i-7]) % 2**64)
             w[i] = (value)    
             
-        fwrite.write('\nW[' + str(i) + ']: ' + hex(w[i]))
+        fwrite.write('\nW[' + str(i) + ']: ' + str(int(w[i])))
                 
     # round calculations
     fwrite.write("\n\n>>>>>>>>>>>>>>>> Value of a,b,c,d,e,f,g,h <<<<<<<<<<<<<<<<<<<\n")
@@ -159,7 +165,7 @@ for block in m_blocks:
     ih = (h+ih) & 0xFFFFFFFFFFFFFFFF
     
     fwrite.write("\n\n>>>>>>>>>>>>>>>> INITIAL VECTOR <<<<<<<<<<<<<<<<<<<\n")
-    fwrite.write("\nH " + str(turn-1) + ": " + hex(a) + " " + hex(b) + " " + hex(c) + " " + hex(d) + " " + hex(e) + " " + hex(f) +" " +hex(g) + " " +hex(h))
+    fwrite.write("\nH " + str(turn-1) + ": " + hex(ia) + " " + hex(ib) + " " + hex(ic) + " " + hex(id) + " " + hex(ie) + " " + hex(if_) +" " +hex(ig) + " " +hex(ih))
     
 ia = hex(ia)[2:]
 ib = hex(ib)[2:]
