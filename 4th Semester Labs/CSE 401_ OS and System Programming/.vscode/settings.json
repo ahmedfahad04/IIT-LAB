@@ -1,0 +1,14 @@
+{
+    "files.associations": {
+        "stdio.h": "c",
+        "socket.h": "c",
+        "algorithm": "c",
+        "*.tcc": "c",
+        "bitset": "c",
+        "fstream": "c",
+        "memory": "c",
+        "new": "c",
+        "numeric": "c",
+        "system_error": "c"
+    }
+}

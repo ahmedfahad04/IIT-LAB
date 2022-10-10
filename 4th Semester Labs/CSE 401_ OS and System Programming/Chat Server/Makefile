@@ -7,10 +7,10 @@ BINFILES = client server
 all: $(BINFILES)
 
 client: client.c
-	gcc -o c client.c
+	gcc -o client client.c -lpthread
 
 server: server.c
-	gcc -o s server.c -lpthread
+	gcc -o server server.c -lpthread
 
 
 clean:

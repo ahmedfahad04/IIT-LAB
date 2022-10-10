@@ -1,0 +1,8 @@
+> nmap 'ip'
+> nmap 'ip' -sT
+> nmap 'ip' -p-
+> nmap -sV --version-intensity 8
+> nmap 'ip' -O
+> nmap 'ip' --osscan-guess
+> nmap 'ip' -oG grep.file
+> nmap 'ip' -oA results

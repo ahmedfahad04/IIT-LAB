@@ -1,0 +1,9 @@
+-1.ForkServer
+-2.Thread Server
+-3.Thread diye matrix multipliacation
+4.Producer consumer
+-5.Reader writer 3 ta
+6.Dining philospher (Monitors)
+-7.Bankers Algorithm 
+8.Resource Allocation
+9.Peterson Solution

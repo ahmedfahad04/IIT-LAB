@@ -19,6 +19,7 @@ void *producer()
         // produce
         int x = rand() % 100;
         sleep(1);
+        
         /* Here we solved the "MANY CASES ARE IGNORE AS BUFFER IS FULL"
         problem by using SEMAPHORES. When we try to put element of 
         buffer we check through semaphore is actually any empty slots
