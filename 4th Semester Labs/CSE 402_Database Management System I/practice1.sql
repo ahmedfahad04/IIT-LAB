@@ -32,7 +32,7 @@ CREATE TABLE product_master (
 CREATE TABLE new_client
 	(client_no, name, city, pincode, state, bal_due) 
 	AS SELECT client_no, name, city, pincode, state, bal_due
-	FUPDROM Client_master;
+	FROM Client_master;
 
 
 ---------- IMPORTANAT: Changing CELL VALUE -> UPDATE, Changing COLUMN DATATYPE and SIZE -> ALTER ----------

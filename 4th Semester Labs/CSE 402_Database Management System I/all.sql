@@ -4,19 +4,19 @@
 --SELECT LAST_NAME, SALARY*12 AS ANNUAL_SALARY FROM EMPLOYEES WHERE SALARY*12 > 50000;
 --SELECT LAST_NAME, DEPARTMENT_ID, 12*SALARY AS SALARY FROM EMPLOYEES ORDER BY DEPARTMENT_ID, 12*SALARY DESC;
 --SELECT EMPLOYEE_ID, LAST_NAME, JOB_ID FROM &EMPLOYEES WHERE JOB_ID = '&job_name';
---SELECT EMPLOYEE_ID, LAST_NAME, JOB_ID FROM &EMPLOYEES WHERE JOB_ID = '&job_name' ORDER BY &GIVEN_ORDER;
---SELECT LAST_NAME, 12*SALARY AS SALARY, &&COL_NAME FROM EMPLOYEES WHERE 12*SALARY > 50000 ORDER BY &COL_NAME;
+-- SELECT EMPLOYEE_ID, LAST_NAME, JOB_ID FROM &EMPLOYEES WHERE JOB_ID = &job_name ORDER BY &GIVEN_ORDER;
+-- SELECT LAST_NAME, 12*SALARY AS SALARY, &&COL_NAME FROM EMPLOYEES WHERE 12*SALARY > 50000 ORDER BY &COL_NAME;
 --select last_name || ' who''s id is ' as User, employee_id || ' and his salary is: ' as data ,salary as info from employees where employee_id=&employee_num;
 --SELECT FIRST_NAME||' '||LAST_NAME||'''s "annual" salary is '||(SALARY+SALARY*nvl(COMMISSION_PCT,0))*12 "RELATION"   FROM EMPLOYEES;
 -- SELECT FIRST_NAME||' '||LAST_NAME AS SALARY, SALARY*12 AS "ANNUAL SALARY" FROM EMPLOYEES;
---SELECT first_name||' '||last_name, salary FROM EMPLOYEES WHERE FIRST_NAME NOT LIKE '__s%';
+-- SELECT first_name||' '||last_name FIRST_NAME, salary FROM EMPLOYEES WHERE FIRST_NAME NOT LIKE '__s%';
 --SELECT first_name||' '||last_name as NAME, salary from employees where first_name like '%sampad%' or where last_name like '%sampad%';
 --SELECT first_name, department_id, salary*12 as annual_salary from employees ORDER BY department_id, salary*12 desc;
---SELECT FIRST_NAME||' '||LAST_NAME FROM EMPLOYEES WHERE FIRST_NAME ="sampad" OR LAST_NAME = "sampad";
+-- SELECT FIRST_NAME||' '||LAST_NAME Name FROM EMPLOYEES WHERE FIRST_NAME ='Sarah' OR LAST_NAME = 'Bates';
 --SELECT FIRST_NAME||' '||LAST_NAME AS NAME, SALARY FROM EMPLOYEES WHERE EMPLOYEE_ID=&EMPLOYEE_ID_INPT;
 --SELECT FIRST_NAME||' '||LAST_NAME AS NAME, SALARY FROM EMPLOYEES WHERE &CONDITION ORDER BY &GIVEN_ORDERING;
---SELECT FIRST_NAME||' '||LAST_NAME AS NAME, SALARY, &row FROM employees where row LIKE &regex ORDERED BY row DESC
-
+-- SELECT FIRST_NAME||' '||LAST_NAME AS NAME, SALARY, &&row FROM employees where row LIKE &regex ORDERED BY &row DESC
+--select last_name, job_id from employees group by last_name, job_id;
 ---SELECT * from employees;
 ---select lower('SQL Course') from dual;
 ---select first_name from employees where upper(substr(first_name, 1, 3))='JON';
@@ -49,12 +49,12 @@ select first_name, &years as "Year", &months as "Month", &days as "Days" from em
 */
 
 
-define years=trunc((sysdate-hire_date)/365)
-define extra_days=mod(sysdate-hire_date,365)
-define months=trunc(&extra_days/30)
-define days=trunc(&extra_days-&months*30)
+-- define years=trunc((sysdate-hire_date)/365)
+-- define extra_days=mod(sysdate-hire_date,365)
+-- define months=trunc(&extra_days/30)
+-- define days=trunc(&extra_days-&months*30)
 
-select first_name, &years as "Years", &months as "Month", &days as "Days" from employees;
+-- select first_name, &years as "Years", &months as "Month", &days as "Days" from employees;
 
 
 /*

@@ -1,61 +1,56 @@
+------------------ FUNCTION -------------------
 
-/*
+create or replace function sal(pid employees.employee_id%TYPE) 
+return number 
+is 
 
--- Function creation and declaration --
+    v_sal employees.employee_id%TYPE;
 
-CREATE FUNCTION get_sal (p_id employees.employee_id%TYPE) 
-RETURN NUMBER IS
+begin
+    select 12*(salary + salary * nvl(commission_pct, 0))
+    into v_sal
+    from employees
+    where employee_id = pid;
 
---- Here employees.salary%TYPE == DATATYPE of employees.salary, that means it always indicate the DATATYPE ---
+    return v_sal;
+end sal;
+/
 
-v_sal employees.salary%TYPE := 0;
-
-BEGIN
-	SELECT salary
-	INTO v_sal
-	FROM employees
-	WHERE employee_id = p_id;
-	RETURN v_sal;
-END get_sal;
+set serveroutput on;
+declare 
+    vin number := &vin;
+begin 
+dbms_output.put_line('Salary: ' || sal(vin));
+end;
 /
 
 
-SET SERVEROUTPUT ON;
-BEGIN 
-	DBMS_OUTPUT.PUT_LINE(get_sal(100));
-END;
+-------- PROCEDURE -----------
+
+create or replace procedure sal2(pid in employees.employee_id%TYPE, ans out number) 
+-- [Func: return type]
+is 
+
+-- [Func: new variable to store output and then return]
+
+begin
+    select 12*(salary + salary * nvl(commission_pct, 0))
+    into ans -- this param is passed through thee procedure
+    from employees
+    where employee_id = pid;
+    -- [Func: return statement]
+end sal2;
 /
 
-
----- OR ----
-
-SET SERVEROUTPUT ON;
-DECLARE
-	value NUMBER(10);
-BEGIN 
-	value := 100;
-	DBMS_OUTPUT.PUT_LINE(get_sal(value));
-END;
-/
+set serveroutput on;
+declare 
+    vin number;
+    res number; -- new variable to store the output
+begin 
+    sal2(&vin, res);
+    dbms_output.put_line(res);
+end;
+-- /
 
 
 
-
-
---- a Refurbished form of the Above function ---
-
-CREATE FUNCTION get_sal (p_id NUMBER) 
-RETURN NUMBER IS
-
-
-v_sal NUMBER := 0;
-
-BEGIN
-	SELECT salary
-	INTO v_sal
-	FROM employees
-	WHERE employee_id = p_id;
-	RETURN v_sal;
-END get_sal;
-
-*/
