@@ -1,0 +1,30 @@
+/*Id's preferance is higher than Class*/
+/*This file should be in your OWN Machine*/
+/*When we declare inline/external/internal then which one
+is written at last then the style will be in accordance 
+wth the last one (override)
+*/
+
+#course1 {
+    color: red;
+}
+
+/*
+
+#course2 {
+    color: blue;
+}
+
+
+#course3 {
+    color: aquamarine;
+}
+
+.even {
+    color: green;
+}
+
+.odd {
+    color: khaki;
+}
+ */
