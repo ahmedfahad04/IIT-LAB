@@ -10,13 +10,14 @@ body, html {
 }
 
 .topBar{
-    border: 2px solid red;    /* border for better understanding */
     width: 100%;
     background-color: #094179;
     color: whitesmoke;
     font-size: 20px;
     text-align: center;
-    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 10%;    /* set hight of top bar */
 }
 
@@ -32,30 +33,30 @@ body, html {
 
 .leftSubSection{
     height: 100%;
-    border: 2px solid red;
+    /* border: 2px solid red; */
     color: black;
     font-size: 20px;
     text-align: center;
-    width: 15%;
+    width: 30%;
     float: left;
 }
 
 .rightSubSection{
     height: 100%;
     background-color: bisque;
-    border: 2px solid red;
+    /* border: 2px solid red; */
     color: black;
     font-size: 20px;
     text-align: left;
     padding: 20px;
-    width: 85%;
+    width: 70%;
     float: left;
 }
 
 .bottomBar {
     width: 100%;
     background-color: #b1cae3;
-    border: 2px solid red;
+    /* border: 2px solid red; */
     color: black;
     font-size: 20px;
     text-align: center;
@@ -65,16 +66,27 @@ body, html {
 
 #about {
     background-color: lightskyblue;
-    border: 2px solid blueviolet;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid blue;
+    height: 100px;
 }
 
 #history {
-    
     background-color: lightskyblue;
-    border: 2px solid blueviolet;
+    border-bottom: 1px solid blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
 }
 
 #achievement {
     background-color: lightskyblue;
-    border: 2px solid blueviolet;
+    border-bottom: 1px solid blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
 }

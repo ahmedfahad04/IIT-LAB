@@ -35,10 +35,12 @@ void dfs(int x)
 
     vis[x] = 1;
     parent = x;
-    for (int i : Node[x])
+
+    for (int child : Node[x])
     {
-        dfs(i);
+        dfs(child);
     }
+
     vis[x] = 2;
     return;
 }
@@ -57,6 +59,7 @@ int main()
         while (getline(new_file, sa))
         {
             pair<pair<char, int>, string> operation;
+
             operation.first.first = sa[0];
             operation.first.second = sa[1] - 48;
             operation.second = sa[3];
@@ -64,27 +67,28 @@ int main()
         }
         new_file.close();
     }
-    else cout << "FIle not found\n";
     
+    else
+        cout << "FIle not found\n";
 
     for (int i = 0; i < transaction.size(); i++)
     {
-        char cur_op_type = transaction[i].first.first;
-        int cur_tran_no = transaction[i].first.second;
-        string cur_var = transaction[i].second;
+        char current_operator_type = transaction[i].first.first;
+        int current_transaction_no = transaction[i].first.second;
+        string current_variable = transaction[i].second;
 
-        tr_size.insert(cur_tran_no);
+        tr_size.insert(current_transaction_no);
         for (int j = i + 1; j < transaction.size(); j++)
         {
-            char next_op_type = transaction[j].first.first;
-            int next_tran_no = transaction[j].first.second;
-            string next_var = transaction[j].second;
+            char next_operator_type = transaction[j].first.first;
+            int next_transaction_no = transaction[j].first.second;
+            string next_variable = transaction[j].second;
 
-            if (tolower(cur_op_type) == 'w' or (tolower(cur_op_type) == 'r' and tolower(next_op_type) == 'w'))
+            if (tolower(current_operator_type) == 'w' or (tolower(current_operator_type) == 'r' and tolower(next_operator_type) == 'w'))
             {
-                if (cur_var == next_var and cur_tran_no != next_tran_no)
+                if (current_variable == next_variable and current_transaction_no != next_transaction_no)
                 {
-                    Node[cur_tran_no].insert(next_tran_no);
+                    Node[current_transaction_no].insert(next_transaction_no);
                 }
             }
         }
