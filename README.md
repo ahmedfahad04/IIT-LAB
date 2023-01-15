@@ -1,2 +1,2 @@
-# C-Lesson
-This repository will contain my learning tracks and material of C language
+# IIT-LAB
+Stuffs (basically codes) done in my undergraduate life can be found here! Feel free to dive into the ocean of codes :):)
