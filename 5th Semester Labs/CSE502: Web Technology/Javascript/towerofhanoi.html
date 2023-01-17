@@ -5,23 +5,44 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <title>Document</title>
     <style>
-        body {
+
+        * {
+            font-family: 'Monaco';
+        }
+
+        h1 {
+            text-shadow: 5px 5px 5px #888888;
+        }
+        body, html {
             margin: 0;
             padding: 0;
+            background-image: url('toh_60.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .top {
+            width: 80%;
+            height: 10vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 10px auto;
         }
 
         .upperBox {
-            border: 2px solid red;
             width: 80%;
-            height: 60vh;
+            height: 50vh;
             display: flex;
             margin: 10px auto;
         }
 
         .lowerBox {
-            border: 2px solid blue;
             width: 80%;
             height: 20vh;
             display: flex;
@@ -29,7 +50,6 @@
         }
 
         .bottom {
-            border: 2px solid blue;
             width: 80%;
             height: 10vh;
             display: flex;
@@ -46,48 +66,43 @@
             padding: 0 1.2rem;
         }
 
-        #replay {
-            background-color: blue;
-            color: white;
-        }
-
-        #check {
-            background-color: green;
-            color: white;
-        }
-
         .box1 {
-            border: 2px solid green;
+            border-style: solid;
+            border-width: 0px 5px 5px;
+            border-color: brown;
             width: 10vw;
-            height: 50vh;
+            height: 40vh;
             display: block;
-            margin: 10px auto;
+            margin: 25px auto;
         }
 
         .box2 {
-            border: 2px solid green;
+            border-style: solid;
+            border-width: 0px 5px 5px;
+            border-color: brown;
             width: 10vw;
-            height: 50vh;
+            height: 40vh;
             display: block;
-            margin: 10px auto;
+            margin: 25px auto;
         }
 
         .box3 {
-            border: 2px solid green;
+            border-style: solid;
+            border-width: 0px 5px 5px;
+            border-color: brown;
             width: 10vw;
-            height: 50vh;
+            height: 40vh;
             display: block;
-            margin: 10px auto;
+            margin: 25px auto;
         }
 
         .btns {
             width: 8vw;
-            height: 40vh;
+            height: 30vh;
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
             margin: 10px auto;
-
         }
 
         .label {
@@ -103,35 +118,78 @@
         }
 
         .allBtn {
-            width: 6vw;
+            width: 4vw;
             height: 5vh;
             display: block;
             margin: 5px auto;
             font-size: 1.5rem;
+            font-family: 'Monaco';
         }
 
         .controlBtn {
-            border: 2px solid green;
+            border: 2px solid rgb(253, 182, 95);
+            background-color: #8D5524;
+            color: azure;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 50px;
-            height: 20vh;
-            width: 80%;
+            font-size: 1.3rem;
+            font-weight: 800;
+            height: 15vh;
+            width: 60%;
+            font-family: 'Monaco';
             cursor: pointer;
+            margin: 1rem;
         }
+
+        .controlBtn:hover {
+            background-color: #C68642;
+            color: black;
+        }
+
+        #replay {
+            background-color: #03172F;
+            border: 2px solid #f12c2c;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        #check {
+            background-color: #036A48;
+            border: 2px solid #73D98B;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        #replay:hover {
+            background-color: #f16a2c;
+            border: 2px solid #03172F;
+            color: azure;
+        }
+
+        #check:hover {
+            background-color: #73D98B;
+            border: 2px solid #036A48;
+            color: brown;
+        }
+
+
     </style>
 </head>
 
 <body>
+
+    <div class="top">
+        <h1>Tower of Hanoi</h1>
+    </div>
     <div class="upperBox">
 
         <div class="box1">
             <div class="btns">
-                <button class="allBtn" id="btn">1</button>
-                <button class="allBtn" id="btn">2</button>
-                <button class="allBtn" id="btn">3</button>
-                <button class="allBtn" id="btn">4</button>
+                <button class="allBtn" id="btn" style="background-color: chocolate;">1</button>
+                <button class="allBtn" id="btn" style="background-color: coral;">2</button>
+                <button class="allBtn" id="btn" style="background-color: burlywood;">3</button>
+                <button class="allBtn" id="btn" style="background-color: rgb(0, 255, 191);">4</button>
             </div>
             <div class="label">1</div>
         </div>
@@ -148,12 +206,12 @@
     </div>
 
     <div class="lowerBox">
-        <button class="controlBtn" id="op1" onclick="func(1,2)">1->2</button>
-        <button class="controlBtn" id="op2" onclick="func(2,3)">2->3</button>
-        <button class="controlBtn" id="op3" onclick="func(3,1)">3->1</button>
-        <button class="controlBtn" id="op4" onclick="func(3,2)">3->2</button>
-        <button class="controlBtn" id="op5" onclick="func(2,1)">2->1</button>
-        <button class="controlBtn" id="op6" onclick="func(1,3)">1->3</button>
+        <button class="controlBtn" id="op1" onclick="func(1,2)">1 → 2</button>
+        <button class="controlBtn" id="op2" onclick="func(2,3)">2 → 3</button>
+        <button class="controlBtn" id="op3" onclick="func(3,1)">3 → 1</button>
+        <button class="controlBtn" id="op4" onclick="func(3,2)">3 → 2</button>
+        <button class="controlBtn" id="op5" onclick="func(2,1)">2 → 1</button>
+        <button class="controlBtn" id="op6" onclick="func(1,3)">1 → 3</button>
     </div>
 
     <div class="bottom">
@@ -191,14 +249,13 @@
                 if (btnChild.length == 4) {
 
                     for (let j = 0; j < btnChild.length; j++) {
-                        console.log(btnChild[j].innerHTML);
                         newNum.push(parseInt(btnChild[j].innerHTML));
                     }
-                    console.log(newNum);
+
                     if (JSON.stringify(numbers) == JSON.stringify(newNum)) {
                         alert("You Won");
                     } else {
-                        alert("You Lost");
+                        alert("Sorry, Try Again!!");
                     }
                     break;
                 }
