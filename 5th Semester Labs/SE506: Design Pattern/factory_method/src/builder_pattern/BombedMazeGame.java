@@ -1,4 +1,4 @@
-package factory_pattern;
+package builder_pattern;
 
 public class BombedMazeGame extends MazeGame{
     public BombedMazeGame() {

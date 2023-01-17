@@ -9,6 +9,10 @@ public class Door implements IMazeProperties{
         this.room1 = room1;
         this.room2 =  room2;
     }
+
+    public Door(builder_pattern.Room r1, builder_pattern.Room r2) {
+    }
+
     public void MakeDoor(Room r1, Room r2) {
         return;
     }

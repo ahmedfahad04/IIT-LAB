@@ -49,5 +49,6 @@ public class MazeGame {
         BombedMazeGame bombedMazeGame = new BombedMazeGame();
         Maze maze = bombedMazeGame.createMaze();
         maze.showDetails();
+        // MazeGame mazeGame = new BombedMazeGame();
     }
 }
