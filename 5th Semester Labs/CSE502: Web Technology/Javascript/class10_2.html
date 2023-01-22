@@ -1,0 +1,52 @@
+<html>
+    <head>
+        <title>Web technology</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>Course enrollment form</h1>
+        <form name="myForm">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="user_name">
+        
+            <br>
+            Gender
+            <input type="radio" id="male" name="gender" value="male">
+            <label for="male">male</label>
+            <input type="radio" id="female" name="gender" value="female">
+            <label for="female">female</label>
+            
+            <br>
+            Select the topics that you want to learn:<br>
+            <input type="checkbox" id="html" name="topic1" value="html">
+            <label for="html">HTML</label><br>
+            <input type="checkbox" id="css" name="topic2" value="css">
+            <label for="css">CSS</label><br>
+            <input type="checkbox" id="js" name="topic3" value="js">
+            <label for="js">JS</label><br>
+        
+            Level of study:
+            <select name="degree" id="degree">
+                <option value="ssc">SSC</option>
+                <option value="hsc">HSC</option>
+                <option value="honors">Honors</option>
+                <option value="masters">Masters</option>
+            </select><br><br>
+            Address
+            <textarea name="address"></textarea><br/><br>
+            <input type="submit" value="Submit" onclick="validate()">
+        </form>
+
+        <script>
+            function validate() {
+                let name = document.forms.myForm.user_name.value;
+                if (name == "") alert("name can't be empty");
+                else alert(name);
+
+                let gender = document.myForm.gender.value;
+                alert(gender);
+                
+            }
+        </script>
+    </body>
+</html>
