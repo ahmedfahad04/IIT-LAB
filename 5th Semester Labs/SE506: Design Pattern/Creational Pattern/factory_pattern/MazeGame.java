@@ -24,8 +24,8 @@ public class MazeGame {
         return aMaze;
     }
 
-    // factory method
-
+    // factory method (virtual function that will be overriden by derived class)
+    
     public Maze MakeMaze(){
         return new Maze();
     };
@@ -40,11 +40,5 @@ public class MazeGame {
 
     public Door MakeDoor(Room r1, Room r2) {
         return new Door(r1, r2);
-    }
-
-    public static void main(String[] args) {
-        MazeGame mazeGame = new BombedMazeGame();
-        Maze maze = mazeGame.createMaze();
-        maze.showDetails();
     }
 }

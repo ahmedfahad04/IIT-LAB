@@ -8,9 +8,9 @@ public class StandardMazeBuilder extends MazeBuilder {
         return null;
     }
 
-
     public StandardMazeBuilder(){
         currentMaze = null;
+        System.out.println("StandardMazeBuilder");
     };
 
     @Override

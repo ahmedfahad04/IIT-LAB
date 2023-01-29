@@ -2,32 +2,25 @@ package builder_pattern;
 
 public class CountingMazeBuilder extends MazeBuilder {
 
-    private int doors;
-    private int rooms;
-
     public CountingMazeBuilder() {
-        rooms = doors = 0;
+        System.out.println("CountingMazeBuilder");
     }
 
     @Override
     public void BuildMaze() {
-        // TODO Auto-generated method stub
         
     }
 
     @Override
-    public void BuildRoom(int room) {
-        rooms++;        
+    public void BuildRoom(int room) {        
     }
 
     @Override
-    public void BuildDoor(int roomFrom, int roomTo) {
-        doors++;        
+    public void BuildDoor(int roomFrom, int roomTo) {        
     }
 
     @Override
     public Maze GetMaze() {
-        // TODO Auto-generated method stub
         return null;
     }
 

@@ -1,6 +1,7 @@
 package factory_pattern;
 
 public class BombedMazeGame extends MazeGame{
+    
     public BombedMazeGame() {
         System.out.println("BombedMazeGame created");
     }

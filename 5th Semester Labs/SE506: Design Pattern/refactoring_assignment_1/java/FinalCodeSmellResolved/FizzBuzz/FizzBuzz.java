@@ -34,9 +34,9 @@ public class FizzBuzz {
         return String.valueOf(number);
     }
 
-//    public static void main(String[] args) {
-//        FizzBuzz fizzBuzz = new FizzBuzz();
-//        System.out.println(fizzBuzz.say(3));
-//    }
+   public static void main(String[] args) {
+       FizzBuzz fizzBuzz = new FizzBuzz();
+       System.out.println(fizzBuzz.say(3));
+   }
 
 }

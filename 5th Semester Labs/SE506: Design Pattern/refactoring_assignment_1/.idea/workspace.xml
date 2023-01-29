@@ -5,35 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ef4097d1-ec83-4928-919d-88006dea66f9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../CSE502: Web Technology/HTML_CSS/classWork1/assignment1.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../CSE502: Web Technology/HTML_CSS/classWork1/assignment1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../CSE502: Web Technology/HTML_CSS/classWork1/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../CSE502: Web Technology/HTML_CSS/classWork1/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../factory_method/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../factory_method/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../factory_method/src/Maze.java" beforeDir="false" afterPath="$PROJECT_DIR$/../factory_method/src/Maze.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../factory_method/src/MazeGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/../factory_method/src/MazeGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../factory_method/src/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/../factory_method/src/Room.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/ProCodeSmellRemoved/FizzBuzz/BuzzNumber.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/FinalCodeSmellResolved/FizzBuzz/BuzzNumber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/ProCodeSmellRemoved/FizzBuzz/FizzBuzz.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/FinalCodeSmellResolved/FizzBuzz/FizzBuzz.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/ProCodeSmellRemoved/FizzBuzz/FizzBuzzNumber.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/FinalCodeSmellResolved/FizzBuzz/FizzBuzzNumber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/ProCodeSmellRemoved/FizzBuzz/FizzNumber.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/FinalCodeSmellResolved/FizzBuzz/FizzNumber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/ProCodeSmellRemoved/FizzBuzz/FizzStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/FinalCodeSmellResolved/FizzBuzz/FizzStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/ProCodeSmellRemoved/HTMLConverter/AmperSandSign.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/FinalCodeSmellResolved/HTMLConverter/AmperSandSign.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/ProCodeSmellRemoved/HTMLConverter/DefaultCharacter.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/FinalCodeSmellResolved/HTMLConverter/DefaultCharacter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/ProCodeSmellRemoved/HTMLConverter/EndSign.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/FinalCodeSmellResolved/HTMLConverter/EndSign.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/ProCodeSmellRemoved/HTMLConverter/GreaterThanSign.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/FinalCodeSmellResolved/HTMLConverter/GreaterThanSign.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/ProCodeSmellRemoved/HTMLConverter/LessThanSign.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/FinalCodeSmellResolved/HTMLConverter/LessThanSign.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/ProCodeSmellRemoved/HTMLConverter/NewLine.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/FinalCodeSmellResolved/HTMLConverter/NewLine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/ProCodeSmellRemoved/HTMLConverter/NullCharacter.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/FinalCodeSmellResolved/HTMLConverter/NullCharacter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/ProCodeSmellRemoved/HTMLConverter/PlaintextToHtmlConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/FinalCodeSmellResolved/HTMLConverter/PlaintextToHtmlConverter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/ProCodeSmellRemoved/HTMLConverter/SpecialCharacterMatcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/FinalCodeSmellResolved/HTMLConverter/SpecialCharacterMatcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/ProCodeSmellRemoved/HTMLConverter/demo.txt" beforeDir="false" afterPath="$PROJECT_DIR$/java/FinalCodeSmellResolved/HTMLConverter/demo.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/ProCodeSmellRemoved/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/FinalCodeSmellResolved/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/ProCodeSmellRemoved/TriviaGame/IQuestions.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/FinalCodeSmellResolved/TriviaGame/IQuestions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/ProCodeSmellRemoved/TriviaGame/PopQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/FinalCodeSmellResolved/TriviaGame/PopQuestion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/ProCodeSmellRemoved/TriviaGame/Questions.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/FinalCodeSmellResolved/TriviaGame/Questions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/ProCodeSmellRemoved/TriviaGame/RockQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/FinalCodeSmellResolved/TriviaGame/RockQuestion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/ProCodeSmellRemoved/TriviaGame/ScienceQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/FinalCodeSmellResolved/TriviaGame/ScienceQuestion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/ProCodeSmellRemoved/TriviaGame/SportsQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/FinalCodeSmellResolved/TriviaGame/SportsQuestion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/ProCodeSmellRemoved/TriviaGame/TriviaGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/FinalCodeSmellResolved/TriviaGame/TriviaGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Creational Pattern/abstract_factory/PMWIdgetFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Creational Pattern/abstract_factory/PMWIdgetFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Creational Pattern/abstract_factory/PMWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Creational Pattern/abstract_factory/PMWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Creational Pattern/abstract_factory/client.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Creational Pattern/abstract_factory/client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Creational Pattern/factory_pattern/MazeGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Creational Pattern/factory_pattern/MazeGame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,13 +33,13 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "/home/fahad/Documents/IIT-LAB/5th Semester Labs/SE506: Design Pattern/factory_method"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/fahad/Documents/IIT-LAB/5th Semester Labs/SE506: Design Pattern/factory_method&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
