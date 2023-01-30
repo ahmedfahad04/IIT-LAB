@@ -1,5 +1,7 @@
 package abstract_factory;
 
+import builder_pattern.MazeBuilder;
+
 public class client {
     public static void main(String[] args) {
 
@@ -11,13 +13,7 @@ public class client {
         // widgetFactory.CreateWindow();
 
         WidgetMaker widgetMaker = new WidgetMaker();
-        MotifWidgetFactory motifWidgetFactory = new MotifWidgetFactory();
-
-        widgetMaker.createWidget(motifWidgetFactory);       
-        
-        
-        WidgetFactory pmwidgetFactory = new MotifWidgetFactory();
-        pmwidgetFactory.CreateScrollBar();
+        widgetMaker.createWidget(new PMWIdgetFactory());
         // * that's the use case where certain factory is passed where each factory 
         // * resembles different implementation of scrollbar, window etc.
     }

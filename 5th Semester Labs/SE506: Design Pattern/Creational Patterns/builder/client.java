@@ -5,7 +5,7 @@ package builder_pattern;
 public class client {
     public static void main(String args[]){
         MazeGame game = new MazeGame();
-        CountingMazeBuilder countingbuilder = new CountingMazeBuilder();
+        MazeBuilder countingbuilder = new CountingMazeBuilder();
 
         game.createMaze(countingbuilder);   // complex object is created by passing builder object
         countingbuilder.GetMaze();
