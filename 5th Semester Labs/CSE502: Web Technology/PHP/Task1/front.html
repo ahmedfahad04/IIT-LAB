@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="data.php" method="post">
+        <label for="nid">National Identity Card Number:</label>
+        <input type="number" name="nid" id="nid" placeholder="Example: ">
+
+        <br>
+        <label for="dob">Date of birth:</label>
+        <input type="date" name="dob" id="dob">
+
+        <br>
+        <label id="captcha">94X1V1</label>
+        <br>
+        <label for="prompt">Write the letters from above here</label>
+        <input type="text" name="prompt" id="prompt">
+
+        <input type="submit">
+    </form>
+
+    <script>
+        
+        window.onload = function() {
+            generateCaptcha();
+        };
+
+        function generateCaptcha() {
+            let captcha = document.getElementById("captcha");
+            let result = '';
+           
+            const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'; 
+            let length = 6;
+            const charactersLength = characters.length;
+
+            for ( let i = 0; i < length; i++ ) {
+                result += characters.charAt(Math.floor(Math.random() * charactersLength));
+            }
+
+            captcha.innerHTML = result;
+        }
+    </script>
+</body>
+</html>
