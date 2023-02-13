@@ -1,6 +1,7 @@
 package builder_pattern;
 
 public abstract class MazeBuilder {
+
     public MazeBuilder(){};
 
     public abstract void BuildMaze();
@@ -8,4 +9,5 @@ public abstract class MazeBuilder {
     public abstract void BuildDoor(int roomFrom, int roomTo);
 
     public abstract Maze GetMaze();
+    
 }

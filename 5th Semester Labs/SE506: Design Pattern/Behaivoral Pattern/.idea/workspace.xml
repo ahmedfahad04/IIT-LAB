@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="d33afc41-982c-4629-8efe-0d83970f3543" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../CSE502: Web Technology/HTML_CSS/class1.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../CSE502: Web Technology/HTML_CSS/class1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Creational Patterns/abstract_factory/WidgetFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Creational Patterns/abstract_factory/WidgetFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Creational Patterns/builder/MazeBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Creational Patterns/builder/MazeBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Creational Patterns/builder/MazeGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Creational Patterns/builder/MazeGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Creational Patterns/factory/client.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Creational Patterns/factory/client.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="ProjectId" id="2Lfi6sguaqKPPPRg1LFIa7t3DBu" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "jdk.selected.JAVA_MODULE": "17",
+    "last_opened_file_path": "/home/fahad/Documents/IIT/IIT-LAB/5th Semester Labs/SE506: Design Pattern/Behaivoral Pattern"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d33afc41-982c-4629-8efe-0d83970f3543" name="Changes" comment="" />
+      <created>1676268365681</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1676268365681</updated>
+    </task>
+    <servers />
+  </component>
+</project>

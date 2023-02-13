@@ -3,7 +3,7 @@ package factory_pattern;
 public class client {
     public static void main(String[] args) {
 
-        // IN that case, we must have one product class
+        // In that case, we must have one product class
         // here product class are Window and ScrollBar
 
         MazeGame mazeGame = new BombedMazeGame();   // thats the actual use case, where overridden factory method is used
