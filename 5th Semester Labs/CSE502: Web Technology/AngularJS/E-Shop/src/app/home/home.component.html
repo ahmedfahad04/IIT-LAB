@@ -1,0 +1,15 @@
+<ul>
+    <li *ngFor="let item of fetched_items; let i=index">
+        <h3> {{item.name}} </h3>
+        <p> $ {{item.price}}</p>
+        <p> Quantity: {{item.quantity}}</p>
+        <button 
+            *ngIf="item.price>0"
+            style="background-color: blue; color: antiquewhite; font-family: 'Kalpurush'; border-radius: 20px; width: 50px; cursor: pointer;"
+            (click)="requestItem(i)"
+        >
+            Buy
+        </button>
+    </li>
+
+</ul>
