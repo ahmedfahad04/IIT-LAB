@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="f75a1ae1-63a7-4de3-84f0-177929fd807e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Behavioral_Pattern.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Mediator_Pattern_2/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Behavioral Pattern/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Behavioral Pattern/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Behavioral Pattern/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Behavioral Pattern/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Behavioral Pattern/Behavioral Pattern.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Behavioral Pattern/Mediator_Pattern/Button.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Behavioral Pattern/Mediator_Pattern/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Behavioral Pattern/Mediator_Pattern/MainWindow.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Behavioral Pattern/Mediator_Pattern/Mediator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Behavioral Pattern/Mediator_Pattern/TextBox.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Behavioral Pattern/Mediator_Pattern/Widget.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Behavioral Pattern/Observer_Pattern/AnalogClock.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Behavioral Pattern/Observer_Pattern/ClockTimer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Behavioral Pattern/Observer_Pattern/DigitalClock.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Behavioral Pattern/Observer_Pattern/Observer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Behavioral Pattern/Observer_Pattern/Subject.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Behavioral Pattern/Observer_Pattern/client.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Behavioral Pattern/out/production/Behavioral Pattern/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Behavioral Pattern/out/production/Behavioral Pattern/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Behavioral Pattern/out/production/Behavioral Pattern/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Behavioral Pattern/out/production/Behavioral Pattern/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Behavioral Pattern/out/production/Behavioral Pattern/Behavioral Pattern.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Behavioral_Pattern/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Behavioral_Pattern/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/Behavioral_Pattern/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Behavioral_Pattern/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/Behavioral_Pattern/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Behavioral_Pattern/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/Behavioral_Pattern/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Behavioral_Pattern/Behavioral Pattern.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Behavioral_Pattern/Strategy_Pattern/Strategy_Pattern.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Behavioral_Pattern/Strategy_Pattern/out/production/Strategy_Pattern/Strategy_Pattern/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Behavioral_Pattern/Strategy_Pattern/out/production/Strategy_Pattern/Strategy_Pattern/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Behavioral_Pattern/Strategy_Pattern/out/production/Strategy_Pattern/Strategy_Pattern/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Behavioral_Pattern/Strategy_Pattern/out/production/Strategy_Pattern/Strategy_Pattern/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Behavioral_Pattern/Strategy_Pattern/out/production/Strategy_Pattern/Strategy_Pattern/Strategy_Pattern.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Behavioral Pattern.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mediator_Pattern/Mediator.java" beforeDir="false" afterPath="$PROJECT_DIR$/Mediator_Pattern/Mediator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Strategy_Pattern/Strategy_Pattern.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Strategy_Pattern/out/production/Strategy_Pattern/Strategy_Pattern/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Strategy_Pattern/out/production/Strategy_Pattern/Strategy_Pattern/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Strategy_Pattern/out/production/Strategy_Pattern/Strategy_Pattern/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Strategy_Pattern/out/production/Strategy_Pattern/Strategy_Pattern/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Strategy_Pattern/out/production/Strategy_Pattern/Strategy_Pattern/Addition.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Strategy_Pattern/out/production/Strategy_Pattern/Strategy_Pattern/Calculator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Strategy_Pattern/out/production/Strategy_Pattern/Strategy_Pattern/CalculatorOperation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Strategy_Pattern/out/production/Strategy_Pattern/Strategy_Pattern/Division.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Strategy_Pattern/out/production/Strategy_Pattern/Strategy_Pattern/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Strategy_Pattern/out/production/Strategy_Pattern/Strategy_Pattern/Multiplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Strategy_Pattern/out/production/Strategy_Pattern/Strategy_Pattern/Strategy_Pattern.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Strategy_Pattern/out/production/Strategy_Pattern/Strategy_Pattern/Substraction.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Template_Method/ConcreteClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/Template_Method/ConcreteClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Template_Method/MyView.java" beforeDir="false" afterPath="$PROJECT_DIR$/Template_Method/MyView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/Creational Patterns.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/Creational_Patterns.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/Converter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/ConverterManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/Creational Patterns.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/Creational_Patterns.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/Factory Method.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/Merger.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/PDFConverter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/PDFMerger.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/PDFToWordConverter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/WordConverter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/WordDocMerger.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/WordToPDFConverter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/abstract_factory/MotifScrollBar.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/abstract_factory/MotifWidgetFactory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/abstract_factory/MotifWindow.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/abstract_factory/PMScrollBar.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/abstract_factory/PMWIdgetFactory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/abstract_factory/PMWindow.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/abstract_factory/ScrollBar.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/abstract_factory/Widget.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/abstract_factory/WidgetFactory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/abstract_factory/WidgetMaker.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/abstract_factory/Window.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/abstract_factory/client.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/builder_pattern/BombedMazeGame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/builder_pattern/BombedWall.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/builder_pattern/CountingMazeBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/builder_pattern/Direction.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/builder_pattern/Door.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/builder_pattern/IMazeProperties.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/builder_pattern/Maze.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/builder_pattern/MazeBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/builder_pattern/MazeGame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/builder_pattern/Room.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/builder_pattern/RoomWithBomb.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/builder_pattern/StandardMazeBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/builder_pattern/Wall.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/builder_pattern/client.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/factory/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/factory/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/factory/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/factory/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/factory/factory_pattern.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/factory_Ex2/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/factory_Ex2/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/factory_Ex2/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/factory_Ex2/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/factory_Ex2/Factory Method.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/factory_pattern/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/factory_pattern/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/factory_pattern/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/factory_pattern/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/factory_pattern/BombedMazeGame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/factory_pattern/BombedWall.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/factory_pattern/Door.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/factory_pattern/DoorNeedingSpell.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/factory_pattern/EnchantedMazeGame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/factory_pattern/EnchantedRoom.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/factory_pattern/IMazeProperties.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/factory_pattern/Maze.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/factory_pattern/MazeGame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/factory_pattern/Room.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/factory_pattern/RoomWithBomb.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/factory_pattern/Wall.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/factory_pattern/client.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/factory_pattern/factory_pattern.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/singleton_pattern/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/singleton_pattern/MainWindow.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/singleton_pattern/PushButton.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Creational_Patterns/out/production/Creational_Patterns/singleton_pattern/Widgets.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../SE506: Design Pattern.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Structural_Pattern/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Structural_Pattern/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Structural_Pattern/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Structural_Pattern/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Structural_Pattern/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Structural_Pattern/Structural_Pattern.iml" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../.." />
+  </component>
+  <component name="ProjectId" id="2MfpfvUSBjevgModNHvCSrqkUpT" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "last_opened_file_path": "/home/fahad/Documents/IIT/IIT-LAB/5th Semester Labs/SE506: Design Pattern/Behavioral_Pattern/src"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="Strategy" type="Application" factoryName="Application">
+      <option name="ALTERNATIVE_JRE_PATH" value="jbr-17" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="Strategy_Pattern.Main" />
+      <module name="Behavioral_Pattern" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f75a1ae1-63a7-4de3-84f0-177929fd807e" name="Changes" comment="" />
+      <created>1678168597599</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1678168597599</updated>
+    </task>
+    <servers />
+  </component>
+</project>

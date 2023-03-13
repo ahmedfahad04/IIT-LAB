@@ -7,7 +7,7 @@ public class MyView extends View {
         System.out.println("Drawing MyView");
     }
 
-    // Becareful that, if you don't override the Template method (Display)
+    // Be careful that, if you don't override the Template method (Display)
     
     public static void main(String[] args) {
         View view = new MyView();

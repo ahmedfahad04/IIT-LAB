@@ -18,7 +18,7 @@ class ConcreteClass extends AbstractClass {
         return true;
     }
 
-    // Override the optional step to do something specific
+    // Override the optional step to take something specific
     protected void doSomethingOptional() {
         System.out.println("Doing something optional");
     }
