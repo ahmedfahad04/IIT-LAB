@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ItemListService } from '../item-list.service';
 
 @Component({
@@ -12,7 +13,8 @@ export class HomeComponent implements OnInit{
   // Service -> TS(Component) -> View (while showing the items)
   // View -> TS(Component) -> Service (while requesting an item)
 
-  constructor(private itemservice: ItemListService) { }
+  // service should be placed in Constructor [Dependency Injection]
+  constructor(private itemservice: ItemListService, private route: Router) { }
   
   fetched_items = this.itemservice.getItems();
 
@@ -40,5 +42,12 @@ export class HomeComponent implements OnInit{
     }
 
   }
+
+  updateItems(index: number): void {
+    this.route.navigate(['update']);
+    this.itemservice.setItemToBeSelected(index);
+  }
+
+  
   
 }

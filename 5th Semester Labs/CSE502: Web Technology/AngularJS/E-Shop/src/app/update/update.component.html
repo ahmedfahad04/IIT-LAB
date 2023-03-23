@@ -1,0 +1,43 @@
+
+
+<div class="container" style="display: flex; justify-content: center; align-items: center;">
+
+
+    <div class="input-group mb-3 shadow" style="justify-content: center;">
+
+        <p>Name: </p>
+        <div class="input-group mb-3">
+            <input type="text" name="name" [(ngModel)]='fetched_items.name' class="form-control" id="name" placeholder="Product Name" aria-describedby="basic-addon2"
+                style="margin: 10px 10px;">
+        </div>
+
+        <p>Price:</p>
+        <div class="input-group mb-3">
+            <input type="text" name="price" [(ngModel)]='fetched_items.price' class="form-control" placeholder="Price" id="price" aria-describedby="basic-addon2" style="margin: 10px 10px;"> 
+        </div>
+
+        <!-- <div class="input-group mb-3">
+            <button class="btn btn-outline-secondary" type="button" id="button-addon2" style="margin: 10px 10px;">Update Price</button>
+        </div> -->
+
+        <p>Quantity:</p>
+
+        <div class="input-group mb-3">
+            <input type="text" name="quant" [(ngModel)]='fetched_items.quantity' class="form-control" placeholder="Quantity" aria-describedby="basic-addon2"
+                style="margin: 10px 10px;">
+        </div>
+        <!-- 
+        <div class="input-group mb-3">
+            <button class="btn btn-outline-secondary" type="button" id="button-addon2" style="margin: 10px 10px;">Update Quantity</button>
+        </div> -->
+
+        
+
+        <div class="input-group mb-3">
+            <button class="btn btn-outline-secondary" type="button" id="button-addon2"
+                style="margin: 10px 10px;" (click)="saveUpdate()">Save</button>
+        </div>
+
+    </div>
+
+</div>

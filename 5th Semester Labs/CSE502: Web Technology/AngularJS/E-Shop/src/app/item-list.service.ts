@@ -4,9 +4,14 @@ import { Items } from './item';
 @Injectable({
   providedIn: 'root'
 })
+
 export class ItemListService {
 
+  // two component is connected with this service
+
   constructor() { }
+
+  itemToBeUpdated: Items = new Items();
 
   items: Items[] = [
     { id: 1, name: 'Iphone', price: 1000, quantity: 10 },
@@ -30,8 +35,6 @@ export class ItemListService {
       return false;
     }
 
-
-
     // for (let i = 0; i < this.items.length; i++) {
     //   if (i == index) {
     //     if (this.items[i].quantity > 0) {
@@ -41,4 +44,16 @@ export class ItemListService {
     // }
 
   }
+
+  setItemToBeSelected(index: number): void {
+    let item = this.items[index];
+    if(item != null ) {
+      this.itemToBeUpdated = item;
+    }
+  }
+
+  getItemToBeSelected(): any {
+    return this.itemToBeUpdated;
+  }
+  
 }

@@ -10,6 +10,13 @@
         >
             Buy
         </button>
+        <button 
+            *ngIf="item.price>0"
+            style="background-color: brown; color: antiquewhite; font-family: 'Kalpurush'; border-radius: 20px; width: 100px; cursor: pointer; margin-left: 10px"
+            (click)="updateItems(i)"
+        >
+            Update
+        </button>
     </li>
 
 </ul>
