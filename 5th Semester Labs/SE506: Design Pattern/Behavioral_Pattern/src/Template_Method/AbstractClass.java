@@ -2,9 +2,10 @@ package Template_Method;
 
 /*
 
-In the Template Method pattern, a "hook" is a method declared in the abstract base class, but only given an empty or default implementation. Subclasses may choose to override the hook method to provide additional behavior, but it is not required.
-
-Here's an example of the Template Method pattern in Java that includes a hook:
+In the Template Method pattern, a "hook" is a method declared in the abstract base class,
+but only given an empty or default implementation. Subclasses may choose to override the
+hook method to provide additional behavior, but it is not required. Here's an example of
+the Template Method pattern in Java that includes a hook:
 
 */
 abstract class AbstractClass {

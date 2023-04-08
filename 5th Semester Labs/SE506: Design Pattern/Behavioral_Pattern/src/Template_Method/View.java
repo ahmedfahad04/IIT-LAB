@@ -7,8 +7,6 @@ public abstract class View {
         
         SetFocus();
 
-        // This is the hook method
-        // That perform the actual drawing
         DoDisplay();
 
         ResetFocus();
@@ -22,13 +20,12 @@ public abstract class View {
     }
 
     // Concrete Operation
-    // as it's implementation is done in the base class
+    // as it's implemResetFocusentation is done in the base class
     protected void ResetFocus() {
         System.out.println("Resetting focus");
     } 
     
-    // This is the hook method, which has a default implementation
-    // or it might not have any implementation at all
+    
     public abstract void DoDisplay();
 
 
