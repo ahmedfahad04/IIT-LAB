@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Behavioral Pattern.iml" filepath="$PROJECT_DIR$/Behavioral Pattern.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Factory Method.iml" filepath="$PROJECT_DIR$/Factory Method.iml" />
     </modules>
   </component>
 </project>

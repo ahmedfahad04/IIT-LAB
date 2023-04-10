@@ -48,7 +48,5 @@ public class StandardMazeBuilder extends MazeBuilder {
     public Maze GetMaze() {
         return currentMaze;
     }
-
-    
     
 }
