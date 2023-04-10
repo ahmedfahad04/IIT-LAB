@@ -1,7 +1,5 @@
 package abstract_factory;
 
-import builder_pattern.MazeBuilder;
-
 public class client {
     public static void main(String[] args) {
 

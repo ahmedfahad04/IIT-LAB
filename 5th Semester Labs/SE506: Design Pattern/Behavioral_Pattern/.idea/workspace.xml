@@ -25,15 +25,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/fahad/Documents/IIT/Behavioral_Pattern&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "/home/fahad/Documents/IIT/Private_5th_Semester_Repo/Desing Pattern/E-Shop",
+    "settings.editor.selected.configurable": "proofread"
   }
-}</component>
-  <component name="RunManager" selected="Application.client">
+}]]></component>
+  <component name="RunManager" selected="Application.MainApp">
     <configuration name="Chain_of_Responsibility.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Chain_of_Responsibility.Main" />
       <module name="Behavioral Pattern" />
@@ -47,12 +47,38 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Strategy_Pattern.Main" />
+    <configuration name="MainApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Chain_of_Responsibility_2.com.handlers.MainApp" />
       <module name="Behavioral Pattern" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="Strategy_Pattern.*" />
+          <option name="PATTERN" value="Chain_of_Responsibility_2.com.handlers.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main.Main" />
+      <module name="Behavioral Pattern" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Main.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Observer_Pattern_2.Main.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Observer_Pattern_2.Main.Main" />
+      <module name="Behavioral Pattern" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Observer_Pattern_2.Main.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -75,9 +101,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.MainApp" />
+        <item itemvalue="Application.Observer_Pattern_2.Main.Main" />
+        <item itemvalue="Application.Main.Main" />
         <item itemvalue="Application.client" />
         <item itemvalue="Application.Chain_of_Responsibility.Main" />
-        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>

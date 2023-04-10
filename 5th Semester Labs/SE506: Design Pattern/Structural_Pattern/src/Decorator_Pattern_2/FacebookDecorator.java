@@ -31,6 +31,7 @@ public class FacebookDecorator extends BaseNotifierDecorator {
         super(wrapped);
     }
 
+    @Override
     public void send(String msg) {
         super.send(msg);
         String fbName = databaseService.getFBNameFromUsername(getUsername());

@@ -1,6 +1,6 @@
 package Chain_of_Responsibility;
 
-public class HelpHandler {
+public abstract class HelpHandler {
 
     private HelpHandler successsor;
     Topic.Topics t = null;
@@ -21,7 +21,6 @@ public class HelpHandler {
     public void HandleHelp() {
         if (successsor != null) {
             successsor.HandleHelp();
-            return;
         }
     };
 

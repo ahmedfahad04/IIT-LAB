@@ -1,6 +1,6 @@
 package Decorator_Pattern;
 
-public class ScrollDecorator extends Decorator{
+public class ScrollDecorator extends BaseDecorator {
 
     ScrollDecorator(VisualComponent visualComponent) {
         super(visualComponent);
