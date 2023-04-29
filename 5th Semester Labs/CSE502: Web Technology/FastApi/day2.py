@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from model import Item
 import db 
 
+# 
 app = FastAPI()
 
 @app.on_event('startup')
