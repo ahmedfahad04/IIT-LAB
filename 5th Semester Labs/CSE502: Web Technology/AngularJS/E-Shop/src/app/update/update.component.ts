@@ -9,11 +9,11 @@ import { ItemListService } from '../item-list.service';
   styleUrls: ['./update.component.css']
 })
 export class UpdateComponent implements OnInit {
-    
+
   constructor(private itemservice: ItemListService, private route: Router) { }
-  
+
   fetched_items = this.itemservice.getItemToBeSelected();
-  
+
   ngOnInit(): void {
     throw new Error('Method not implemented.');
   }

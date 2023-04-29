@@ -29,7 +29,7 @@ export class ItemListService {
     item_quant = this.items[index].quantity;
 
     if (this.items[index].quantity > 0) {
-      this.items[index].quantity = item_quant-1;
+      this.items[index].quantity = item_quant - 1;
       return true;
     } else {
       return false;
@@ -47,7 +47,7 @@ export class ItemListService {
 
   setItemToBeSelected(index: number): void {
     let item = this.items[index];
-    if(item != null ) {
+    if (item != null) {
       this.itemToBeUpdated = item;
     }
   }
@@ -55,5 +55,5 @@ export class ItemListService {
   getItemToBeSelected(): any {
     return this.itemToBeUpdated;
   }
-  
+
 }

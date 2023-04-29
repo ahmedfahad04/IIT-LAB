@@ -14,7 +14,6 @@ import { UpdateComponent } from './update/update.component';
     HomeComponent,
     NavbarComponent,
     UpdateComponent,
-    
   ],
   imports: [
     BrowserModule,
