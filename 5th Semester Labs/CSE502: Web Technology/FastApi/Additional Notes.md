@@ -79,3 +79,25 @@ async def async_endpoint():
 ```
 
 In this example, the async_endpoint function uses the create_task function from the asyncio module to create a new task that executes the my_task coroutine asynchronously. The function returns a JSON response to the client indicating that the task has started. The my_task coroutine uses the await keyword to pause execution for one second using the asyncio.sleep function, then prints a message indicating that the task has completed.
+
+
+# Concurrency vs Parallelism 
+Concurrency and Parallelism are both techniques used to improve the performance and responsiveness of applications, but they differ in how they execute tasks. Concurrency allows for overlapping execution of tasks, while parallelism allows for simultaneous execution of tasks. The choice between concurrency and parallelism depends on the nature of the tasks being performed and the resources available for execution.
+
+<i>A real life example:</i>
+
+Imagine you are a chef in a busy restaurant. You have to prepare many dishes at the same time to serve all the customers. You have a stove with four burners, and you can only cook one dish on each burner at a time.
+
+Concurrency is like having one chef and four different dishes cooking on each burner at different times. For example, you might start cooking pasta on one burner, then switch to cooking vegetables on another burner while the pasta is boiling. You keep switching between the burners to make sure all the dishes are cooking at the same time.
+
+Parallelism, on the other hand, is like having four chefs, each with their own stove and ingredients, cooking the same dishes at the same time. Each chef can cook a different dish simultaneously, and all the dishes will be ready at the same time.
+
+Concurrency allows the chef to handle multiple tasks simultaneously, while parallelism allows multiple chefs to handle the same tasks simultaneously. Both techniques can improve the efficiency and speed of cooking, just as they can improve the performance of computer programs.
+
+
+# Is Async/Await Concurrent or Parallel?
+
+Async/await is a **concurrent programming model** that allows for non-blocking I/O operations. It enables a **single thread** to handle multiple tasks simultaneously by switching between them when they are blocked, rather than waiting for them to complete.
+
+Async/await is not inherently parallel, as it does not involve multiple threads or processors executing tasks simultaneously. However, it can be used in conjunction with parallel programming models, such as multiprocessing or multithreading, to achieve both concurrency and parallelism. Overall, async/await is a powerful tool for improving the performance and responsiveness of applications that rely heavily on I/O operations.
+
