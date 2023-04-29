@@ -2,7 +2,7 @@ package Mediator_Pattern;
 
 public abstract class Widget {
 
-    Mediator window = new MainWindow();
+    Mediator mediator = new MainWindow();
 
     abstract void execute();
 }

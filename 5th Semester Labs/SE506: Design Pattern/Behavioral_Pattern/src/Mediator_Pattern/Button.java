@@ -16,6 +16,6 @@ public class Button extends Widget{
 
     @Override
     void execute() {
-        window.notifyChanges(this);
+        mediator.notifyChanges(this);
     }
 }

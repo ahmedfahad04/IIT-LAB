@@ -18,6 +18,6 @@ public class TextBox extends Widget{
 
     @Override
     public void execute() {
-        window.notifyChanges(this);
+        mediator.notifyChanges(this);
     }
 }

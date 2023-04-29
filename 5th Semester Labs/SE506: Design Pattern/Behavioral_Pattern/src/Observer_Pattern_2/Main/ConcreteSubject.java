@@ -8,7 +8,7 @@ import static java.nio.file.StandardWatchEventKinds.*;
 
 public class ConcreteSubject {
 
-    Subject _subject; // we can also use the references here instead of extneding subject class
+    Subject _subject; // we can also use the references here instead of extending subject class
 
     private final String fileDirectory;
 
