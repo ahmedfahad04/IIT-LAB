@@ -13,7 +13,7 @@ public class CarBuilder implements Builder {
     }
 
 
-    public Car build() {
+    public Car getCar() {
         return this.newCar;
     }
 

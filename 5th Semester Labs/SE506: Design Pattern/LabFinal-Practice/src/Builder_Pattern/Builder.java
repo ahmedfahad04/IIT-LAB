@@ -6,5 +6,5 @@ public interface Builder {
     Builder carColor(String color);
     Builder carModel(String model);
 
-    Car build();
+    Car getCar();
 }

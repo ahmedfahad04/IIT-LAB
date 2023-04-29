@@ -2,11 +2,12 @@ package Builder_Pattern;
 
 public class Main {
     public static void main(String[] args) {
-        CarBuilder newCar = new CarBuilder();
-        Director engineer = new Director(newCar);
-        engineer.buildCorolla(newCar);
+        CarBuilder newCarBuilder = new CarBuilder();
+        Director engineer = new Director(newCarBuilder);
+        engineer.buildCorolla();
 
-        Car car = newCar.build();
+
+        Car car = newCarBuilder.getCar();
         System.out.println(car);
 
     }

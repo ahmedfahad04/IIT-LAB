@@ -8,5 +8,4 @@ public class Client {
         Packer pack = beefRestaurant.packBurger();
     }
 
-
 }
