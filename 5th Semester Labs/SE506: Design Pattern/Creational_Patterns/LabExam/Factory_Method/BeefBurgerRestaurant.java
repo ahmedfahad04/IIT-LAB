@@ -1,9 +1,9 @@
 package LabExam.Factory_Method;
 
-public class BeefBurger extends Burger {
+public class BeefBurgerRestaurant extends Restaurant {
 
     @Override
-    public void createBurger() {
-
+    public Burger createBurger() {
+        return new BeefBurger();
     }
 }

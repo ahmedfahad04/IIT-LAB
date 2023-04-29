@@ -2,6 +2,8 @@ package builder_pattern;
 
 public class MazeGame {
 
+    // Director Class
+
     public Maze createMaze(MazeBuilder builder) {
         builder.BuildMaze();
         builder.BuildRoom(1);
