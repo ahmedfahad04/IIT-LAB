@@ -1,7 +1,6 @@
 from databases import Database
-import sqlalchemy
 
-from model import Item
+from FastAPI_Tuts.model import Item
 
 # establish connection with mysql
 database = Database("mysql+aiomysql://root:12345678@localhost:3306/practice")

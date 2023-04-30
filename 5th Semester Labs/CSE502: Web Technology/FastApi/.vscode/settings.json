@@ -1,0 +1,6 @@
+{
+    "python.analysis.extraPaths": [
+        "./FastAPI Tuts",
+        "./FastAPI_Tuts"
+    ]
+}

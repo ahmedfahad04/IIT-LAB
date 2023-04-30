@@ -1,29 +1,31 @@
 from fastapi import FastAPI
-from model import Item
-import db 
+from FastAPI_Tuts.model import Item
+import db_model 
 
-# 
+
 app = FastAPI()
 
 @app.on_event('startup')
 async def connect_with_db():
-    await db.connect_db()
+    await db_model.connect_db()
 
 
 @app.post('/items/', response_model=Item)
 async def create_item(item: Item):
-    await db.insert(item)
+    await db_model.insert(item)
     return item
 
 @app.delete('/items/{id}')
 async def delete_item(id: int):
-    await db.delete(id)
+    await db_model.delete(id)
     return {"message": "item deleted"}
     
-@app.put('/items/', response_model=Item)
+# here response model is of no use
+@app.put('/items/')
 async def update_item(item: Item):
-    await db.update(item)
+    await db_model.update(item)
     return {"message": "item updated"}
+
 
 
 
