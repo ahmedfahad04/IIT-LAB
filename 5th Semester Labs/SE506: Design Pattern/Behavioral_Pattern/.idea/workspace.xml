@@ -5,8 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="db4ff996-b685-4a01-857c-22285ed8fc63" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../CSE502: Web Technology/FastApi/day2.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../CSE502: Web Technology/FastApi/day2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../CSE502: Web Technology/FastApi/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../CSE502: Web Technology/FastApi/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CSE502: Web Technology/AngularJS/E-Shop/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../CSE502: Web Technology/AngularJS/E-Shop/src/app/app.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CSE502: Web Technology/FastApi/FastAPI_Tuts/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../CSE502: Web Technology/FastApi/FastAPI_Tuts/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CSE502: Web Technology/FastApi/FastAPI_Tuts/path_parameters.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../CSE502: Web Technology/FastApi/FastAPI_Tuts/path_parameters.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CSE502: Web Technology/FastApi/FastAPI_Tuts/query_parameters.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../CSE502: Web Technology/FastApi/FastAPI_Tuts/query_parameters.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CSE502: Web Technology/FastApi/FastAPI_Tuts/request_body.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../CSE502: Web Technology/FastApi/FastAPI_Tuts/request_body.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CSE502: Web Technology/Javascript/class10.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CSE502: Web Technology/Javascript/class10_2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CSE502: Web Technology/Javascript/class7.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CSE502: Web Technology/Javascript/class8.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CSE502: Web Technology/Javascript/class8_2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CSE502: Web Technology/Javascript/class9.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CSE502: Web Technology/Javascript/task1.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CSE502: Web Technology/Javascript/task2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CSE502: Web Technology/Javascript/toh_40.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CSE502: Web Technology/Javascript/toh_60.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CSE502: Web Technology/Javascript/towerOfHanoi.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CSE502: Web Technology/Javascript/towerofhanoi.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CSE502: Web Technology/PHP/basic.php" beforeDir="false" afterPath="$PROJECT_DIR$/../../CSE502: Web Technology/PHP/basic.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +52,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/home/fahad/Documents/IIT/IIT-LAB/5th Semester Labs/SE506: Design Pattern/Behavioral_Pattern",
+    "last_opened_file_path": "/home/fahad/Documents/IIT/IIT-LAB/5th Semester Labs/SE506: Design Pattern/LabFinal-Practice",
     "settings.editor.selected.configurable": "proofread"
   }
 }]]></component>

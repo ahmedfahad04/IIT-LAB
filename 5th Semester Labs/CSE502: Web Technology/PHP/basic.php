@@ -51,6 +51,10 @@ $y = array("c" => "blue", "d" => "yellow");
 
 var_dump($x === $y);
 
+while(-1){
+  echo 'Fun;;;';
+}
+
 /*
 * Constant: define("PI", 3.1416);
 * Global: $GLOBALS['x'] = 8;

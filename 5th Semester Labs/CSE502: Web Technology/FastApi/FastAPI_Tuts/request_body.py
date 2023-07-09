@@ -31,7 +31,7 @@ async def create_item(item: Item):
     if item.tax:
         price_with_tax = item.price + item.tax
         item_dict.update({"price_with_tax": price_with_tax})
-        print(item_dict)
+       
     return item_dict
 
 # Use of Body instead of BaseModel
@@ -58,7 +58,7 @@ async def add_new_item(item_id: int, item: Item):
 # ?------------------------------------------------------
 
 # =>3
-# Request Body + Path +Query Parameters
+# Request Body + Path + Query Parameters
 
 @app.post("/new_items/{new_item_id}")
 async def add_another_item(new_item_id: int, item: Item, q: Union[str, None] = None):

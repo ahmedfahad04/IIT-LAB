@@ -7,5 +7,4 @@ public class Client {
         Burger burger =  beefRestaurant.createBurger();
         Packer pack = beefRestaurant.packBurger();
     }
-
 }

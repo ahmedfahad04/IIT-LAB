@@ -7,7 +7,9 @@ app = FastAPI()
 
 
 # => 1
-# path operation with PATH PARAMETERS (item_id, q)
+# path operation with PATH PARAMETERS (item_id)
+
+
 @app.get("/items/{item_id}")
 async def read_item(item_id):
     return {
@@ -55,6 +57,8 @@ async def read_users():
     return ["Rick", "Morty"]
 
 # it won't execute
+
+
 @app.get("/users")
 async def read_users2():
     return ["Bean", "Elfo"]
@@ -91,4 +95,3 @@ async def get_model(model_name: ModelName):
 @app.get("/files/{file_path:path}")
 async def read_file(file_path: str):
     return {"file_path": file_path}
-

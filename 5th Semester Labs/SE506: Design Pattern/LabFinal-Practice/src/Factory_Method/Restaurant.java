@@ -1,5 +1,6 @@
 package Factory_Method;
 
+// CREATOR CLASS
 public abstract class Restaurant {
     public Burger orderBurger() {
         Burger burger = createBurger();

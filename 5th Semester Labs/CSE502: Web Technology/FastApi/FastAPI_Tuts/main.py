@@ -69,13 +69,6 @@ if you have same link with different type of data
 then the first one will be counted, later one
 will be ignored
 
-@app.get("/items/{item_id}/{q}")
-async def read_item(item_id: int, q: int):
-    return {
-        "item_id": item_id, "q": q
-    }
-
-confusing method age use korbo
 '''
 
 '''

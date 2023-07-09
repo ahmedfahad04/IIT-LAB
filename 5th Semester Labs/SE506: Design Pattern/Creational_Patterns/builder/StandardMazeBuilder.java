@@ -16,7 +16,6 @@ public class StandardMazeBuilder extends MazeBuilder {
     @Override
     public void BuildMaze() {
         currentMaze = new Maze();
-        
     }
 
     @Override

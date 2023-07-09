@@ -25,7 +25,7 @@ async def read_item(skip: int = 0, limit: int = 2):
 # ?------------------------------------------------------
 
 # =>2
-# Optional Parameters (name will be optional and will be None by default. This params start with ?)
+# Optional Parameters (quant will be optional and will be None by default. This params start with ?)
 # Union[str, None] is equivalent to str | None
 
 @app.get("/prod/")
