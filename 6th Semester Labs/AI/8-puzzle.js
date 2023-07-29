@@ -32,6 +32,14 @@ class Frontier {
         return this.frontier.pop();
     }
 
+    front() {
+        return this.frontier.shift();
+    }
+
+    back() {
+        return this.frontier.unshift();
+    }
+
     areEqualStates(state1, state2) {
         for (let i = 0; i < state1.length; i++) {
             if (state1[i] !== state2) return false;
@@ -50,32 +58,29 @@ class Frontier {
 }
 
 // inherit Frontier
-class QueueFrontier {
-
-    constructor(Frontier) { }    // inherit
-
+class QueueFrontier extends Frontier {
+    // inherit
+  
     pop() {
-        if (this.isEmpty) {
-            throw new Error("Empty Frontier");
-        } else {
-            const node = this.frontier[0];
-            this.frontier = this.frontier.slice(1);
-            return node;
-        }
+      if (this.isEmpty()) {
+        throw new Error("Empty Frontier");
+      } else {
+        const node = this.frontier[0];
+        this.frontier = this.frontier.slice(1);
+        return node;
+      }
     }
-
 }
-
+  
 const explored = new Set(); // Class-level property to store explored states as a Set
 
 class Puzzle {
-
-    static countExploredState = 0;
 
     constructor(start, startIndex, goal, goalIndex) {
         this.start = [start, startIndex];
         this.goal = [goal, goalIndex];
         this.solution = null;
+        this.countExploredState = 0;
     }
 
     neighbors(state) {
@@ -117,6 +122,7 @@ class Puzzle {
         const solution = this.solution || null;
         console.log("Start State:\n", this.start[0], "\n");
         console.log("Goal State:\n", this.goal[0], "\n");
+        console.log("Iteration: ", this.countExploredState)
         console.log("Solution:\n ");
 
         if (solution) {
@@ -131,7 +137,7 @@ class Puzzle {
         } else {
             console.log("No solution found.");
         }
-        
+
         console.log("Goal Reached!!");
 
     }
@@ -167,31 +173,23 @@ class Puzzle {
     }
 
     doesNotContainState(state) {
-        let containsState = false;
-        explored.forEach((st) => {
-            if (JSON.stringify(st[0]) === JSON.stringify(state[0])) {
-                containsState = true;
-            }
-        });
-
-        return !containsState;
+        return !explored.has(JSON.stringify(state[0]));
     }
 
     // Method to find and return the solution
     findSolution() {
-
-
         const startNode = new Node(this.start);
-        const frontier = [startNode];
+        const frontier = new QueueFrontier();
+        frontier.push(startNode);
 
-        while (frontier.length > 0) {
-
-            if (frontier.length == 0) {
-                throw new Error('No Solution Exists');
+        while (true) {
+            if (frontier.isEmpty()) {
+                throw new Error("No Solution Exists");
             }
 
-            const node = frontier.shift(); // Get the first node from the frontier
-            // 
+            const node = frontier.pop();
+            this.countExploredState += 1; // Increment the count of explored states
+            this.addToExplored(node.state);
 
             if (this.isGoalState(node.state)) {
                 this.solution = this.getPath(node);
@@ -199,30 +197,24 @@ class Puzzle {
             }
 
             for (const [action, state] of this.neighbors(node.state)) {
-                if (!frontier.some((n) => JSON.stringify(n.state[0]) === JSON.stringify(state[0])) && this.doesNotContainState(state)) {
+                if (!frontier.containState(state) && this.doesNotContainState(state)) {
                     const child = new Node(state, node, action);
                     frontier.push(child);
                 }
             }
-
-            this.addToExplored(node.state);
         }
     }
+
 
 }
 
 // Example input
-const startState = [[2, 8, 1], [0, 4, 3], [7, 6, 5]];
-const startIndex = [1, 0]; // The index of the empty cell (0) in the start state
+const startState = [[0, 2, 3], [1, 4, 5], [8, 7, 6]];
+const startIndex = [0, 0];
 
 const goalState = [[1, 2, 3], [8, 0, 4], [7, 6, 5]];
-const goalIndex = [1, 1]; // The index of the empty cell (0) in the goal state
+const goalIndex = [1, 1];
 
-// Create an instance of the Puzzle class
 const myPuzzle = new Puzzle(startState, startIndex, goalState, goalIndex);
-
-// Find the solution
 myPuzzle.findSolution();
-
-// Print the puzzle information and solution
 myPuzzle.print();
