@@ -1,3 +1,6 @@
+// index.js
+const { isSolvable } = require('./solvability');
+
 class Node {
     constructor(state = null, parent = null, action = null) {
         this.state = state;
@@ -76,16 +79,29 @@ const explored = new Set(); // Class-level property to store explored states as 
 
 class Puzzle {
 
-    constructor(start, startIndex, goal, goalIndex) {
-        this.start = [start, startIndex];
-        this.goal = [goal, goalIndex];
+    constructor(start, goal) {
+        this.start = [start, this.findIndex(start)];
+        this.goal = [goal, this.findIndex(goal)];
         this.solution = null;
         this.countExploredState = 0;
+    }
+
+    findIndex(state) {
+        for(let i=0; i<state.length; i++) {
+            for (let j=0; j<state[i].length; j++)
+            {
+                if (state[i][j] === 0) {
+                    return [i, j];
+                }
+            }
+        }    
     }
 
     neighbors(state) {
         const [matrix, [row, col]] = state;
         const results = [];
+
+        console.log("initial: " + [row, col])
 
         if (row > 0) {
             const mat1 = JSON.parse(JSON.stringify(matrix)); // Create a deep copy of the matrix otherwise would create a shallow copy, and modifications to mat1 would also affect the original mat
@@ -199,6 +215,7 @@ class Puzzle {
             for (const [action, state] of this.neighbors(node.state)) {
                 if (!frontier.containState(state) && this.doesNotContainState(state)) {
                     const child = new Node(state, node, action);
+                    console.log("ST: " + child.state + " -> " + this.countExploredState);
                     frontier.push(child);
                 }
             }
@@ -208,13 +225,17 @@ class Puzzle {
 
 }
 
+
+
+// test solvability 
+// let checkSolvability = isSolvable([[0, 2, 3], [1, 4, 5], [8, 7, 6]]);
+// console.log("Is it Solvable? ", checkSolvability);
+
 // Example input
-const startState = [[0, 2, 3], [1, 4, 5], [8, 7, 6]];
-const startIndex = [0, 0];
+// const startState = [[0, 2, 3], [1, 4, 5], [8, 7, 6]];
+const startState = [[1,2,3], [4,5,6], [0,7,8]];
+const goalState = [[1,2,3], [4,5,6], [7,8,0]];
 
-const goalState = [[1, 2, 3], [8, 0, 4], [7, 6, 5]];
-const goalIndex = [1, 1];
-
-const myPuzzle = new Puzzle(startState, startIndex, goalState, goalIndex);
+const myPuzzle = new Puzzle(startState, goalState);
 myPuzzle.findSolution();
 myPuzzle.print();

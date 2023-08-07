@@ -29,11 +29,11 @@ function isSolvable(puzzle)
 
 // Driver code
 
-// Value 0 is used for empty space
-puzzle = [[8, 3, 5], [4, 1, 6], [2, 7, 0]] ;
-if(isSolvable(puzzle))
-	console.log("Solvable");
-else
-	console.log("Not Solvable");
+// // Value 0 is used for empty space
+// puzzle = [[8, 3, 5], [4, 1, 6], [2, 7, 0]] ;
+// if(isSolvable(puzzle))
+// 	console.log("Solvable");
+// else
+// 	console.log("Not Solvable");
 
-
+module.exports = {isSolvable}
