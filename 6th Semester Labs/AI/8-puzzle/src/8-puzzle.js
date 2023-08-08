@@ -225,8 +225,6 @@ class Puzzle {
 
 }
 
-
-
 // test solvability 
 // let checkSolvability = isSolvable([[0, 2, 3], [1, 4, 5], [8, 7, 6]]);
 // console.log("Is it Solvable? ", checkSolvability);

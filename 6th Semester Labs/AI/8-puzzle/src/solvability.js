@@ -8,7 +8,7 @@ function getInvCount(arr)
 
     for(let i=0; i<9; i++){
         for(let j=i+1; j<9; j++){
-            if(narr[i] > narr[j] && narr[j] != 0){
+            if(narr[i] > narr[j] && narr[j] !== null){
                 inv_count++;
                 console.log(narr[i], '>' , narr[j])
             }
@@ -20,11 +20,12 @@ function getInvCount(arr)
 // if given 8 puzzle is solvable.
 function isSolvable(puzzle)
 {
+
 	// Count inversions in given 8 puzzle
 	let invCount = getInvCount(puzzle);
     console.log("INV COUNT: ", invCount)
 	// return true if inversion count is even.
-	return (invCount % 2 == 0);
+	return (invCount % 2 === 0);
 }
 
 // Driver code
