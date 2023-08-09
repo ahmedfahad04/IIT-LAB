@@ -67,7 +67,7 @@ function Board() {
       newTiles.push(row);
     }
 
-    console.log(newTiles);
+    console.log("new: ", newTiles);
     setTiles(newTiles);
   }
 
@@ -96,15 +96,15 @@ function Board() {
         newTiles.push(row);
       }
 
-      console.log("NEW: ", newTiles);
-      console.log("GOAL: ", goal);
       const puzzle = new Puzzle(newTiles, goal);
       puzzle.findSolution();
       solution = puzzle.print();
     }
 
     console.log("GOAL: ", solution);
-
+    if (solution === undefined) {
+      setSolvable(false);
+    }
   }
 
   return (
