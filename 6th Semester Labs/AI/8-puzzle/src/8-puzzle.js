@@ -77,7 +77,7 @@ class QueueFrontier extends Frontier {
   
 const explored = new Set(); // Class-level property to store explored states as a Set
 
-class Puzzle {
+export class Puzzle {
 
     constructor(start, goal) {
         this.start = [start, this.findIndex(start)];
@@ -152,6 +152,7 @@ class Puzzle {
                     console.log(item);
                 }
             }
+            return solution[1];
         } else {
             console.log("No solution found.");
         }
@@ -202,12 +203,17 @@ class Puzzle {
 
         while (true) {
             if (frontier.isEmpty()) {
-                throw new Error("No Solution Exists");
+                return "No Solution found"
             }
 
             const node = frontier.pop();
             this.countExploredState += 1; // Increment the count of explored states
             this.addToExplored(node.state);
+
+            if(this.countExploredState > 1000) {
+                console.log('No solution found within 1000 levels')
+                return "No Solution found";
+            }
 
             if (this.isGoalState(node.state)) {
                 this.solution = this.getPath(node);
@@ -232,9 +238,9 @@ class Puzzle {
 // console.log("Is it Solvable? ", checkSolvability);
 
 // Example input
-const startState = [[0, 2, 3], [1, 4, 5], [8, 7, 6]];
-const goalState = [[1,2,3], [8,0,4], [7,6,5]];
+// const startState = [[0, 2, 3], [1, 4, 5], [8, 7, 6]];
+// const goalState = [[1,2,3], [8,0,4], [7,6,5]];
 
-const myPuzzle = new Puzzle(startState, goalState);
-myPuzzle.findSolution();
-myPuzzle.print();
+// const myPuzzle = new Puzzle(startState, goalState);
+// myPuzzle.findSolution();
+// myPuzzle.print();

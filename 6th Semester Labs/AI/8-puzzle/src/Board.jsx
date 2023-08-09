@@ -79,10 +79,12 @@ function Board() {
       [0, 7, 8],
     ];
 
+    let solution = [];
+
     const ret = isSolvable(tiles);
     setSolvable(ret);
 
-    if (isSolvable) {
+    if (ret) {
       // convert tiles to array
       const newTiles = [];
       for (let i = 0; i < GRID_SIZE; i++) {
@@ -96,10 +98,13 @@ function Board() {
 
       console.log("NEW: ", newTiles);
       console.log("GOAL: ", goal);
-      const puzzle = new Puzzle(tiles, goal);
+      const puzzle = new Puzzle(newTiles, goal);
       puzzle.findSolution();
-      puzzle.print();
+      solution = puzzle.print();
     }
+
+    console.log("GOAL: ", solution);
+
   }
 
   return (
