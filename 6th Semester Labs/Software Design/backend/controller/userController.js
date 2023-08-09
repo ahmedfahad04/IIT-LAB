@@ -4,20 +4,19 @@ const router = express.Router();
 
 // interaction with model 
 const registration = (req, res) => {
-    const { name, password, email, phone } = req.body;
     console.log(req.body)
 
     const newUser = new User({
-        name: name,
-        password: password,
-        email: email,
-        phone: phone    
+        name: req.body.name,
+        password: req.body.password,
+        email: req.body.email,
+        phone: req.body.phone    
     })
 
     newUser.save()
     .then((user) => {
         res.json({
-            message: 'User Created Successfully'
+            message: 'User Created Successfully',
         })
     })
     .catch((err) => {
@@ -27,8 +26,22 @@ const registration = (req, res) => {
     });
 }
 
+const userData = (req, res) => {
+
+    User.find()
+      .then((response) => {
+        res.json(response)
+      })
+      .catch((error) => {
+        res.json({
+          message: 'An error occurred! Post showcasing failed!',
+        });
+      });
+
+}
 // process the request using routes
-router.post('/register', registration)
+router.post('/reg', registration);
+router.get('/all', userData);
 
 // export router 
 module.exports = router;

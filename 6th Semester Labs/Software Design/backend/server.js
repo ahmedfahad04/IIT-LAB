@@ -26,4 +26,4 @@ app.listen(PORT, () => {console.log(`Listening on port ${PORT}`)});
 app.use(cors());
 
 // routers
-app.route('/api/user', userRoutes)
+app.use('/api/users', userRoutes)
