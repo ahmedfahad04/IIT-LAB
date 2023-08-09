@@ -236,6 +236,5 @@ const startState = [[0, 2, 3], [1, 4, 5], [8, 7, 6]];
 const goalState = [[1,2,3], [8,0,4], [7,6,5]];
 
 const myPuzzle = new Puzzle(startState, goalState);
-
 myPuzzle.findSolution();
 myPuzzle.print();
