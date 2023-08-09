@@ -98,6 +98,8 @@ class Puzzle {
     }
 
     neighbors(state) {
+        console.log("STATE: " + JSON.stringify(state));
+
         const [matrix, [row, col]] = state;
         const results = [];
 
@@ -230,8 +232,8 @@ class Puzzle {
 // console.log("Is it Solvable? ", checkSolvability);
 
 // Example input
-const startState = [[1,2,3], [4,5,6], [0,7,8]];
-const goalState = [[1,2,3], [4,5,6], [7,8,0]];
+const startState = [[0, 2, 3], [1, 4, 5], [8, 7, 6]];
+const goalState = [[1,2,3], [8,0,4], [7,6,5]];
 
 const myPuzzle = new Puzzle(startState, goalState);
 myPuzzle.findSolution();

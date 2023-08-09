@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Puzzle } from "./8-puzzle";
 import "./App.css";
 import { isSolvable } from "./solvability";
 
@@ -71,9 +72,34 @@ function Board() {
   }
 
   function solve() {
-    console.log(tiles);
+    console.log("Initial: ", tiles);
+    const goal = [
+      [1, 2, 3],
+      [4, 5, 6],
+      [0, 7, 8],
+    ];
+
     const ret = isSolvable(tiles);
     setSolvable(ret);
+
+    if (isSolvable) {
+      // convert tiles to array
+      const newTiles = [];
+      for (let i = 0; i < GRID_SIZE; i++) {
+        const row = [];
+        for (let j = 0; j < GRID_SIZE; j++) {
+          if (tiles[i][j] === null) row.push(0);
+          else row.push(tiles[i][j]);
+        }
+        newTiles.push(row);
+      }
+
+      console.log("NEW: ", newTiles);
+      console.log("GOAL: ", goal);
+      const puzzle = new Puzzle(tiles, goal);
+      puzzle.findSolution();
+      puzzle.print();
+    }
   }
 
   return (
@@ -117,7 +143,7 @@ function Board() {
           solvable ? "text-green-600" : "text-red-600"
         }`}
       >
-        {solvable ? "Solvable" : "Not Solvable"}
+        {solvable ? "Solving..." : "Not Solvable"}
       </div>
     </div>
   );
