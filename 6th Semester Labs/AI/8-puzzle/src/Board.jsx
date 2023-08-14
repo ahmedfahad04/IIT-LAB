@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Puzzle } from "./8-puzzle";
 import "./App.css";
 import { isSolvable } from "./solvability";
@@ -8,21 +8,35 @@ const GRID_SIZE = 3;
 function Board() {
   const [tiles, setTiles] = useState(createInitialTiles([]));
   const [solvable, setSolvable] = useState(false);
+  const [solution, setSolution] = useState([]);
 
   function createInitialTiles(initialTiles) {
     // const initialTiles = [];
 
     for (let i = 0; i < GRID_SIZE; i++) {
       const row = [];
+
       for (let j = 0; j < GRID_SIZE; j++) {
         const num = i * GRID_SIZE + j + 1;
         row.push(num === GRID_SIZE * GRID_SIZE ? null : num);
       }
+
       initialTiles.push(row);
     }
 
     console.log("ROWS: " + initialTiles);
     return initialTiles;
+  }
+
+  function changeState(state) {
+    const newTiles = [...tiles];
+    for (let i = 0; i < GRID_SIZE; i++) {
+      for (let j = 0; j < GRID_SIZE; j++) {
+        if (state[i][j] === 0) newTiles[i][j] = null;
+        else newTiles[i][j] = state[i][j];
+      }
+    }
+    setTiles(newTiles);
   }
 
   function moveTile(row, col) {
@@ -74,9 +88,9 @@ function Board() {
   function solve() {
     console.log("Initial: ", tiles);
     const goal = [
-      [1, 2, 3],
-      [4, 5, 6],
-      [0, 7, 8],
+      [0, 1, 2],
+      [5, 6, 3],
+      [4, 7, 8],
     ];
 
     let solution = [];
@@ -105,7 +119,28 @@ function Board() {
     if (solution === undefined) {
       setSolvable(false);
     }
+
+    setSolution(solution);
   }
+
+  useEffect(() => {
+    if (solvable && solution.length > 0) {
+      let currentIndex = 0;
+
+      const interval = setInterval(() => {
+        if (currentIndex < solution.length) {
+          changeState(solution[currentIndex][0]);
+          currentIndex++;
+        } else {
+          clearInterval(interval);
+        }
+      }, 1000);
+
+      return () => clearInterval(interval);
+    }
+
+    
+  }, [solvable, solution]);
 
   return (
     <div className="App">
@@ -148,7 +183,7 @@ function Board() {
           solvable ? "text-green-600" : "text-red-600"
         }`}
       >
-        {solvable ? "Solving..." : "Not Solvable"}
+        {solvable ? "Solved" : "Not Solvable"}
       </div>
     </div>
   );

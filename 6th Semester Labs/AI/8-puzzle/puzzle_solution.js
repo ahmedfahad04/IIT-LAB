@@ -1,3 +1,4 @@
+const {isSolvable} = require('./solvability');
 // index.js
 
 class Node {
@@ -146,6 +147,8 @@ class Puzzle {
             for (let i = 1; i < solution[0].length; i++) {
                 const action = solution[0][i];
                 const cell = solution[1][i];
+                console.log("Goal Reached!!");
+
                 console.log("action: ", action);
                 for (const item of cell[0]) {
                     console.log(item);
@@ -155,9 +158,6 @@ class Puzzle {
         } else {
             console.log("No solution found.");
         }
-
-        console.log("Goal Reached!!");
-
     }
 
     // Method to check if the state has been explored
@@ -209,8 +209,8 @@ class Puzzle {
             this.countExploredState += 1; // Increment the count of explored states
             this.addToExplored(node.state);
 
-            if(this.countExploredState > 1000) {
-                console.log('No solution found within 1000 levels')
+            if(this.countExploredState > 100000) {
+                console.log('No solution found within 10000 levels')
                 return "No Solution found";
             }
 
@@ -236,10 +236,11 @@ class Puzzle {
 // let checkSolvability = isSolvable([[0, 2, 3], [1, 4, 5], [8, 7, 6]]);
 // console.log("Is it Solvable? ", checkSolvability);
 
-// Example input
-const startState = [[0, 2, 3], [1, 4, 5], [8, 7, 6]];
-const goalState = [[1,2,3], [8,0,4], [7,6,5]];
+// // Example input
+// const startState = [[7,2,4], [5,0,6], [8,3,1]];
+// const goalState = [[0,1,2], [3,4,5], [6,7,8]];
+// // const goalState = [[1,2,3], [4,5,6], [7,8,0]];
 
-const myPuzzle = new Puzzle(startState, goalState);
-myPuzzle.findSolution();
-myPuzzle.print();
+// const myPuzzle = new Puzzle(startState, goalState);
+// myPuzzle.findSolution();
+// myPuzzle.print();
