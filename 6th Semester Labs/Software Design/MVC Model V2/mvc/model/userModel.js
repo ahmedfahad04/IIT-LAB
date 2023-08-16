@@ -1,6 +1,18 @@
-const User = require('../model/userModel');
+// const User = require('../model/userModel');
 const express = require('express');
 const router = express.Router();
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
+const userSchema = new Schema({
+    name: {type: String},
+    password: {type: String},
+    email: {type: String},
+    phone: {type: String}
+}, {timestamps: true});
+
+
+const User = mongoose.model("User", userSchema);
 
 // interaction with model 
 const registration = (req, res) => {

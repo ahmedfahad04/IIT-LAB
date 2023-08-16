@@ -47,8 +47,8 @@
     <script>
 
         setInterval(fetchUserDetails, 5000);
+        
         function registerUser() {
-
 
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
@@ -79,7 +79,14 @@
                     console.error('Error:', error);
                     // Handle error here
                 });
+
+            document.getElementById('name').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('psw').value = '';
+            document.getElementById('phone').value = '';
+
         }
+
         function fetchUserDetails() {
             axios.get('http://localhost:5000/api/users/all')
                 .then(response => {
