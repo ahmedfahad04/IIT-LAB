@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="0f6de0b5-53bf-4c11-aa69-ae820a3381e8" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../CSE502: Web Technology/AngularJS/E-Shop/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../CSE502: Web Technology/AngularJS/E-Shop/src/app/app.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CSE502: Web Technology/FastApi/FastAPI_Tuts/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../CSE502: Web Technology/FastApi/FastAPI_Tuts/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CSE502: Web Technology/FastApi/FastAPI_Tuts/path_parameters.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../CSE502: Web Technology/FastApi/FastAPI_Tuts/path_parameters.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CSE502: Web Technology/FastApi/FastAPI_Tuts/query_parameters.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../CSE502: Web Technology/FastApi/FastAPI_Tuts/query_parameters.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CSE502: Web Technology/FastApi/FastAPI_Tuts/request_body.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../CSE502: Web Technology/FastApi/FastAPI_Tuts/request_body.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CSE502: Web Technology/Javascript/class10.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CSE502: Web Technology/Javascript/class10_2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CSE502: Web Technology/Javascript/class7.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CSE502: Web Technology/Javascript/class8.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CSE502: Web Technology/Javascript/class8_2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CSE502: Web Technology/Javascript/class9.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CSE502: Web Technology/Javascript/task1.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CSE502: Web Technology/Javascript/task2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CSE502: Web Technology/Javascript/toh_40.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CSE502: Web Technology/Javascript/toh_60.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CSE502: Web Technology/Javascript/towerOfHanoi.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CSE502: Web Technology/Javascript/towerofhanoi.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CSE502: Web Technology/PHP/basic.php" beforeDir="false" afterPath="$PROJECT_DIR$/../../CSE502: Web Technology/PHP/basic.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Behavioral_Pattern/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Behavioral_Pattern/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Creational_Patterns/builder/StandardMazeBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Creational_Patterns/builder/StandardMazeBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LabFinal-Practice/out/production/LabFinal/Abstract_Factory/BeefBurgerRestaurant.class" beforeDir="false" afterPath="$PROJECT_DIR$/../LabFinal-Practice/out/production/LabFinal/Abstract_Factory/BeefBurgerRestaurant.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LabFinal-Practice/out/production/LabFinal/Builder_Pattern/Director.class" beforeDir="false" afterPath="$PROJECT_DIR$/../LabFinal-Practice/out/production/LabFinal/Builder_Pattern/Director.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LabFinal-Practice/out/production/LabFinal/Factory_Method/Restaurant.class" beforeDir="false" afterPath="$PROJECT_DIR$/../LabFinal-Practice/out/production/LabFinal/Factory_Method/Restaurant.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LabFinal-Practice/src/Abstract_Factory/BeefBurgerRestaurant.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LabFinal-Practice/src/Abstract_Factory/BeefBurgerRestaurant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LabFinal-Practice/src/Abstract_Factory/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LabFinal-Practice/src/Abstract_Factory/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LabFinal-Practice/src/Builder_Pattern/Director.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LabFinal-Practice/src/Builder_Pattern/Director.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LabFinal-Practice/src/Factory_Method/Burger.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LabFinal-Practice/src/Factory_Method/Burger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LabFinal-Practice/src/Factory_Method/Restaurant.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LabFinal-Practice/src/Factory_Method/Restaurant.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2OGdy8cbN8jQNXzez3alcYD2P4y" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/home/fahad/Documents/IIT/IIT-LAB/5th Semester Labs/SE506: Design Pattern/LabFinal"
+  }
+}]]></component>
+  <component name="RunManager" selected="Application.musicstreaming_Q2.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="LabFinal" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WeatherApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="weatherdata.WeatherApp" />
+      <module name="LabFinal" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="weatherdata.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="musicstreaming_Q2.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="musicstreaming_Q2.Main" />
+      <module name="LabFinal" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="musicstreaming_Q2.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.musicstreaming_Q2.Main" />
+        <item itemvalue="Application.WeatherApp" />
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0f6de0b5-53bf-4c11-aa69-ae820a3381e8" name="Changes" comment="" />
+      <created>1681191106052</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1681191106052</updated>
+    </task>
+    <servers />
+  </component>
+</project>

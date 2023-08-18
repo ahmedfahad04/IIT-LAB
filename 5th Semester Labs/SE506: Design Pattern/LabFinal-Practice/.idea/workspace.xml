@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="dd174671-c14a-47c5-80ea-fec498afb5cb" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../CSE502: Web Technology/AngularJS/E-Shop/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../CSE502: Web Technology/AngularJS/E-Shop/src/app/app.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CSE502: Web Technology/FastApi/FastAPI_Tuts/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../CSE502: Web Technology/FastApi/FastAPI_Tuts/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CSE502: Web Technology/FastApi/FastAPI_Tuts/path_parameters.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../CSE502: Web Technology/FastApi/FastAPI_Tuts/path_parameters.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CSE502: Web Technology/FastApi/FastAPI_Tuts/query_parameters.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../CSE502: Web Technology/FastApi/FastAPI_Tuts/query_parameters.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CSE502: Web Technology/FastApi/FastAPI_Tuts/request_body.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../CSE502: Web Technology/FastApi/FastAPI_Tuts/request_body.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CSE502: Web Technology/Javascript/class10.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CSE502: Web Technology/Javascript/class10_2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CSE502: Web Technology/Javascript/class7.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CSE502: Web Technology/Javascript/class8.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CSE502: Web Technology/Javascript/class8_2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CSE502: Web Technology/Javascript/class9.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CSE502: Web Technology/Javascript/task1.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CSE502: Web Technology/Javascript/task2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CSE502: Web Technology/Javascript/toh_40.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CSE502: Web Technology/Javascript/toh_60.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CSE502: Web Technology/Javascript/towerOfHanoi.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CSE502: Web Technology/Javascript/towerofhanoi.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CSE502: Web Technology/PHP/basic.php" beforeDir="false" afterPath="$PROJECT_DIR$/../../CSE502: Web Technology/PHP/basic.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Behavioral_Pattern/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Behavioral_Pattern/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Abstract_Factory/BeefBurgerRestaurant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Abstract_Factory/BeefBurgerRestaurant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Abstract_Factory/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Abstract_Factory/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Builder_Pattern/Director.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Builder_Pattern/Director.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Factory_Method/Burger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Factory_Method/Burger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Factory_Method/Restaurant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Factory_Method/Restaurant.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JUnit5 Test Class" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2OFGe9DLDp4L8OPV0bP1gbNG86d" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "create.test.in.the.same.root": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/home/fahad/Desktop/LabFinal-Practice",
+    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.Color Scheme Font"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$/src/Abstract_Factory" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="Abstract_Factory" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Abstract_Factory.Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Abstract_Factory.Client" />
+      <module name="LabFinal" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Abstract_Factory.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Chain_of_Responsibility_Pattern.MainApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Chain_of_Responsibility_Pattern.MainApp" />
+      <module name="LabFinal" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Chain_of_Responsibility_Pattern.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Strategy_Pattern.Client" />
+      <module name="LabFinal" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Strategy_Pattern.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="JavaSyntaxes" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="JavaSyntaxes" />
+      <module name="LabFinal" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Builder_Pattern.Main" />
+      <module name="LabFinal" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Builder_Pattern.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Client" />
+        <item itemvalue="Application.JavaSyntaxes" />
+        <item itemvalue="Application.Abstract_Factory.Client" />
+        <item itemvalue="Application.Chain_of_Responsibility_Pattern.MainApp" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="dd174671-c14a-47c5-80ea-fec498afb5cb" name="Changes" comment="" />
+      <created>1681149010953</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1681149010953</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
