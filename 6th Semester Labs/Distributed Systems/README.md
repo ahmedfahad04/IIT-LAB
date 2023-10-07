@@ -150,3 +150,94 @@ Example:
 - After SQL tuning, you rewrite the query to use an index on the "price" column, making the search much faster.
 
 SQL tuning is crucial for maintaining good application performance and ensuring that your database server can handle the workload efficiently. It often requires a combination of **database design**, **query optimization**, and using **appropriate indexing strategies.**
+
+### When to use which RDMS Scaling Techniques
+
+The choice of which technique to use for scaling a relational database depends on various factors, including your specific application's needs and constraints. Here are some guidelines on when to consider each technique based on different scenarios:
+
+1. **Master-Slave Replication**:
+
+   - Use when you have a `read-heavy workload` and a lower write load.
+   - Example: If your application's read-to-write ratio is around 100:1, master-slave replication can be effective for offloading read queries to slave databases, reducing the load on the master.
+
+2. **Master-Master Replication**:
+
+   - Consider when you need `high availability and write scalability`.
+   - Example: In scenarios where write operations are critical, and you want to ensure redundancy and load balancing, master-master replication can be beneficial.
+
+3. **Federation**:
+
+   - Use when your data can be `logically partitioned` based on certain criteria.
+   - Example: In a social media platform, if you want to separate user data by geographic regions (e.g., users in the U.S., Europe, Asia), federation can help distribute data efficiently.
+
+4. **Sharding**:
+
+   - Employ when you have a very large dataset that can be divided into `smaller, manageable pieces`.
+   - Example: In e-commerce, if you have millions of products, you can shard your database based on product categories or other criteria to scale horizontally.
+
+5. **Denormalization**:
+
+   - Consider when you need to `optimize read performance` at the cost of increased storage space.
+   - Example: In reporting systems, where you need to run complex queries frequently, denormalization can be used to store redundant data that facilitates faster query execution.
+
+6. **SQL Tuning**:
+   - Always perform SQL tuning, regardless of the scale, to `optimize query performance`.
+   - Example: Continuously monitor your application's SQL queries and optimize them by adding appropriate indexes, rewriting queries, or restructuring them for efficiency.
+
+In practice, it's common to use a combination of these techniques to achieve the desired scalability, performance, and high availability for your application. The choice often depends on the specific characteristics of your data and the workload patterns your application experiences. Regular monitoring and performance testing are essential to fine-tune your database scaling strategy as your application evolves.
+
+### When to use CDN?
+
+Content Delivery Network (CDN) is used to scale a system when your application or website has specific performance and content delivery requirements. CDNs are particularly useful in scenarios where:
+
+**Scenario: Global Website with High Traffic:**
+
+Imagine you have a popular e-commerce website that sells products globally. In this scenario, using a CDN can greatly benefit your system:
+
+1. **Geographical Distribution**: Your website has customers from all over the world. Without a CDN, your web server, which may be located in a single data center, would be responsible for serving content to users across long distances, leading to slow loading times.
+
+2. **High Traffic Peaks**: During special sales events or product launches, your website experiences a massive surge in traffic. This sudden influx of visitors can overload your origin server, causing it to slow down or even crash.
+
+3. **Static and Dynamic Content**: Your website includes both static content (images, stylesheets) and dynamic content (product pages, user-generated content).
+
+How CDN Helps:
+
+- A CDN consists of a `network of geographically distributed` servers (edge servers) located in data centers around the world.
+- When you use a CDN, static content like images, stylesheets, and even some cached dynamic content is stored on these edge servers.
+- When a user accesses your website, the CDN automatically directs their request to the nearest edge server. This reduces latency and speeds up content delivery.
+
+Benefits:
+
+- **Faster Load Times**: Users receive content from a nearby edge server, resulting in faster load times and a better user experience.
+- **Load Balancing**: CDNs distribute traffic across multiple edge servers, reducing the load on your origin server.
+- **Scalability**: CDNs can handle spikes in traffic without overloading your origin server.
+- **DDoS Mitigation**: CDNs often have built-in security features to protect against Distributed Denial of Service (DDoS) attacks.
+
+In summary, you should consider using a CDN when you need to optimize content delivery, reduce latency for global users, handle traffic spikes, and improve the overall performance and availability of your web application or website.
+
+### Availability Patter
+
+An **availability pattern** refers to a strategy or design approach used to ensure that a system or service remains accessible and operational even in the face of failures or disruptions. Availability patterns are used to enhance the reliability and uptime of applications. Here are two common availability patterns:
+
+1. **Redundancy Pattern**:
+
+   - **Description**: In this pattern, you duplicate critical components or resources, such as servers or databases, so that if one fails, another can take over seamlessly.
+
+   - **Example**: Consider a web application hosted on multiple servers behind a load balancer. If one server becomes unavailable due to a hardware failure, the load balancer can redirect traffic to the remaining healthy servers, ensuring continued service availability. This redundancy pattern is used to achieve high availability.
+
+2. **Failover Pattern**:
+
+   - **Description**: Failover involves automatically switching to a backup system or resource when the primary one fails. This pattern is commonly used for systems that require minimal downtime.
+
+   - **Example**: Think of a database cluster with a primary database server and a secondary (standby) server. If the primary server fails, a failover mechanism automatically promotes the standby server to the primary role. This ensures continuous database operations with minimal interruption.
+
+These availability patterns are essential for building robust and resilient systems. Redundancy ensures that backup resources are available to take over when needed, and failover ensures a smooth transition from a failed resource to a healthy one, minimizing downtime and service interruptions. The choice of pattern depends on the specific availability requirements and constraints of your system.
+
+### Active-Passive vs Active-Active failover
+
+Route 53 active-passive vs active-active failover
+The fundamental distinction between the two architectures is when the architecture is operational. During regular operation, we have access to all resources thanks to active-active failover.
+
+In an active-passive failover, backup resources are normally in a standby state and only observe operations during the failover.
+
+#### [Consistency Pattern](https://iq.opengenus.org/consistency-patterns-in-system-design/)
