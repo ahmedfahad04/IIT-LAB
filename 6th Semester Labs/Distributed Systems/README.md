@@ -1,6 +1,15 @@
 ### Relational Database Scalinng
 
-#### Master-Slave Replication Technique
+There are several techniques to Scale Relational Database. Most common of those are:
+
+- [Master-Slave Replication](#Master-Slave-Replication)
+- [Master-Master Replication](#master-master-replication)
+- [Federation](#federation)
+- [Sharding](#sharding)
+- [Denormalizing](#denormalizing)
+- [SQL Tuning](#sql-tuning)
+
+#### Master-Slave Replication
 
 > To handle HUGE writes than reads
 
@@ -23,7 +32,7 @@ Example:
 
 This way, master-slave replication helps distribute read-heavy workloads and improves the overall performance and availability of your database system.
 
-#### Master-Master Replication Technique (to handle HIGH AVAILABILITY)
+#### Master-Master Replication
 
 > To handle HIGH AVAILABILITY
 
@@ -47,7 +56,7 @@ Example:
 
 Master-master replication is complex to set up and manage due to the need for data conflict resolution and synchronization mechanisms, but it offers improved redundancy and load balancing capabilities for critical applications.
 
-### Federation (to handle HUGE users)
+### Federation
 
 > To handle HUGE users
 
@@ -104,3 +113,40 @@ Sharding allows you to scale your database horizontally, ensuring that your appl
 - Sharding try to scale a specific Database, while Federation tries to scale the whole Database.
 
 - Like federation, there is no single central master serializing writes, allowing you to write in parallel with increased throughput.
+
+### Denormalizing
+
+> To improve QUERY PERFORMANCE by means of Storage & Redundancy
+
+It's a database design technique that involves **intentionally introducing redundancy** into a database by storing the same data in multiple places. This is done to improve query performance at the cost of increased storage space and potential data update complexities. Here's a simple explanation:
+
+- Imagine you have a database for an e-commerce website, and you want to display product information on the homepage, product listings, and in a user's shopping cart.
+- In a normalized database design, you would have a separate table for products and another for product details.
+- To display product information on multiple pages, you would need to join these tables in your queries, which can be slow for large datasets.
+- Instead, you decide to denormalize by duplicating some product information (e.g., product name, price) directly into the product listings and shopping cart tables.
+- Now, you can retrieve this information quickly without **complex joins, improving query performance.**
+
+Example:
+
+- In a normalized database, you might have a "products" table and a "product_details" table.
+- In a denormalized design, you duplicate the product name and price directly into the "product_listings" table.
+- When a user views a product listing, you can display the product information without the need for a complex join operation.
+
+Denormalization is a **trade-off between query performance and storage efficiency**. It can be useful when you need **to optimize read-heavy operations** but may require careful management to keep redundant data in sync when updates occur.
+
+### SQL Tuning
+
+It's the process of optimizing **SQL queries** to improve their performance and efficiency in interacting with a database. It involves making adjustments to **SQL statements** to ensure they execute as quickly as possible while using the **least amount of resources**. Here's a simple explanation:
+
+- Imagine you have a large database, and you need to retrieve specific data from it using SQL queries.
+- If your queries are slow, they can slow down your application and put a strain on the database server.
+- SQL tuning involves analyzing and optimizing your SQL queries to make them run faster.
+- This can include _rewriting queries, creating indexes, and using appropriate database features_.
+
+Example:
+
+- Let's say you have an e-commerce website, and you want to find all products with a price below $50.
+- Initially, your query might be slow because it scans the entire product table.
+- After SQL tuning, you rewrite the query to use an index on the "price" column, making the search much faster.
+
+SQL tuning is crucial for maintaining good application performance and ensuring that your database server can handle the workload efficiently. It often requires a combination of **database design**, **query optimization**, and using **appropriate indexing strategies.**
