@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="d3d1e608-ce08-4060-b5cd-d0bbf159a6e7" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../../BookStore-Testing/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../BookStore-Testing/src/main/java/org/Grader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../BookStore-Testing/src/main/java/org/SimpleCalc.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../BookStore-Testing/src/test/java/Bookstore/BookShelfTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../BookStore-Testing/src/test/java/org/GraderTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../BookStore-Testing/src/test/java/org/SimpleCalcTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Software Design/MVC Model V2/mvc/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Software Design/MVC Model V2/mvc/package-lock.json" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../.." />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="2" />
+  </component>
+  <component name="ProjectId" id="2VcJ4f7fChka5raPo6LqPS3eoTg" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "/home/fahad/Documents/IIT-LAB/6th Semester Labs/Software Testing/BookStore-Testing"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d3d1e608-ce08-4060-b5cd-d0bbf159a6e7" name="Changes" comment="" />
+      <created>1695129244723</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1695129244723</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
