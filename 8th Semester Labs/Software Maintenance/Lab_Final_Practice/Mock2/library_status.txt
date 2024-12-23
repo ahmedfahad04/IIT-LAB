@@ -1,0 +1,2 @@
+Title: Java Programming, Author: John Doe, Borrowed: Yes
+Title: Data Structures, Author: Jane Smith, Borrowed: No
