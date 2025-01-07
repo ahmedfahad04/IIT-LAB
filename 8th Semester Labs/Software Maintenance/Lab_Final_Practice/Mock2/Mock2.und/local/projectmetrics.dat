@@ -1,0 +1,20 @@
+{
+    "fileMetrics": "file,Code Lines\nsrc/Library.java,72\nsrc/Book.java,39\nsrc/EBook.java,23\nsrc/Admin.java,15\nsrc/Main.java,21\nsrc/LibraryMember.java,24",
+    "funcTop10": "function,cyclomatic\nLibrary.saveLibraryStatus,4\nLibrary.searchBooks,4\nLibrary.displayAvailableBooks,3\nLibrary.loadLibraryStatus,3\nLibrary.removeBook,2\nBook.borrow,2\nBook.returnBook,2\nBook.toString,2\nEBook.borrow,2\nEBook.returnBook,2\nLibrary.displayAllBooks,2",
+    "languages": "Java",
+    "metricsVersion": 3,
+    "parsetime": 1734959061,
+    "summaryMetric/CountAnalysisError": 0,
+    "summaryMetric/CountAnalysisWarning": 0,
+    "summaryMetric/CountDeclClass": 6,
+    "summaryMetric/CountDeclFile": 6,
+    "summaryMetric/CountDeclFunction": 29,
+    "summaryMetric/CountLine": 240,
+    "summaryMetric/CountLineBlank": 39,
+    "summaryMetric/CountLineCode": 194,
+    "summaryMetric/CountLineComment": 7,
+    "summaryMetric/CountStmtDecl": 59,
+    "summaryMetric/CountStmtExe": 86,
+    "summaryMetric/RatioCommentToCode": 0.04,
+    "summaryMetrics": "Name,Value\nClasses,6\nFiles,6\nFunctions,29\nLines,240\nBlank Lines,39\nCode Lines,194\nComment Lines,7\nDeclarative Statements,59\nExecutable Statements,86\nComment to Code Ratio,0.04\n"
+}

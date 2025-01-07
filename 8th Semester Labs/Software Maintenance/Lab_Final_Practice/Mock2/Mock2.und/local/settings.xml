@@ -1,0 +1,28 @@
+<project>
+  <files>
+    <dir
+      name=".">
+      <watched
+        excludes=".*"
+        subdirs="true">
+        <filter
+          name="Java"/>
+      </watched>
+      <dir
+        name="src">
+        <auto
+          name="Admin.java"/>
+        <auto
+          name="Book.java"/>
+        <auto
+          name="EBook.java"/>
+        <auto
+          name="Library.java"/>
+        <auto
+          name="LibraryMember.java"/>
+        <auto
+          name="Main.java"/>
+      </dir>
+    </dir>
+  </files>
+</project>

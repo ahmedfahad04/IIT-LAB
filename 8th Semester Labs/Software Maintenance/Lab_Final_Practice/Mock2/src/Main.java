@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+
         Library library = new Library();
         Admin admin = new Admin("Alice", 1);
         LibraryMember member = new LibraryMember("Bob", 2);
@@ -25,7 +26,7 @@ public class Main {
         library.searchBooks("Java2");
 
         // Admin removing a book
-        // admin.removeBook(library.books.get(1), library);
+        admin.removeBook(library.books.get(1), library);
 
         // Display all books after removal
         System.out.println("\nAll Books in Library:");
