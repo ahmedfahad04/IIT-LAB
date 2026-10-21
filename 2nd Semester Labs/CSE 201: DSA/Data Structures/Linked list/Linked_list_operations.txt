@@ -1,0 +1,24 @@
+Types:
+    1. Signly Linked list
+    2. Doubly Linked list
+    3. Circular Linked list
+    
+Operations:
+
+    1. Insertion: 
+        - insert at begining
+        - insert at given index (in between)
+        - insert after given node
+        - insert at the back/end
+
+    2. Deletion: 
+        - deleting the first node
+        - deleting a node using index (in between) 
+        - delete the last node
+        - delete a node with a given value
+
+    3. Searching 
+    4. Display Linked list ( list traversal )
+    5. Replacing or Updating a node
+
+    Extra: sorting, merging two lists

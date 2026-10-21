@@ -1,0 +1,1 @@
+Huffman coding uses a specific method for choosing the representation for each symbol.
