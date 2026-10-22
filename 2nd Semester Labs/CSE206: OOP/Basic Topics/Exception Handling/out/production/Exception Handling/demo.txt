@@ -1,0 +1,2 @@
+Hello people. This is a demo file.
+Hope to see it opened using java.
