@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="360.0" style="-fx-background-color: fff;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SOIT.UserController">
+   <children>
+      <StackPane prefHeight="640.0" prefWidth="360.0">
+         <children>
+            <StackPane fx:id="stkReport" prefHeight="640.0" prefWidth="360.0" style="-fx-background-color: fff;">
+               <children>
+                  <Pane fx:id="pnReported" prefHeight="640.0" prefWidth="360.0" style="-fx-background-color: fff;">
+                     <children>
+                        <Label layoutX="122.0" layoutY="315.0" text="Submitted!" textFill="#6f4cbb">
+                           <font>
+                              <Font name="Roboto" size="24.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="reportToHome" layoutX="90.0" layoutY="380.0" mnemonicParsing="false" onAction="#switchToHome2" prefHeight="40.0" prefWidth="180.0" style="-fx-background-color: #6F4CBB; -fx-background-radius: 25; -fx-cursor: hand;" styleClass="button1" stylesheets="@fullpackstyling.css" text="Procced to Home" />
+                     </children>
+                  </Pane>
+                  <Pane fx:id="pnIssue" prefHeight="640.0" prefWidth="360.0" style="-fx-background-color: fff;">
+                     <children>
+                        <Label layoutX="72.0" layoutY="240.0" text="Please tell us about the issue :">
+                           <font>
+                              <Font name="Roboto" size="16.0" />
+                           </font>
+                        </Label>
+                        <TextArea fx:id="txtIssue" layoutX="72.0" layoutY="285.0" prefHeight="145.0" prefWidth="216.0" promptText="Describe your issue" style="-fx-font-family: Roboto; -fx-border-color: #431FA0;">
+                           <font>
+                              <Font name="Roboto" size="14.0" />
+                           </font>
+                        </TextArea>
+                        <Button fx:id="reportSubmit" layoutX="143.0" layoutY="465.0" mnemonicParsing="false" onAction="#reportSubmit" prefHeight="40.0" prefWidth="145.0" style="-fx-background-color: #6F4CBB; -fx-background-radius: 25; -fx-cursor: hand;" styleClass="button1" stylesheets="@fullpackstyling.css" text="Submit" />
+                        <Pane layoutX="65.0" layoutY="142.0" styleClass="pane2" stylesheets="@fullpackstyling.css">
+                           <children>
+                              <ImageView fx:id="issueToTable" fitHeight="45.0" fitWidth="27.0" onMouseClicked="#issueToTable" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+                                 <image>
+                                    <Image url="@icon/icons8_back_100px_2.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Pane>
+                     </children>
+                  </Pane>
+               </children>
+            </StackPane>
+            <Pane fx:id="pnTable" prefHeight="640.0" prefWidth="360.0" style="-fx-background-color: fff;">
+               <children>
+                  <TableView fx:id="table" layoutX="5.0" layoutY="174.0" prefHeight="381.0" prefWidth="350.0" styleClass="table-view2" stylesheets="@csstry.css">
+                    <columns>
+                      <TableColumn fx:id="colName" minWidth="30.0" prefWidth="92.0" text="Name" />
+                      <TableColumn fx:id="colLoc" minWidth="30.0" prefWidth="92.0" text="Location" />
+                        <TableColumn fx:id="colICU" prefWidth="57.0" text="ICU" />
+                        <TableColumn fx:id="colOxy" prefWidth="63.0" text="Oxygen" />
+                        <TableColumn fx:id="colContact" prefWidth="90.0" text="Contact" />
+                        <TableColumn fx:id="colUpdate" prefWidth="125.0" text="Last Update" />
+                    </columns>
+                  </TableView>
+                  <TextField fx:id="searchBar" layoutX="184.0" layoutY="84.0" prefHeight="30.0" prefWidth="175.0" promptText="Search" styleClass="txtfield" stylesheets="@fullpackstyling.css" />
+                  <Label fx:id="tableToReport" alignment="CENTER" contentDisplay="CENTER" layoutX="125.0" layoutY="567.0" onMouseClicked="#tableToReport" prefHeight="35.0" prefWidth="117.0" style="-fx-cursor: hand;" styleClass="label2" stylesheets="@fullpackstyling.css" text="Report Issue" textFill="RED">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <CheckBox fx:id="chkICU" layoutX="186.0" layoutY="142.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="77.0" style="-fx-cursor: hand;" text="ICU">
+                     <font>
+                        <Font size="14.0" />
+                     </font></CheckBox>
+                  <CheckBox fx:id="chkOxygen" layoutX="244.0" layoutY="142.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="77.0" style="-fx-cursor: hand;" text="Oxygen">
+                     <font>
+                        <Font size="14.0" />
+                     </font></CheckBox>
+                  <Separator layoutX="176.0" layoutY="125.0" prefHeight="6.0" prefWidth="183.0" />
+                  <Pane layoutX="27.0" layoutY="33.0" styleClass="pane2" stylesheets="@fullpackstyling.css">
+                     <children>
+                        <ImageView fx:id="tableToHome" fitHeight="45.0" fitWidth="27.0" onMouseClicked="#switchToHome" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+                           <image>
+                              <Image url="@icon/icons8_back_100px_2.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+                  <Label alignment="CENTER" layoutX="256.0" layoutY="114.0" prefHeight="25.0" prefWidth="41.0" style="-fx-background-color: #fff;" text="Filter" textFill="#8d8a8a">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Pane layoutX="326.0" layoutY="140.0" styleClass="pane2" stylesheets="@fullpackstyling.css">
+                     <children>
+                        <ImageView fx:id="btnReload" fitHeight="25.0" onMouseClicked="#showChkResult" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+                           <image>
+                              <Image url="@icon/icons8_reset_60px.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
+         </children>
+      </StackPane>
+   </children>
+</AnchorPane>

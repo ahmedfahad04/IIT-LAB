@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="360.0" style="-fx-background-color: fff;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SOIT.Hospital3Controller">
+   <children>
+      <StackPane prefHeight="640.0" prefWidth="360.0">
+         <children>
+            <StackPane fx:id="stkReg" prefHeight="640.0" prefWidth="360.0">
+               <children>
+                  <Pane fx:id="pnRegDone" prefHeight="640.0" prefWidth="360.0" style="-fx-background-color: fff;">
+                     <children>
+                        <ImageView fitHeight="30.0" fitWidth="45.0" layoutX="87.0" layoutY="386.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icon/icons8_tick_box_96px.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="124.0" layoutY="376.0" text="Welcome" textFill="#431fa0">
+                           <font>
+                              <Font name="Lucida Handwriting Italic" size="30.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="RegDoneToUp" layoutX="85.0" layoutY="462.0" mnemonicParsing="false" onAction="#bRegDoneToUp" prefHeight="40.0" prefWidth="190.0" style="-fx-background-color: #6F4CBB; -fx-background-radius: 25; -fx-cursor: hand;" styleClass="button1" stylesheets="@fullpackstyling.css" text="Proceed to Update Info">
+                           <font>
+                              <Font name="Roboto" size="26.0" />
+                           </font>
+                        </Button>
+                        <ImageView fitHeight="148.0" fitWidth="158.0" layoutX="102.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icon/icons8_protection_mask_500px.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="pnReg" prefHeight="640.0" prefWidth="360.0" style="-fx-background-color: fff;">
+                     <children>
+                        <ImageView fitHeight="148.0" fitWidth="158.0" layoutX="102.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icon/icons8_protection_mask_500px.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="66.0" layoutY="241.0" prefHeight="45.0" prefWidth="120.0" text="Register">
+                           <font>
+                              <Font name="Roboto" size="30.0" />
+                           </font>
+                        </Label>
+                        <VBox layoutX="66.0" layoutY="327.0" prefHeight="158.0" prefWidth="229.0" spacing="15.0">
+                           <children>
+                              <TextField fx:id="txtName" prefHeight="35.0" prefWidth="216.0" promptText="Hospital name" styleClass="txtfield" stylesheets="@fullpackstyling.css">
+                                 <font>
+                                    <Font name="Roboto" size="14.0" />
+                                 </font>
+                              </TextField>
+                              <TextField fx:id="txtLoc" prefHeight="35.0" prefWidth="216.0" promptText="Location" styleClass="txtfield" stylesheets="@fullpackstyling.css" />
+                              <TextField fx:id="txtKey" prefHeight="35.0" prefWidth="216.0" promptText="Key (first 3 letters of name and location)" styleClass="txtfield" stylesheets="@fullpackstyling.css" />
+                           </children>
+                        </VBox>
+                        <Button fx:id="RegToRegDone" layoutX="155.0" layoutY="485.0" mnemonicParsing="false" onAction="#bRegToRegDone" prefHeight="37.0" prefWidth="140.0" style="-fx-background-radius: 25; -fx-background-color: #6F4CBB; -fx-cursor: hand;" styleClass="button1" stylesheets="@fullpackstyling.css" text="Get Started" />
+                        <Label fx:id="empField" layoutX="72.0" layoutY="286.0" prefHeight="30.0" prefWidth="216.0" textFill="RED" />
+                        <Pane layoutX="59.0" layoutY="198.0" styleClass="pane2" stylesheets="@fullpackstyling.css">
+                           <children>
+                              <ImageView fx:id="RegToHos" fitHeight="45.0" fitWidth="27.0" onMouseClicked="#mRegToHos" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+                                 <image>
+                                    <Image url="@icon/icons8_back_100px_2.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Pane>
+                     </children>
+                  </Pane>
+               </children>
+            </StackPane>
+            <StackPane fx:id="stkHU" prefHeight="640.0" prefWidth="360.0">
+               <children>
+                  <StackPane fx:id="stkUp" prefHeight="640.0" prefWidth="360.0" style="-fx-background-color: fff;">
+                     <children>
+                        <Pane fx:id="pnUp" prefHeight="640.0" prefWidth="360.0" style="-fx-background-color: fff;">
+                           <children>
+                              <Pane layoutX="65.0" layoutY="198.0" styleClass="pane2" stylesheets="@fullpackstyling.css">
+                                 <children>
+                                    <ImageView fx:id="UpToHos" fitHeight="33.0" fitWidth="30.0" onMouseClicked="#mUptoHos" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;" styleClass="pane2">
+                                       <image>
+                                          <Image url="@icon/icons8_back_100px_2.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </Pane>
+                              <VBox layoutX="72.0" layoutY="318.0" prefHeight="184.0" prefWidth="216.0" spacing="20.0">
+                                 <children>
+                                    <TextField fx:id="txtUpKey" prefHeight="40.0" prefWidth="216.0" promptText="Hospital Key" styleClass="txtfield" stylesheets="@fullpackstyling.css" />
+                                    <TextField fx:id="txtICU" prefHeight="40.0" prefWidth="216.0" promptText="New no. of free ICUs" styleClass="txtfield" stylesheets="@fullpackstyling.css" />
+                                    <TextField fx:id="txtOxy" prefHeight="40.0" prefWidth="216.0" promptText="New unit of available oxygen" styleClass="txtfield" stylesheets="@fullpackstyling.css" />
+                                    <TextField fx:id="txtContact" prefHeight="40.0" prefWidth="216.0" promptText="Contact no." styleClass="txtfield" stylesheets="@fullpackstyling.css" />
+                                 </children>
+                              </VBox>
+                              <ImageView fitHeight="148.0" fitWidth="158.0" layoutX="102.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@icon/icons8_protection_mask_500px.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="72.0" layoutY="250.0" text="Update Info">
+                                 <font>
+                                    <Font name="Roboto" size="26.0" />
+                                 </font>
+                              </Label>
+                              <Button fx:id="UpToUpDone" layoutX="148.0" layoutY="526.0" mnemonicParsing="false" onAction="#bUpToUpDone" prefHeight="37.0" prefWidth="140.0" style="-fx-background-color: #6F4CBB; -fx-background-radius: 25; -fx-cursor: hand;" styleClass="button1" stylesheets="@fullpackstyling.css" text="Update" />
+                              <Label fx:id="incorrectKey" layoutX="72.0" layoutY="282.0" prefHeight="30.0" prefWidth="216.0" textAlignment="CENTER" textFill="RED" wrapText="true" />
+                           </children>
+                        </Pane>
+                        <Pane fx:id="pnUpDone" prefHeight="640.0" prefWidth="360.0" style="-fx-background-color: fff;">
+                           <children>
+                              <Label layoutX="145.0" layoutY="317.0" text="Updated" textFill="#431fa0">
+                                 <font>
+                                    <Font name="Roboto" size="36.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="40.0" fitWidth="60.0" layoutX="90.0" layoutY="321.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@icon/icons8_checkmark_96px.png" />
+                                 </image>
+                              </ImageView>
+                              <Button fx:id="UpDoneToTable" layoutX="72.0" layoutY="420.0" mnemonicParsing="false" onMouseClicked="#bUpDonetoHos" prefHeight="40.0" prefWidth="216.0" style="-fx-background-color: #6F4CBB; -fx-background-radius: 25; -fx-cursor: hand;" styleClass="button1" stylesheets="@fullpackstyling.css" text="Proceed to Dashboard">
+                                 <font>
+                                    <Font name="Roboto" size="26.0" />
+                                 </font>
+                              </Button>
+                              <ImageView fitHeight="148.0" fitWidth="158.0" layoutX="102.0" layoutY="108.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@icon/icons8_protection_mask_500px.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Pane>
+                     </children>
+                  </StackPane>
+                  <Pane fx:id="pnHos" prefHeight="640.0" prefWidth="360.0" style="-fx-background-color: fff;">
+                     <children>
+                        <ImageView fitHeight="148.0" fitWidth="158.0" layoutX="98.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icon/icons8_protection_mask_500px.png" />
+                           </image>
+                        </ImageView>
+                        <VBox layoutX="83.0" layoutY="338.0" prefHeight="158.0" prefWidth="194.0" spacing="20.0">
+                           <children>
+                              <Button fx:id="HosToUp" mnemonicParsing="false" onAction="#bHosToUp" prefHeight="40.0" prefWidth="216.0" style="-fx-background-color: #D5CBEB; -fx-border-color: #6F4CBB; -fx-background-radius: 30; -fx-border-radius: 30; -fx-cursor: hand;" styleClass="button2" stylesheets="@fullpackstyling.css" text="Existing Hospital" />
+                              <Button fx:id="HosToReg" mnemonicParsing="false" onAction="#bHosToReg" prefHeight="40.0" prefWidth="216.0" style="-fx-background-color: #D5CBEB; -fx-border-color: #6F4CBB; -fx-background-radius: 30; -fx-border-radius: 30; -fx-cursor: hand;" styleClass="button2" stylesheets="@fullpackstyling.css" text="New Hospital" />
+                              <Button fx:id="HosToTable" lineSpacing="27.0" mnemonicParsing="false" onAction="#bHosToTable" prefHeight="40.0" prefWidth="216.0" style="-fx-background-color: #D5CBEB; -fx-border-color: #6F4CBB; -fx-background-radius: 30; -fx-border-radius: 30; -fx-cursor: hand;" styleClass="button2" stylesheets="@fullpackstyling.css" text="Show Hopital List" />
+                           </children>
+                        </VBox>
+                        <Pane layoutX="68.0" layoutY="259.0" prefHeight="31.0" prefWidth="30.0" styleClass="pane2" stylesheets="@fullpackstyling.css">
+                           <children>
+                              <ImageView fx:id="HosToHome" fitHeight="33.0" fitWidth="30.0" onMouseClicked="#mHosToHome" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+                                 <image>
+                                    <Image url="@icon/icons8_back_100px_2.png" />
+                                 </image>
+                              </ImageView>
+                           </children></Pane>
+                        <Label layoutX="108.0" layoutY="204.0" prefHeight="34.0" prefWidth="145.0" text="DASHBOARD" textFill="#4706bf">
+                           <font>
+                              <Font name="System Bold" size="23.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+               </children>
+            </StackPane>
+         </children>
+      </StackPane>
+   </children>
+</AnchorPane>

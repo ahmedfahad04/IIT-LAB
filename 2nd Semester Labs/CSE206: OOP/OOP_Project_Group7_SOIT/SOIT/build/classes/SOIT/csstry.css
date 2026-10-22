@@ -1,0 +1,64 @@
+.table-view2 {
+    -fx-background-color: #D5CBEb;
+    -fx-border-color: #371897;
+    
+}
+
+.table-view2 .column-header,
+.table-view2 .column-header-background .filler {
+    -fx-font-family: 'Roboto';
+    -fx-background-color: #6622CC; 
+}
+
+.table-view2 .column-header .label{
+    -fx-font-family: 'Roboto';
+   -fx-text-fill: white;
+   -fx-font-weight: bold; 
+   -fx-alignment: CENTER_LEFT;
+}
+
+.table-view2 .corner {
+    -fx-background-color: #D5CBEb;
+}
+
+.table-view2 .table-cell:even{
+    -fx-background-color: #D5CBEb;
+}
+
+.table-view2 .table-cell:odd{
+    -fx-background-color: #dcd3eb;
+
+}
+
+.table-row-cell:selected {
+   -fx-background-color: whitesmoke; 
+   -fx-text-background-color: red;
+   /*-fx-border-color: black;*/
+   
+}
+
+
+.table-view2 .increment-button ,.table-view2 .decrement-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 2em;
+
+}
+
+/* The main scrollbar **track** CSS class  */
+.table-view2 .scroll-bar:horizontal .track,
+.table-view2 .scroll-bar:vertical .track{
+	-fx-background-color: transparent;
+	-fx-border-color:derive( #6622CC,80%);
+
+	-fx-background-radius: 2em;
+	-fx-border-radius:2em;
+}
+
+/* The main scrollbar **thumb** CSS class which we drag every time (movable) */
+.table-view2 .scroll-bar:horizontal .thumb,
+.table-view2 .scroll-bar:vertical .thumb {
+    -fx-background-color:derive( #6622CC,90%);
+	-fx-background-insets: 2, 0, 0;
+	-fx-background-radius: 2em;
+
+}
